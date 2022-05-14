@@ -1,0 +1,131 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.teal,.hover-teal:hover{
+	color:#fff!important;
+	background-color:#D3EAD6!important}
+/*.container{padding:0.01em 16px}*/
+
+.nav {
+  float: right;
+  color: #083303;
+	padding-right: 10px;
+}
+
+.nav-menu{
+  color: #ffffff;
+	font-size: 25pt;
+	padding-left: 15pt;
+}
+
+.logo{
+  height:40pt;
+  margin-top:10pt;
+  margin-bottom: 10pt;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Main body */
+.main{
+	padding-top: 15px;
+	padding-bottom: 0px;
+	background: #FFFFFF;
+}
+
+.main h1{
+	padding-top: 20px;
+	color: #083303;
+}
+
+.main p{
+	font-size: 15pt;
+	color: #083303;
+}
+
+.plot{
+	width: 95%;
+}
+
+#project{
+	padding-top: 30px;
+	background: #F9F9F9;
+}
+
+#project p{
+	padding-bottom: 20px;
+}
+
+.facts{
+	padding-top: 20px;
+}
+
+.overview-toggle{
+	padding-top: 20px;
+}
+
+.overview-info{
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+.overview-info p{
+	padding: 15px;
+}
+
+/* Footer */
+#footerwrap {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	background: #D3EAD6;
+}
+
+#footerwrap p {
+	color: #083303;
+}
+
+#footerwrap h4 {
+	color: #052003;
+}
+
+#footerwrap i {
+	font-size: 30px;
+	color: #083303;
+	padding-right: 25px;
+}
+
+#footerwrap i:hover {
+	color: #DC2624
+}
