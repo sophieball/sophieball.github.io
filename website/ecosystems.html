@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="css/census.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+<title>Open-Source Software Census</title>
+ 
+</head>
+
+<body>
+	
+<script>
+function openNav() {
+  document.getElementById("Sidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("Sidenav").style.width = "0";
+}
+</script>
+	
+<div id="Sidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <p class="nav-menu">Menu</p>
+  <a href="index.html">Main Page</a>
+  <a href="quick.html">Quick Facts</a>
+  <a href="overview.html">Overview</a>
+  <a href="time.html">Year Slice</a>
+  <a href="explore.html">Free Exploration</a>
+  <a href="what.html">What To Do</a>
+</div>	
+	
+<div class="teal">
+  <div class="container">
+	    <div class="row">
+            <div class="col-lg-11">
+				<img class="logo" src="images/strudel.png">
+
+			</div>
+			<div class="col-lg-1"><span class="nav" style="font-size:40px;cursor:pointer" onclick="openNav()">&#9776;</span></div>
+	  </div>
+    
+  </div>
+</div>
+	
+
+<div class="main">
+	<div class="container">
+	<h1>Graph comparison</h1>
+	</div>
+	
+	<div class="container">
+	 <!-- Graph Comparison -->
+    <div class="flex flex-col items-center justify-center mx-auto px-10">
+        <div class="w-full mx-auto" style="justify-content: space-evenly">
+            <div class="flex flex-row items-center justify-center space-x-8 mx-auto">
+                <!-- Dropdown for category selection -->
+                <label for="category-select" class="font-bold">Category:</label>
+                <select name="category" id="category-select" onchange="update('1')" class="form-select appearance-none 
+                    block
+                    w-full
+                    px-2
+                    py-1
+                    my-1
+                    text-center
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select">
+                    <option value="" selected disabled hidden>--Select--</option>
+                    <option value="contributor">Contributors</option>
+                    <option value="commit">Commits</option>
+                    <option value="project">Project</option>
+                    <!-- <option value="all">All</option> -->
+                </select>
+            </div>
+            <div class="w-full mx-auto mb-3" style="justify-content: space-evenly">
+                <div id="query" class="flex flex-row space-x-4">
+                    <div class="flex flex-row items-center space-x-4">
+                        <!-- Dropdown for language selection -->
+                        <label for="language-select-1" class="font-bold">Language(s):</label>
+                        <select name="language-1" id="language-select-1" onchange="update('1')" class="form-select appearance-none 
+                            block
+                            w-full
+                            px-2
+                            py-1
+                            my-3
+                            text-base
+                            text-center
+                            font-normal
+                            text-gray-700
+                            bg-white bg-clip-padding bg-no-repeat
+                            border border-solid border-gray-300
+                            rounded
+                            transition
+                            ease-in-out
+                            m-0
+                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select">
+                            <option value="" selected disabled hidden>--Select--</option>
+                            <option value="Python">Python</option>
+                            <option value="C#">C#</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Java">Java</option>
+                            <option value="Go">Go</option>
+                            <option value="Ruby">Ruby</option>
+                            <option value="C++">C++</option>
+                            <option value="TypeScript">TypeScript</option>
+                            <option value="PHP">PHP</option>
+                            <option value="C">C</option>
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="Jupyter">Jupyter</option>
+                            <option value="Shell">Shell</option>
+                            <option value="Objective-C">Objective-C</option>
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- Buttons -->
+            <div class="my-auto mb-5 space-x-1">
+                <!-- Button should generate graphs for all selected -->
+                <button
+                    onclick="addRow()"
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                >Add
+                </button> 
+                <button
+                    onclick="showGraph()"
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    class="inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
+                >Generate
+                </button>
+                <button
+                    onclick="removeRow()"
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+                >Delete
+                </button>            
+            </div>  
+        </div>     
+        
+        
+
+        <!-- Visualizations table with two columns -->
+        <div class="grid grid-cols-2 gap-6 w-full">
+            <div id="visualizations-left" class="flex flex-col text-center">
+                <!-- Graph 1 -->
+                <div class="mx-auto w-full">
+                    <div id="contributor-1"  style="display: none" class="flex-col items-center w-full my-3">                
+                        <a href="#" class="px-6 hover:opacity-75 my-4 md:w-3/3">
+                            <figure class="highcharts-figure">
+                                <div id="cont-1"></div>
+                                <!-- JS file link -->
+                                <script src="js/data.js"></script>
+                                <script src="js/parse.js"></script>
+                                <script src="census_interactive/graphs/Graph_Contributor/script.js"></script>
+                                <script src="https://blacklabel.github.io/grouped_categories/grouped-categories.js"></script>    
+                            </figure>
+                        </a>
+                    </div>
+              
+                    <div id="commit-1" style="display: none" class="flex-col items-center my-3 w-full">
+                        <a href="#" class="px-6 hover:opacity-75 my-4 md:w-3/3">
+                            <figure class="highcharts-figure">
+                                <div id="comm-1"></div> 
+                                <!-- JS file link -->
+                               
+                                <script src="js/data.js"></script>
+                                <script src="js/parse.js"></script>
+                                <script src="census_interactive/graphs/Graph_Commit/script.js"></script>
+                                <script src="https://blacklabel.github.io/grouped_categories/grouped-categories.js"></script>    
+                            </figure>
+                        </a>
+                    </div>
+
+                    <div id="project-1" style="display: none" class="flex-col items-center my-3 w-full">
+                        <a href="#" class="px-6 hover:opacity-75 my-4 md:w-3/3">
+                            <figure class="highcharts-figure">
+                                <div id="proj-1"></div>
+                                <!-- JS file link -->
+                                <script src="js/data.js"></script>
+                                <script src="js/parse.js"></script>
+                                <script src="census_interactive/graphs/Graph_Project/script.js"></script>
+                                <script src="https://blacklabel.github.io/grouped_categories/grouped-categories.js"></script>    
+                            </figure>
+                        </a>
+                    </div>   
+                </div>
+            </div>
+            <div id="visualizations-right" class="flex flex-col text-center">
+            </div>
+        </div>
+	</div>
+	<div class="container">
+		<div class="row">
+		<p style="padding: 10px"></p>
+		</div></div>
+</div>
+</div>
+	
+<div id="footerwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>We're Online!</h4>
+                <div class="hline-w"></div>
+                <p>
+                    
+                        <a href="https://www.facebook.com/cmustrudel/" class="btn-social btn-outline">
+						  <img alt="Facebook" style="height:16pt" src="images/fb.png">
+                          <span class="sr-only">facebook</span>
+                        </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/cmustrudel" class="btn-social btn-outline">
+					    <img alt="Twitter" style="height:15pt" src="images/tw.png">
+                          <span class="sr-only">twitter</span>
+                        </a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+                  		<a href="https://github.com/cmustrudel" class="btn-social btn-outline">
+				  		<img alt="GitHub" style="height:18pt" src="images/gh.png">
+                          <span class="sr-only">github</span>
+                        </a>
+                    
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <h4>Our Pastry Shop</h4>
+                <div class="hline-w"></div>
+                <p>
+                    
+                        Wean Hall 5115, Institute for Software Research <br>
+                    
+                        School of Computer Science, Carnegie Mellon University <br>
+                    
+                        5000 Forbes Ave <br>
+                    
+                        Pittsburgh, PA, 15213 USA <br>
+                    
+                </p>
+            </div>
+        </div><! --/row -->
+    </div><! --/container -->
+</div><! --/footerwrap -->
+	
+</body>
+</html>
