@@ -7,7 +7,7 @@
 "num_new_users":[8, 8],
 "median_comments_before_close":[1.0, 1.0],
 "median_comments_recent":[1, 1],
-"label_counts_keys":["docs","v5","awaiting-reply","js","duplicate",]
+"label_counts_keys":["docs","v5","awaiting-reply","js","duplicate",],
 "label_counts_values":[4, 9, 1, 8, 1],
 },
 {"num_closed":[24, 24],
