@@ -1,23 +1,2 @@
-[{
-"num_closed": [0, 1], 
-"num_closed_0_comments": [0, 1], 
-"median_close_time": [0, 0], 
-"num_open": [0, 1], 
-"num_unique_authors": [0, 1], 
-"new_users": [[], ["kenu"]], 
-"num_new_users": [0, 1], 
-"median_comments_before_close": [0, 0], 
-"median_comments_recent": [0, 0], 
-"new_label_counts": [{}, {}]
-},
-{"num_closed": [0, 0], 
-"num_closed_0_comments": [0, 0], 
-"median_close_time": [0, 0], 
-"num_open": [10, 2], 
-"num_unique_authors": [2, 1], 
-"new_users": [["holanghee"], ["shebuel-oss"]], 
-"num_new_users": [1, 1], 
-"median_comments_before_close": [0, 0], 
-"median_comments_recent": [0.0, 1.0], 
-"new_label_counts": [{}, {}], 
-"total_merged": [24, 24]}]
+[{'num_closed': [0, 0, 0, 0, 0, 1], 'num_closed_0_comments': [0, 0, 0, 0, 0, 1], 'median_close_time': [0, 0, 0, 0, 0, 0], 'num_open': [0, 0, 0, 2, 0, 1], 'num_unique_authors': [0, 0, 0, 1, 0, 1], 'new_users': [[], [], [], [], [], ['kenu']], 'num_new_users': [0, 0, 0, 0, 0, 1], 'median_comments_before_close': [0, 0, 0, 0, 0, 0], 'median_comments_recent': [0, 0, 0, 1.0, 0, 0], 'new_label_counts': [{}, {}, {}, {}, {}, {}]},
+{'num_closed': [0, 0, 0, 1, 0, 0], 'num_closed_0_comments': [0, 0, 0, 1, 0, 0], 'median_close_time': [0, 0, 0, 0, 0, 0], 'num_open': [0, 0, 0, 11, 10, 2], 'num_unique_authors': [0, 0, 0, 1, 2, 1], 'new_users': [[], [], [], [], ['holanghee'], ['shebuel-oss']], 'num_new_users': [0, 0, 0, 0, 1, 1], 'median_comments_before_close': [0, 0, 0, 0, 0, 0], 'median_comments_recent': [0, 0, 0, 0, 0.0, 1.0], 'new_label_counts': [{}, {}, {}, {}, {}, {}], 'total_merged': [0, 0, 0, 1, 0, 0]}]
