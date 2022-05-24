@@ -7,8 +7,6 @@
  "num_new_users": [0, 0, 0, 0, 0, 1],
  "median_comments_before_close": [0, 0, 0, 0, 0, 0],
  "median_comments_recent": [0, 0, 0, 1.0, 0, 0],
-"label_counts_keys":["docs","v5","awaiting-reply","js","duplicate"],
-"label_counts_values":[4, 9, 1, 8, 1]
 }
 {"num_closed": [0, 0, 0, 1, 0, 0],
  "num_closed_0_comments": [0, 0, 0, 1, 0, 0],
@@ -19,6 +17,4 @@
  "num_new_users": [0, 0, 0, 0, 1, 1],
  "median_comments_before_close": [0, 0, 0, 0, 0, 0],
  "median_comments_recent": [0, 0, 0, 0, 0.0, 1.0],
-"label_counts_keys":["docs","v5","awaiting-reply","js","duplicate"],
-"label_counts_values":[17, 31, 1, 8, 1, 7, 3, 7, 5],
  "total_merged": [0, 0, 0, 1, 0, 0]}]
