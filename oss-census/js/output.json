@@ -19,6 +19,8 @@
 		"median_comments_before_close": [0, 0, 0, 0, 0, 0],
 		"median_comments_recent": [0, 0, 0, 0, 0.0, 1.0],
 		"new_label_counts": [{}, {}, {}, {}, {}, {}],
-		"total_merged": [0, 0, 0, 1, 0, 0]
+		"total_merged": [0, 0, 0, 1, 0, 0],
+		"label_counts_keys":["feature", "build", "v5", "dependencies", "no squash", "docs", "css", "release-highlight", "v4"],
+		"label_counts_values":[3, 1, 31, 7, 1, 17, 8, 5, 7]
 	}
 ]
