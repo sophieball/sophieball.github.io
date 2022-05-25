@@ -6,6 +6,7 @@
  "num_new_users": [0, 0, 0, 0, 0, 1],
  "median_comments_before_close": [0, 0, 0, 0, 0, 0],
  "median_comments_recent": [0, 0, 0, 1.0, 0, 0],
+ "new_label_counts": [{}, {}, {}, {}, {}, {}]
 },
 {"num_closed": [0, 0, 0, 1, 0, 0],
  "num_closed_0_comments": [0, 0, 0, 1, 0, 0],
@@ -15,4 +16,5 @@
  "num_new_users": [0, 0, 0, 0, 1, 1],
  "median_comments_before_close": [0, 0, 0, 0, 0, 0],
  "median_comments_recent": [0, 0, 0, 0, 0.0, 1.0],
+ "new_label_counts": [{}, {}, {}, {}, {}, {}],
  "total_merged": [0, 0, 0, 1, 0, 0]}]
