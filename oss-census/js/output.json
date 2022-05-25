@@ -7,8 +7,6 @@
  "new_users":["kenu"],
  "median_comments_before_close": [0, 0, 0, 0, 0, 0],
  "median_comments_recent": [0, 0, 0, 1.0, 0, 0],
- "label_counts_keys":["js", "awaiting-reply", "v5", "duplicate", "docs"],
- "label_counts_values":[8, 1, 9, 1, 4],
 },
 {"num_closed": [0, 0, 0, 1, 0, 0],
  "num_closed_0_comments": [0, 0, 0, 1, 0, 0],
