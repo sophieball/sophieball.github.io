@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="row mt-2">
                         <h1 class="text-primary mb-0">Climate Report</h1>
-                        <p>Project: todogroup/ospo101</p>
+                        <p>Project: ilanschnell/bitarray</p>
                         <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Markdown Version</a> -->
                     </div>
                     <div class="row">
@@ -34,7 +34,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
                                             <div class="text-uppercase text-success fw-bold text-xs popup">Active contributors <span class="fas fa-info-circle"></span>
-                                                <span class="popuptext" id="activePop">Including issues and PR contributors.</span>
+                                                <span class="popuptext" id="activePop">Including commits, issues, and PR contributors.</span>
                                             </div>
                                             <div class="text-dark p"><span id="unique_members">&lt;number&gt;</span></div>
                                         </div>
@@ -49,7 +49,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
                                             <div class="text-uppercase text-success fw-bold text-xs popup" id="new_contribs">New contributors <span class="fas fa-info-circle"></span>
-                                                <span class="popuptext" id="newPop">Including issues and PR contributors.</span>
+                                                <span class="popuptext" id="newPop">Including commits, issues, and PR contributors.</span>
                                             </div>
                                             <div class="text-dark p"><span id="new_members">&lt;number&gt;</span></div>
                                         </div>
@@ -143,35 +143,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2"> <!-- labels -->
-                        <div class="col-md-6 m-0 p-1">
-                            <div class="card shadow mb-2">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Issues by Labels in the Past Month</h6>
-                                </div>
-                                <div class="card-body m-0 pb-2 pt-0">
-                                    <div class="chart-area" style="height: 300px !important;">
-                                      <canvas id="issue_labels"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 m-0 p-1">
-                            <div class="card shadow mb-2">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests  by Labels in the Past Month</h6>
-                                </div>
-                                <div class="card-body m-0 pb-2 pt-0">
-                                    <div class="chart-area" style="height: 300px !important;">
-                                      <canvas id="PR_labels"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div> <!-- row -->
                     <div class="row">
-                        <h6 class="text-dark fw-bold mb-1">Trends in the past 6 months:</h6>
+                        <h6 class="text-dark fw-bold mb-1 mt-2">Trends in the past 6 months:</h6>
                     </div>
                     <div class="row">
                         <p class="text-dark mb-1">How big is your community:</p>
@@ -287,8 +260,11 @@
                         <div class="col-md-4 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Long-standing Open Threads 
-                                        <a href="#tips"><span class="fas fa-question-circle text-gray-600"></span></a></h6>
+                                    <div class="popup">
+                                        <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Long-standing Open Threads <span class="fas fa-question-circle text-gray-600"></span>
+                                        </h6>
+                                        <span class="popuptext" id="activePop">Long review time is found to be an indicator of contributors' negative feeling</span>
+                                    </div>
                                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><span class="fas fa-caret-down fa-lg text-gray-600"></span></button>
                                         <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                                             <p class="dropdown-header">Display List For:</p>
@@ -359,7 +335,10 @@
                         <div class="col-md-4 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Lengthy Open Threads <a href="#tips"><span class="fas fa-question-circle text-gray-600"></span></a></h6>
+                                    <div class="popup">
+                                        <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Lengthy Open Threads <span class="fas fa-question-circle text-gray-600"></span></h6>
+                                        <span class="popuptext" id="activePop">Excessive rounds of reviews is found to be an indicator of contributors' negative feeling</span>
+                                    </div>
                                     <div class="dropdown no-arrow">
                                         <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
                                         <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
@@ -402,6 +381,18 @@
                                         </div>
                                         </div>
                                         <div class="col-md-7">
+                                            <div class="row mb-3 mt-0"> 
+                                                <div class="btn-toolbar justify-content-center" aria-label="Toolbar with button groups">
+                                                    <div class="btn-group btn-group-toggle" role="group"  data-bs-toggle="buttons">
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="6" data-toggle="button" aria-pressed="false" >December</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="5" data-toggle="button" aria-pressed="false">January</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="4" data-toggle="button" aria-pressed="false" >February</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="3" data-toggle="button" aria-pressed="false" >March</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="2" data-toggle="button" aria-pressed="false" >April</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector active" data-toggle="button" aria-pressed="false" id="1">May</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row mb-0">
                                                 <h6>The highest toxicity score among the comments: <span id="highest_toxic">a</span> (range: [0, 1])</h6>
                                             </div>
@@ -419,7 +410,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row mb-0 pb-0 mt-4">
+                                    <div class="row mb-0 pb-0 mt-2">
                                                 <p class="fa-sm py-0 my-0">* Toxicity is calculated by <a href="https://perspectiveapi.com/">Google's Perspective API</a></p>
                                                 <p class="fa-sm py-0 mt-0 mb-2">** Sentiment is calculated by <a href="https://github.com/senticr/SentiCR">SentiCR</a>, a sentiment analysis tool developed for code review data.</p>
                                     </div>
@@ -428,6 +419,33 @@
                         </div>
                     </div> <!-- row -->
 
+                    <div class="row mb-2"> <!-- labels -->
+                        <div class="col-md-6 m-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Issues by Labels in the Past Month</h6>
+                                </div>
+                                <div id="issue_label_area" class="card-body m-0 pb-2 pt-0">
+                                    <!-- <div id = "issue_label_area" class="chart-area" style="height: 300px !important;">
+                                      <canvas id="issue_labels"></canvas>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 m-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests  by Labels in the Past Month</h6>
+                                </div>
+                                <div id="pr_label_area" class="card-body m-0 pb-2 pt-0">
+                                    <!-- <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="PR_labels"></canvas>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div> <!-- row -->
                     <div class="row">
                         <div class="col-md-6 m-0 p-2">
                             <div class="card shadow mb-2">
