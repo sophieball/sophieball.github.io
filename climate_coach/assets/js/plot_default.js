@@ -1,7 +1,7 @@
 $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/output.json", 
     function(data) {
     // display basic stats
-    console.log("hello");
+
     var num_months = data[0]["num_closed"].length;
     var unique_members = document.getElementById('unique_members');
     unique_members.innerHTML = data[2]["total_active"];
@@ -26,7 +26,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     long_time_convs.innerHTML = "Issues that have been opened for the longest time:";
     long_standings.forEach((long_standing) => {
         long_time_convs.innerHTML += 
-            '<p class="pb-1"><a href="'+long_standing[1]+'">'+long_standing[0]+'</a></p>';
+            '<p class="pb-1"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
     });
 
     var most_comment_conv = document.getElementById('many_comments_convs');
@@ -34,7 +34,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
     most_comments.forEach((most_comment) => {
         most_comment_conv.innerHTML += 
-            '<p class="pb-1"><a href="'+most_comment[1]+'">'+most_comment[0]+'</a></p>';
+            '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
     });
 
     // display default charts
@@ -85,8 +85,24 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
         }]
     };
     // issue_label["options"]["title"]["text"] = "Number of Issues by Label (in the past month)";
-    console.log(issue_label);
-    new Chart(document.getElementById("issue_labels"), issue_label);
+
+    // if neither issue nor pr uses labels, make these two tabs short
+    if (data[0].label_counts_values.length == 0 
+        && data[1].label_counts_values.length == 0){
+        label_chart_height = "100px";
+    }
+    else{
+        label_chart_height = "300px";
+    }
+    var num_labels = data[0].label_counts_values.length;
+    var issue_label_field = document.getElementById("issue_label_area");
+    if (num_labels == 0){
+        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='pt-3'>Seems like you aren't using labels to manage your issues</p></div>"
+    }
+    else{        
+        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><canvas id='issue_labels'></canvas></div>"
+        new Chart(document.getElementById("issue_labels"), issue_label);
+    }
 
     pr_label = Object.assign({}, bar_config);
     pr_label["data"] = {
@@ -100,9 +116,15 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
             data: data[1].label_counts_values
         }]
     };
-    // pr_label["options"]["title"]["text"] = "Number of Pull Requests by Label (in the past month)";
-    new Chart(document.getElementById("PR_labels"), pr_label);
-
+    var pr_num_labels = data[1].label_counts_values.length;
+    var pr_label_field = document.getElementById("pr_label_area");
+    if (pr_num_labels == 0){
+        pr_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='pt-3'>Seems like you aren't using labels to manage your pull requests</p></div>"
+    }
+    else{
+        pr_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><canvas id='PR_labels'></canvas></div>"
+        new Chart(document.getElementById("PR_labels"), pr_label);
+    }
 
     issue_time = Object.assign({}, line_config);
     issue_time["data"] = {
@@ -196,7 +218,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     toxic_list.innerHTML = "";
     toxic_links.forEach((toxic_link) => {
         toxic_list.innerHTML += 
-            '<p class="m-0"><a href="'+toxic_link.link+'">'+toxic_link.title+'</a></p>';
+            '<p class="m-0"><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
     });
 
     // display negative sentiment conversations
@@ -206,7 +228,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     neg_list.innerHTML = "";
     neg_links.forEach((neg_link) => {
         neg_list.innerHTML += 
-            '<p class="m-0"><a href="'+neg_link.link+'">'+neg_link.title+'</a></p>';
+            '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
     });
 
     // print new contributors' logins
@@ -215,14 +237,6 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     createGraphs(data);
 
     listConvers(data);
+
+    displayToxic(data);
 }); 
-
-function new_explain() {
-  var newPop = document.getElementById("newPop");
-  newPop.classList.toggle("show");
-}
-
-function active_explain() {
-  var activePop = document.getElementById("activePop");
-  activePop.classList.toggle("show");
-}
