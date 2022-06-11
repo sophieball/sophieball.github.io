@@ -1,5 +1,6 @@
 const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
+var toxic_conv_type = 0; // decide what conversations to display
 var colors = [
                     'rgb(42, 49, 149, 0.7)',
                     'rgb(169, 53, 131, 0.7)',
@@ -66,33 +67,33 @@ const bar_config = {
 };
 
 const months = [
+    'December',
     'January',
     'February',
     'March',
     'April',
     'May',
-    'June',
 ];
 
 function displayList(data) {
     title = "Issues";
-    people = data[0].new_users;
-    console.log(people);
+    people = data[0].new_authors;
     new_member = document.getElementById('new_members_list');
     new_member.innerHTML = '<p class="m-0">'+title+'</p>';
-    people.forEach((person) => {
-        new_member.innerHTML += 
-            '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a>&emsp;';
-    });
+    if (people.length > 0){
+        people.forEach((person) => {
+            new_member.innerHTML += 
+                '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a>&emsp;';
+        });
+    }
 
     authorListSelector = document.querySelectorAll(".authorList");
     authorListSelector.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        console.log(event);
         switch (selector.id) {
         case "new_issue_authors":
             title = "New Issue Authors";
-            people = data[0].new_users;
+            people = data[0].new_authors;
             new_member = document.getElementById('new_members_list');
             new_member.innerHTML = '<p>'+title+'</p>';
             people.forEach((person) => {
@@ -102,7 +103,7 @@ function displayList(data) {
             break;
         case "new_pr_authors":
             title = "New PR Authors";
-            people = data[1].new_users;
+            people = data[1].new_authors;
             new_member = document.getElementById('new_members_list');
             new_member.innerHTML = "<h6>"+title+"</h6>";
             people.forEach((person) => {
@@ -131,7 +132,7 @@ function listConvers(data) {
                 long_time_convs.innerHTML = "Issues that have been opened for the longest time:";
                 long_standings.forEach((long_standing) => {
                     long_time_convs.innerHTML += 
-                        '<p class="pb-1"><a href="'+long_standing[1]+'">'+long_standing[0]+'</a></p>';
+                        '<p class="pb-1"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
                 });
                 break;
             case "p_long_time":
@@ -141,7 +142,7 @@ function listConvers(data) {
                 long_time_convs.innerHTML = "Pull requests  that have been opened for the longest time:";
                 long_standings.forEach((long_standing) => {
                     long_time_convs.innerHTML += 
-                        '<p class="pb-1"><a href="'+long_standing[1]+'">'+long_standing[0]+'</a></p>';
+                        '<p class="pb-1"><a href="'+long_standing.link+'">'+long_standing.title+'</a></p>';
                 });
                 break;
             default:
@@ -155,20 +156,20 @@ function listConvers(data) {
             case "i_most_comments":
                 var most_comment_conv = document.getElementById('many_comments_convs');
                 most_comments = data[0].most_comments;
-                most_comment_conv.innerHTML = "";
+                most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
                 most_comments.forEach((most_comment) => {
                     most_comment_conv.innerHTML += 
-                        '<p class="pb-1"><a href="'+most_comment[1]+'">'+most_comment[0]+'</a></p>';
+                        '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
                 });
                 break;
             case "p_most_comments":
                 var most_comment_conv = document.getElementById('many_comments_convs');
                 console.log(long_standings);
                 most_comments = data[1].most_comments;
-                most_comment_conv.innerHTML = "";
+                most_comment_conv.innerHTML = "<p>Open pull requests with the most comments:</p>";
                 most_comments.forEach((most_comment) => {
                     most_comment_conv.innerHTML += 
-                        '<p class="pb-1"><a href="'+most_comment[1]+'">'+most_comment[0]+'</a></p>';
+                        '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
                 });
                 break;
             default:
@@ -185,8 +186,6 @@ const issueTimeChartSelects = document.querySelectorAll(".issueTimeChartSelect")
 const prTimeChartSelects = document.querySelectorAll(".prTimeChartSelect");
 const issueDisChartSelects = document.querySelectorAll(".issueDisChartSelect");
 const prDisChartSelects = document.querySelectorAll(".prDisChartSelect");
-// const issueChartSelects = document.querySelectorAll(".issueChartSelect");
-// const prChartSelects = document.querySelectorAll(".prChartSelect");
 const toxicSelect = document.querySelectorAll(".toxicityList");
 
 function createGraphs(data) {
@@ -217,16 +216,6 @@ function createGraphs(data) {
     selector.addEventListener('click', (event) => {
         drawChart(data, selector, "prDisChart");
     }));
-
-
-    // issueChartSelects.forEach((selector) =>
-    // selector.addEventListener('click', (event) => {
-    //     drawChart(data, selector, "issueChart");
-    // }));
-    // prChartSelects.forEach((selector) =>
-    // selector.addEventListener('click', (event) => {
-    //     drawChart(data, selector, "prChart");
-    // }));
 
     toxicSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
@@ -327,25 +316,25 @@ function drawChart(data, selector, chart_id)
             cur_colour = line_colors[0];
             break;
         case "i_close_time":
-            title = "Median Close Time for Issues (Days)";
+            title = "Median Time for Closing Issues (Days)";
             metric = data[0].median_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "i_avg_close_time":
-            title = "Average Close Time for Issues (Days)";
+            title = "Average Time for Closing Issues (Days)";
             metric = data[0].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_close_time":
-            title = "Median Close Time for Pull Requests";
+            title = "Median Time for Closing Pull Requests";
             metric = data[1].median_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_close_time":
-            title = "Average Close Time for Pull Requests";
+            title = "Average Time for Closing Pull Requests";
             metric = data[1].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
@@ -415,6 +404,7 @@ function drawChart(data, selector, chart_id)
             metric = data[0].num_toxic;
             xtitle = months;
             cur_colour = line_colors[3];
+            toxic_conv_type = 0;
 
             var toxic_score = document.getElementById("highest_toxic");
             toxic_score.innerHTML = data[0].max_toxic[0];
@@ -427,7 +417,7 @@ function drawChart(data, selector, chart_id)
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
-                    '<p class="m-0"><a href="'+toxic_link.link+'">'+toxic_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
             });
 
             // display negative sentiment conversations
@@ -437,7 +427,7 @@ function drawChart(data, selector, chart_id)
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
                 neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.link+'">'+neg_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
             });
 
             break;
@@ -446,6 +436,7 @@ function drawChart(data, selector, chart_id)
             metric = data[1].num_toxic;
             xtitle = months;
             cur_colour = line_colors[3];
+            toxic_conv_type = 1;
 
             var toxic_score = document.getElementById("highest_toxic");
             toxic_score.innerHTML = data[1].max_toxic[data[1].max_toxic.length - 1];
@@ -458,7 +449,7 @@ function drawChart(data, selector, chart_id)
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
-                    '<p class="m-0><a href="'+toxic_link.link+'">'+toxic_link.title+'</a></p>';
+                    '<p class="m-0><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
             });
 
 
@@ -469,7 +460,7 @@ function drawChart(data, selector, chart_id)
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
                 neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.link+'">'+neg_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
             });
             break;
         default:
@@ -497,4 +488,74 @@ function drawChart(data, selector, chart_id)
 
     var myChart = new Chart(
         document.getElementById(chart_id), line_config);
+}
+
+
+function displayToxic(data, type){
+    const toxicMonthSelect = document.querySelectorAll(".toxic_month_selector");
+    var month = 5;
+    toxicMonthSelect.forEach(function (selector){
+        selector.addEventListener('click', (event) => {
+
+        var button_t = document.getElementById("6");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("5");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("4");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("3");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("2");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("1");
+        button_t.classList.remove("active");
+        
+        switch (selector.id) {
+            case "6":
+                month = 0;
+                break;
+            case "5":
+                month = 1;
+                break;
+            case "4":
+                month = 2;
+                break;
+            case "3":
+                month = 3;
+                break;
+            case "2":
+                month = 4;
+                break;
+            case "1":
+                month = 5;
+                break;
+            default:
+                month = 5;
+                break;
+        }
+        console.log(month);
+        var toxic_score = document.getElementById("highest_toxic");
+        toxic_score.innerHTML = data[toxic_conv_type].max_toxic[month];
+        var attack_score = document.getElementById("highest_attack");
+        attack_score.innerHTML = data[toxic_conv_type].max_attack[month];
+
+        var toxic_list = document.getElementById('toxic_links');
+        toxic_links = data[toxic_conv_type].toxic[month];
+        console.log(toxic_list);
+        toxic_list.innerHTML = "";
+        toxic_links.forEach((toxic_link) => {
+            toxic_list.innerHTML += 
+                '<p class="m-0"><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
+        });
+
+        // display negative sentiment conversations
+        var neg_list = document.getElementById('neg_senti_links');
+        neg_links = data[toxic_conv_type].neg_senti[month];
+        console.log(neg_links);
+        neg_list.innerHTML = "";
+        neg_links.forEach((neg_link) => {
+            neg_list.innerHTML += 
+                '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
+        });
+    })});
 }
