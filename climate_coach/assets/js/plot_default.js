@@ -89,7 +89,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     // if neither issue nor pr uses labels, make these two tabs short
     if (data[0].label_counts_values.length == 0 
         && data[1].label_counts_values.length == 0){
-        label_chart_height = "100px";
+        label_chart_height = "70px";
     }
     else{
         label_chart_height = "300px";
