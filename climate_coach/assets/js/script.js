@@ -187,6 +187,7 @@ const prTimeChartSelects = document.querySelectorAll(".prTimeChartSelect");
 const issueDisChartSelects = document.querySelectorAll(".issueDisChartSelect");
 const prDisChartSelects = document.querySelectorAll(".prDisChartSelect");
 const toxicSelect = document.querySelectorAll(".toxicityList");
+const compareListSelect = document.querySelectorAll(".compareList");
 
 function createGraphs(data) {
     issueSizeChartSelects.forEach((selector) =>
@@ -225,10 +226,10 @@ function createGraphs(data) {
     const comp = document.getElementById('Compare');
     compare_config = Object.assign({}, bar_config);
     compare_config["data"] = {
-            labels: ['Your project', 'Proj1', 'Proj2', 'Proj3', 'Proj4'],
+            labels: ['Your project', 'payloadcms/payload'],
             datasets: [{
                 // label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [1, 28],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -249,6 +250,10 @@ function createGraphs(data) {
     compare_config["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
     const Compare = new Chart(comp, compare_config);
 
+    compareListSelect.forEach((selector) =>
+    selector.addEventListener('click', (event) => {
+        drawChart(data, selector, "Compare");
+    }));
 }
 
 function drawChart(data, selector, chart_id)
