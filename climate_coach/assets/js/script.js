@@ -159,7 +159,7 @@ function listConvers(data) {
                 most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
                 most_comments.forEach((most_comment) => {
                     most_comment_conv.innerHTML += 
-                        '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
+                        '<p class="p-0"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
                 });
                 break;
             case "p_most_comments":
@@ -226,10 +226,15 @@ function createGraphs(data) {
     const comp = document.getElementById('Compare');
     compare_config = Object.assign({}, bar_config);
     compare_config["data"] = {
-            labels: ['Your project', 'payloadcms/payload'],
+            labels: [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'],
             datasets: [{
                 // label: '# of Votes',
-                data: [1, 28],
+                data: [281, 244, 2894, 812, 281],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -252,8 +257,85 @@ function createGraphs(data) {
 
     compareListSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "Compare");
+        drawBarChart(data, selector, "Compare");
     }));
+}
+
+// drop down
+function drawBarChart(data, selector, chart_id){
+    switch (selector.id) {
+        case "comp_num_active":
+            title = "Active Authors";
+            metric = [281, 244, 2894, 812, 281];
+            xtitle = [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'];
+            break;
+        case "comp_i_closed":
+            title = "Number of Issues Closed";
+            metric = [12418, 5148, 28359, 991, 1375];
+            xtitle = [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'];
+            break;
+        case "comp_p_closed":
+            title = "Number of PRs Closed";
+            metric = [3628, 8543, 43020, 4853, 1523];
+            xtitle = [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'];
+            break;
+        case "comp_i_time":
+            title = "Average Time before Closing Issues";
+            metric = [];
+            xtitle = [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'];
+            break;
+        case "comp_p_time":
+            title = "Average Time before Closing PRs";
+            metric = [];
+            xtitle = [
+              'Your project',
+              'github.com/microsoft/playwright',
+              'github.com/home-assistant/core',
+              'github.com/TheAlgorithms/Python',
+              'github.com/jashkenas/underscore'];
+            break;
+        default:
+            break;
+
+    }
+
+    compare_config = Object.assign({}, bar_config);
+    compare_config["data"] = {
+        labels: xtitle,
+        datasets: [{
+            backgroundColor: color_palette,
+            borderColor: line_palette,
+            borderWidth: 1,
+            tension: 0,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            data: data[0].label_counts_values
+        }]
+    };
+    compare_config["options"]["title"]["text"] = title;
+
+    var myChart = new Chart(
+        document.getElementById(chart_id), compare_config);
 }
 
 function drawChart(data, selector, chart_id)
@@ -267,7 +349,7 @@ function drawChart(data, selector, chart_id)
             break;
         case "n_i_active":
             title = "New Issue Authors";
-            metric = data[0].num_new_users;
+            metric = data[0].num_new_authors;
             xtitle = months;
             cur_colour = line_colors[0];
             break;
@@ -279,7 +361,7 @@ function drawChart(data, selector, chart_id)
             break;
         case "n_p_active":
             title = "New Pull Request Authors";
-            metric = data[1].num_new_users;
+            metric = data[1].num_new_authors;
             xtitle = months;
             cur_colour = line_colors[0];
             break;
@@ -417,7 +499,7 @@ function drawChart(data, selector, chart_id)
             attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
             var toxic_list = document.getElementById('toxic_links');
-            toxic_links = data[0].toxic[data[0].num_toxic.length - 1];
+            toxic_links = data[0].toxic;
             console.log(toxic_list);
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
@@ -427,7 +509,7 @@ function drawChart(data, selector, chart_id)
 
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[0].neg_senti[data[0].neg_senti.length - 1];
+            neg_links = data[0].neg_senti[data[0].neg_senti.length - 1].slice(1,3);
             console.log(neg_list);
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
@@ -449,7 +531,7 @@ function drawChart(data, selector, chart_id)
             attack_score.innerHTML = data[1].max_attack[data[1].max_attack.length - 1];
 
             var toxic_list = document.getElementById('toxic_links');
-            toxic_links = data[1].toxic[data[1].num_toxic.length - 1];
+            toxic_links = data[1].toxic;
             console.log(toxic_list);
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
@@ -460,7 +542,7 @@ function drawChart(data, selector, chart_id)
 
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[1].neg_senti[data[1].neg_senti.length - 1];
+            neg_links = data[1].neg_senti[data[1].neg_senti.length - 1].slice(1,3);
             console.log(neg_list);
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
