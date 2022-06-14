@@ -1,12 +1,13 @@
-$.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/output.json", 
+$.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m.json", 
     function(data) {
     // display basic stats
+    console.log("hello");
 
     var num_months = data[0]["num_closed"].length;
     var unique_members = document.getElementById('unique_members');
-    unique_members.innerHTML = data[2]["total_active"];
+    unique_members.innerHTML = data[3]["total_active"];
     var new_members = document.getElementById('new_members');
-    new_members.innerHTML = data[2]["total_new"];
+    new_members.innerHTML = data[3]["total_new"];
     var issue_closed = document.getElementById('issue_closed');
     issue_closed.innerHTML = data[0]["num_closed"][num_months-1];
     var pr_closed = document.getElementById('pr_closed');
@@ -34,7 +35,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
     most_comments.forEach((most_comment) => {
         most_comment_conv.innerHTML += 
-            '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
+            '<p class="p-0"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
     });
 
     // display default charts
@@ -48,10 +49,12 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
             tension: 0,
             pointRadius: 6,
             pointHoverRadius: 8,
-            data: data[0].num_unique_authors
+            data: data[0].num_new_authors,
         }]
     };
-    issue_config["options"]["title"]["text"] = "Active Issue Authors";
+    console.log("num new authors");
+    console.log(data[0].num_new_authors);
+    issue_config["options"]["title"]["text"] = "New Issue Authors";
     new Chart(document.getElementById("issueSizeChart"), issue_config);
 
     pr_config = Object.assign({}, line_config);
@@ -65,10 +68,10 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
             tension: 0,
             pointRadius: 6,
             pointHoverRadius: 8,
-            data: data[1].num_unique_authors
+            data: data[1].num_new_authors
         }]
     };
-    pr_config["options"]["title"]["text"] = "Active PR Authors";
+    pr_config["options"]["title"]["text"] = "New PR Authors";
     new Chart(document.getElementById("prSizeChart"), pr_config);
 
     issue_label = Object.assign({}, bar_config);
@@ -213,7 +216,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
     attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
     var toxic_list = document.getElementById('toxic_links');
-    toxic_links = data[0].toxic[data[0].num_toxic.length - 1];
+    toxic_links = data[0].toxic;
     console.log(toxic_list);
     toxic_list.innerHTML = "";
     toxic_links.forEach((toxic_link) => {
@@ -223,7 +226,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/outpu
 
     // display negative sentiment conversations
     var neg_list = document.getElementById('neg_senti_links');
-    neg_links = data[0].neg_senti[data[0].neg_senti.length - 1];
+    neg_links = data[0].neg_senti[data[0].neg_senti.length - 1].slice(1, 3);
     console.log(neg_links);
     neg_list.innerHTML = "";
     neg_links.forEach((neg_link) => {
