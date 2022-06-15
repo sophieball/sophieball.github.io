@@ -216,7 +216,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_s
     attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
     var toxic_list = document.getElementById('toxic_links');
-    toxic_links = data[0].toxic[5];
+    toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
     console.log(toxic_list);
     toxic_list.innerHTML = "";
     toxic_links.forEach((toxic_link) => {
@@ -226,7 +226,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_s
 
     // display negative sentiment conversations
     var neg_list = document.getElementById('neg_senti_links');
-    neg_links = data[0].neg_senti[data[0].neg_senti.length - 1];
+    neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
     console.log(neg_links);
     neg_list.innerHTML = "";
     neg_links.forEach((neg_link) => {
