@@ -1,6 +1,13 @@
 const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
 const num_toxic_to_show = 5;
+const projects_for_comparison = [
+              'Your project',
+              'github.com/Kitware/VTK',
+              'github.com/ionic-team/ionic-framework',
+              'github.com/prettier/prettier',
+              'github.com/spring-projects/spring-framework'];
+
 var toxic_conv_type = 0; // decide what conversations to display
 var colors = [
                     'rgb(42, 49, 149, 0.7)',
@@ -189,6 +196,7 @@ const issueDisChartSelects = document.querySelectorAll(".issueDisChartSelect");
 const prDisChartSelects = document.querySelectorAll(".prDisChartSelect");
 const toxicSelect = document.querySelectorAll(".toxicityList");
 const compareListSelect = document.querySelectorAll(".compareList");
+const comp = document.getElementById('Compare');
 
 function createGraphs(data) {
     issueSizeChartSelects.forEach((selector) =>
@@ -224,38 +232,6 @@ function createGraphs(data) {
         drawChart(data, selector, "toxicity_info");
     }));
 
-    const comp = document.getElementById('Compare');
-    compare_config = Object.assign({}, bar_config);
-    compare_config["data"] = {
-            labels: [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'],
-            datasets: [{
-                // label: '# of Votes',
-                data: [281, 244, 122, 812, 281],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-    compare_config["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
-    const Compare = new Chart(comp, compare_config);
-
     compareListSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
         drawBarChart(data, selector, "Compare");
@@ -266,58 +242,32 @@ function createGraphs(data) {
 function drawBarChart(data, selector, chart_id){
     switch (selector.id) {
         case "comp_num_active":
-            title = "Active Authors";
-            metric = [281, 244, 2894, 812, 281];
-            xtitle = [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'];
+            title = "Active Authors (past month)";
+            metric = [10, 30, 6, 9, 24];
+            xtitle = projects_for_comparison;
             break;
         case "comp_i_closed":
-            title = "Number of Issues Closed";
-            metric = [12418, 5148, 28359, 991, 1375];
-            xtitle = [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'];
+            title = "Number of Issues Closed (past month)";
+            metric = [14, 0, 119, 32, 121];
+            xtitle = projects_for_comparison;
             break;
         case "comp_p_closed":
-            title = "Number of PRs Closed";
-            metric = [3628, 8543, 43020, 4853, 1523];
-            xtitle = [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'];
+            title = "Number of PRs Closed (past month)";
+            metric = [27, 0, 75, 68, 0];
+            xtitle = projects_for_comparison;
             break;
         case "comp_i_time":
             title = "Average Time before Closing Issues";
-            metric = [];
-            xtitle = [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'];
+            metric = [0, 0, 0, 0, 0];
+            xtitle = projects_for_comparison;
             break;
         case "comp_p_time":
             title = "Average Time before Closing PRs";
-            metric = [];
-            xtitle = [
-              'Your project',
-              'github.com/microsoft/playwright',
-              'github.com/home-assistant/core',
-              'github.com/TheAlgorithms/Python',
-              'github.com/jashkenas/underscore'];
+            metric = [0, 0, 0, 0, 0];
+            xtitle = projects_for_comparison;
             break;
         default:
             break;
-
     }
 
     compare_config = Object.assign({}, bar_config);
@@ -330,10 +280,11 @@ function drawBarChart(data, selector, chart_id){
             tension: 0,
             pointRadius: 6,
             pointHoverRadius: 8,
-            data: data[0].label_counts_values
+            data: metric
         }]
     };
     compare_config["options"]["title"]["text"] = title;
+    console.log(compare_config);
 
     var myChart = new Chart(
         document.getElementById(chart_id), compare_config);
