@@ -234,8 +234,8 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_s
             '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
     });
 
-    compare_config = Object.assign({}, bar_config);
-    compare_config["data"] = {
+    compare_config_d = Object.assign({}, bar_config);
+    compare_config_d["data"] = {
             labels: projects_for_comparison,
             datasets: [{
                 // label: '# of Votes',
@@ -245,8 +245,8 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_s
                 borderWidth: 1
             }]
         };
-    compare_config["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
-    const Compare = new Chart(comp, compare_config);
+    compare_config_d["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
+    compareChart = new Chart(comp, compare_config_d);
 
     // print new contributors' logins
     displayList(data);
