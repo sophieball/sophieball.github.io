@@ -1,5 +1,6 @@
 const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
+const num_toxic_to_show = 5;
 var toxic_conv_type = 0; // decide what conversations to display
 var colors = [
                     'rgb(42, 49, 149, 0.7)',
@@ -234,7 +235,7 @@ function createGraphs(data) {
               'github.com/jashkenas/underscore'],
             datasets: [{
                 // label: '# of Votes',
-                data: [281, 244, 2894, 812, 281],
+                data: [281, 244, 122, 812, 281],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -499,7 +500,7 @@ function drawChart(data, selector, chart_id)
             attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
             var toxic_list = document.getElementById('toxic_links');
-            toxic_links = data[0].toxic;
+            toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
             console.log(toxic_list);
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
@@ -509,7 +510,7 @@ function drawChart(data, selector, chart_id)
 
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[0].neg_senti[data[0].neg_senti.length - 1].slice(1,3);
+            neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
             console.log(neg_list);
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
@@ -531,8 +532,7 @@ function drawChart(data, selector, chart_id)
             attack_score.innerHTML = data[1].max_attack[data[1].max_attack.length - 1];
 
             var toxic_list = document.getElementById('toxic_links');
-            toxic_links = data[1].toxic;
-            console.log(toxic_list);
+            toxic_links = data[1].toxic[5].slice(1, num_toxic_to_show);
             toxic_list.innerHTML = "";
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
@@ -542,7 +542,7 @@ function drawChart(data, selector, chart_id)
 
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[1].neg_senti[data[1].neg_senti.length - 1].slice(1,3);
+            neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
             console.log(neg_list);
             neg_list.innerHTML = "";
             neg_links.forEach((neg_link) => {
@@ -627,7 +627,7 @@ function displayToxic(data, type){
         attack_score.innerHTML = data[toxic_conv_type].max_attack[month];
 
         var toxic_list = document.getElementById('toxic_links');
-        toxic_links = data[toxic_conv_type].toxic[month];
+        toxic_links = data[toxic_conv_type].toxic[month].slice(1, num_toxic_to_show);
         console.log(toxic_list);
         toxic_list.innerHTML = "";
         toxic_links.forEach((toxic_link) => {
@@ -637,7 +637,7 @@ function displayToxic(data, type){
 
         // display negative sentiment conversations
         var neg_list = document.getElementById('neg_senti_links');
-        neg_links = data[toxic_conv_type].neg_senti[month];
+        neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
         console.log(neg_links);
         neg_list.innerHTML = "";
         neg_links.forEach((neg_link) => {
