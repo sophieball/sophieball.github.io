@@ -8,6 +8,7 @@ const projects_for_comparison = [
               'github.com/prettier/prettier',
               'github.com/spring-projects/spring-framework'];
 
+var compareChart;
 var toxic_conv_type = 0; // decide what conversations to display
 var colors = [
                     'rgb(42, 49, 149, 0.7)',
@@ -248,26 +249,26 @@ function drawBarChart(data, selector, chart_id){
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [14, 0, 119, 32, 121];
+            metric = [14, 0.001, 119, 32, 121];
             xtitle = projects_for_comparison;
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [27, 0, 75, 68, 0];
+            metric = [27, 0.001, 75, 68, 0.001];
             xtitle = projects_for_comparison;
             break;
-        case "comp_i_time":
-            title = "Average Time before Closing Issues";
-            metric = [0, 0, 0, 0, 0];
-            xtitle = projects_for_comparison;
-            break;
-        case "comp_p_time":
-            title = "Average Time before Closing PRs";
-            metric = [0, 0, 0, 0, 0];
-            xtitle = projects_for_comparison;
-            break;
-        default:
-            break;
+        // case "comp_i_time":
+        //     title = "Average Time before Closing Issues";
+        //     metric = [];
+        //     xtitle = projects_for_comparison;
+        //     break;
+        // case "comp_p_time":
+        //     title = "Average Time before Closing PRs";
+        //     metric = [];
+        //     xtitle = projects_for_comparison;
+        //     break;
+        // default:
+        //     break;
     }
 
     compare_config = Object.assign({}, bar_config);
@@ -286,8 +287,8 @@ function drawBarChart(data, selector, chart_id){
     compare_config["options"]["title"]["text"] = title;
     console.log(compare_config);
 
-    var myChart = new Chart(
-        document.getElementById(chart_id), compare_config);
+    compareChart.destroy();
+    compareChart = new Chart(comp, compare_config);
 }
 
 function drawChart(data, selector, chart_id)
