@@ -1,6 +1,9 @@
 const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
+// for big projects, we can't fit the entire list of problematic conversations
 const num_toxic_to_show = 5;
+
+// the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
               'Your project',
               'github.com/Kitware/VTK',
@@ -8,8 +11,9 @@ const projects_for_comparison = [
               'github.com/prettier/prettier',
               'github.com/spring-projects/spring-framework'];
 
-var compareChart;
-var toxic_conv_type = 0; // decide what conversations to display
+// decide what conversations to display
+// 0: issue. 1: pr
+var toxic_conv_type = 0;
 var colors = [
                     'rgb(42, 49, 149, 0.7)',
                     'rgb(169, 53, 131, 0.7)',
@@ -202,35 +206,35 @@ const comp = document.getElementById('Compare');
 function createGraphs(data) {
     issueSizeChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "issueSizeChart");
+        drawChart(data, selector, "issueSizeChart", issue_size_chart);
     }));
     prSizeChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "prSizeChart");
+        drawChart(data, selector, "prSizeChart", pr_size_chart);
     }));
 
 
     issueTimeChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "issueTimeChart");
+        drawChart(data, selector, "issueTimeChart", issue_time_chart);
     }));
     prTimeChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "prTimeChart");
+        drawChart(data, selector, "prTimeChart", pr_time_chart);
     }));
 
     issueDisChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "issueDisChart");
+        drawChart(data, selector, "issueDisChart", issue_dicussion_chart);
     }));
     prDisChartSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "prDisChart");
+        drawChart(data, selector, "prDisChart", pr_dicussion_chart);
     }));
 
     toxicSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "toxicity_info");
+        drawChart(data, selector, "toxicity_info", toxic_chart);
     }));
 
     compareListSelect.forEach((selector) =>
@@ -291,7 +295,7 @@ function drawBarChart(data, selector, chart_id){
     compareChart = new Chart(comp, compare_config);
 }
 
-function drawChart(data, selector, chart_id)
+function drawChart(data, selector, chart_id, chart_obj)
 {
     switch (selector.id) {
         case "u_i_active":
@@ -455,9 +459,11 @@ function drawChart(data, selector, chart_id)
             toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
             console.log(toxic_list);
             toxic_list.innerHTML = "";
+            toxic_count = 1;
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
-                    '<p class="m-0"><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+                toxic_count += 1;
             });
 
             // display negative sentiment conversations
@@ -465,9 +471,11 @@ function drawChart(data, selector, chart_id)
             neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
             console.log(neg_list);
             neg_list.innerHTML = "";
+            neg_count = 1;
             neg_links.forEach((neg_link) => {
                 neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+                neg_count += 1;
             });
 
             break;
@@ -486,9 +494,11 @@ function drawChart(data, selector, chart_id)
             var toxic_list = document.getElementById('toxic_links');
             toxic_links = data[1].toxic[5].slice(1, num_toxic_to_show);
             toxic_list.innerHTML = "";
+            toxic_count = 1;
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
-                    '<p class="m-0><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
+                    '<p class="m-0><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+                toxic_count += 1;
             });
 
 
@@ -497,9 +507,11 @@ function drawChart(data, selector, chart_id)
             neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
             console.log(neg_list);
             neg_list.innerHTML = "";
+            neg_count = 1;
             neg_links.forEach((neg_link) => {
                 neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
+                    '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+                neg_count += 1;
             });
             break;
         default:
@@ -525,7 +537,8 @@ function drawChart(data, selector, chart_id)
     };
     line_config["options"]["title"]["text"] = title;
 
-    var myChart = new Chart(
+    chart_obj.destroy();
+    chart_obj = new Chart(
         document.getElementById(chart_id), line_config);
 }
 
