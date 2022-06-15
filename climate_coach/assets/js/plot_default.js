@@ -234,6 +234,20 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_s
             '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
     });
 
+    compare_config = Object.assign({}, bar_config);
+    compare_config["data"] = {
+            labels: projects_for_comparison,
+            datasets: [{
+                // label: '# of Votes',
+                data: [10, 30, 6, 9, 24],
+                backgroundColor: color_palette,
+                borderColor: line_palette,
+                borderWidth: 1
+            }]
+        };
+    compare_config["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
+    const Compare = new Chart(comp, compare_config);
+
     // print new contributors' logins
     displayList(data);
 
