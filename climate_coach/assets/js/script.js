@@ -80,17 +80,6 @@ const months = [
 ];
 
 function displayList(data) {
-    title = "Issues";
-    people = data[0].new_authors;
-    new_member = document.getElementById('new_members_list');
-    new_member.innerHTML = '<p class="m-0">'+title+'</p>';
-    if (people.length > 0){
-        people.forEach((person) => {
-            new_member.innerHTML += 
-                '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a>&emsp;';
-        });
-    }
-
     authorListSelector = document.querySelectorAll(".authorList");
     authorListSelector.forEach((selector) =>
     selector.addEventListener('click', (event) => {
@@ -99,21 +88,25 @@ function displayList(data) {
             title = "Issues";
             people = data[0].new_authors;
             new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = '<p>'+title+'</p>';
-            people.forEach((person) => {
-                new_member.innerHTML += 
-                    '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a>&emsp;';
-            });
+            new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+            if (people.length > 0){
+                people.forEach((person) => {
+                    new_member.innerHTML += 
+                        '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
+                });
+            }
             break;
         case "new_pr_authors":
             title = "PRs";
             people = data[1].new_authors;
             new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = "<h6>"+title+"</h6>";
-            people.forEach((person) => {
-                new_member.innerHTML += 
-                    '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a>&emsp;';
-            });
+            new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+            if (people.length > 0){
+                people.forEach((person) => {
+                    new_member.innerHTML += 
+                        '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
+                });
+            }
             break;
         default:
             break;
