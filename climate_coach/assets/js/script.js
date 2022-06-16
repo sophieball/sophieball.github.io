@@ -96,7 +96,7 @@ function displayList(data) {
     selector.addEventListener('click', (event) => {
         switch (selector.id) {
         case "new_issue_authors":
-            title = "New Issue Authors";
+            title = "Issues";
             people = data[0].new_authors;
             new_member = document.getElementById('new_members_list');
             new_member.innerHTML = '<p>'+title+'</p>';
@@ -106,7 +106,7 @@ function displayList(data) {
             });
             break;
         case "new_pr_authors":
-            title = "New PR Authors";
+            title = "PRs";
             people = data[1].new_authors;
             new_member = document.getElementById('new_members_list');
             new_member.innerHTML = "<h6>"+title+"</h6>";
