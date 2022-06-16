@@ -1,37 +1,28 @@
 const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
 // for big projects, we can't fit the entire list of problematic conversations
-const num_toxic_to_show = 5;
-
+const num_toxic_to_show = 6;
 // the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
               'Your project',
-              'github.com/Kitware/VTK',
-              'github.com/ionic-team/ionic-framework',
-              'github.com/prettier/prettier',
-              'github.com/spring-projects/spring-framework'];
+              'github.com/CeresDB/ceresdb',
+              'github.com/ivadomed/ivadomed',
+              'github.com/smistad/FAST',
+              'github.com/pygments/pygment'];
+
+// declare charts
+var compareChart;
+var toxic_chart;
+var pr_dicussion_chart;
+var issue_dicussion_chart;
+var pr_time_chart;
+var issue_time_chart;
+var pr_size_chart;
+var issue_size_chart;
 
 // decide what conversations to display
 // 0: issue. 1: pr
 var toxic_conv_type = 0;
-var colors = [
-                    'rgb(42, 49, 149, 0.7)',
-                    'rgb(169, 53, 131, 0.7)',
-                    'rgb(218, 51, 97, 0.7)',
-                    'rgb(246, 93, 78, 0.7)',
-                    'rgb(243, 153, 67, 0.7)',
-                    'rgb(238, 215, 63, 0.7)'
-                ];
-var line_colors = [
-    'rgb(42, 49, 149)',
-    'rgb(169, 53, 131)',
-    'rgb(218, 51, 97)',
-    'rgb(246, 93, 78)',
-    'rgb(243, 153, 67)',
-    'rgb(238, 215, 63)'
-];
-const color_palette = colors.concat(colors);
-const line_palette = line_colors.concat(line_colors);
 var title;
 var metric;
 const line_config = {
@@ -239,40 +230,50 @@ function createGraphs(data) {
 
     compareListSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
-        drawBarChart(data, selector, "Compare");
+        drawCompareChart(data, selector, "Compare");
     }));
 }
 
 // drop down
-function drawBarChart(data, selector, chart_id){
+function drawCompareChart(data, selector, chart_id){
     switch (selector.id) {
         case "comp_num_active":
             title = "Active Authors (past month)";
-            metric = [10, 30, 6, 9, 24];
+            metric = [5, 7, 8, 2, 9];
             xtitle = projects_for_comparison;
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [14, 0.001, 119, 32, 121];
+            metric = [40, 7, 6, 0, 11];
             xtitle = projects_for_comparison;
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [27, 0.001, 75, 68, 0.001];
+            metric = [71, 26, 10, 1, 14];
             xtitle = projects_for_comparison;
             break;
         // case "comp_i_time":
         //     title = "Average Time before Closing Issues";
-        //     metric = [];
-        //     xtitle = projects_for_comparison;
+        //     metric = [0, 0, 0, 0, 0];
+        //     xtitle = [
+        //       'Your project',
+        //       'github.com/CeresDB/ceresdb',
+        //       'github.com/ivadomed/ivadomed',
+        //       'github.com/smistad/FAST',
+        //       'github.com/pygments/pygment'];
         //     break;
         // case "comp_p_time":
         //     title = "Average Time before Closing PRs";
-        //     metric = [];
-        //     xtitle = projects_for_comparison;
+        //     metric = [0, 0, 0, 0, 0];
+        //     xtitle = [
+        //       'Your project',
+        //       'github.com/CeresDB/ceresdb',
+        //       'github.com/ivadomed/ivadomed',
+        //       'github.com/smistad/FAST',
+        //       'github.com/pygments/pygment'];
         //     break;
-        // default:
-        //     break;
+        default:
+            break;
     }
 
     compare_config = Object.assign({}, bar_config);
@@ -457,9 +458,9 @@ function drawChart(data, selector, chart_id, chart_obj)
 
             var toxic_list = document.getElementById('toxic_links');
             toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
-            console.log(toxic_list);
             toxic_list.innerHTML = "";
             toxic_count = 1;
+            console.log(toxic_count);
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
                     '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
@@ -469,7 +470,6 @@ function drawChart(data, selector, chart_id, chart_obj)
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
             neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
-            console.log(neg_list);
             neg_list.innerHTML = "";
             neg_count = 1;
             neg_links.forEach((neg_link) => {
@@ -593,11 +593,12 @@ function displayToxic(data, type){
 
         var toxic_list = document.getElementById('toxic_links');
         toxic_links = data[toxic_conv_type].toxic[month].slice(1, num_toxic_to_show);
-        console.log(toxic_list);
         toxic_list.innerHTML = "";
+        toxic_count = 1;
         toxic_links.forEach((toxic_link) => {
             toxic_list.innerHTML += 
-                '<p class="m-0"><a href="'+toxic_link.url+'">'+toxic_link.title+'</a></p>';
+                '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+            toxic_count += 1;
         });
 
         // display negative sentiment conversations
@@ -605,9 +606,11 @@ function displayToxic(data, type){
         neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
         console.log(neg_links);
         neg_list.innerHTML = "";
+        neg_count = 1;
         neg_links.forEach((neg_link) => {
             neg_list.innerHTML += 
-                '<p class="m-0"><a href="'+neg_link.url+'">'+neg_link.title+'</a></p>';
+                '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+            neg_count += 1;
         });
     })});
 }
