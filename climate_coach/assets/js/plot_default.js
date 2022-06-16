@@ -4,10 +4,10 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
     function(data) {
     // display basic stats
     var num_months = data[0]["num_closed"].length;
-    var unique_members = document.getElementById('unique_members');
-    unique_members.innerHTML = data[3]["total_active"];
-    var new_members = document.getElementById('new_members');
-    new_members.innerHTML = data[3]["total_new"];
+    var top_new_issue_authors = document.getElementById('top_new_issue_authors');
+    top_new_issue_authors.innerHTML = data[0]["num_new_authors"][5];
+    var top_new_pr_authors = document.getElementById('top_new_pr_authors');
+    top_new_pr_authors.innerHTML = data[1]["num_new_authors"][5];
     var issue_closed = document.getElementById('issue_closed');
     issue_closed.innerHTML = data[0]["num_closed"][num_months-1];
     var pr_closed = document.getElementById('pr_closed');
