@@ -21,11 +21,11 @@
                 <div class="container">
                     <div class="row mt-2">
                         <h1 class="text-primary mb-0">Climate Report</h1>
-                        <p>Project: Slicer_Slicer</p>
+                        <p>Project: monarch-initiative/mondo</p>
                         <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Markdown Version</a> -->
                     </div>
                     <div class="row">
-                        <h6 class="text-dark fw-bold mb-1">Basic stats for the past month:</h6>
+                        <h6 class="text-dark fw-bold mb-1" style="font-size:larger">Basic stats for the past month:</h6>
                     </div>
                     <div class="row mb-1">
                         <div class="col-md-3 p-1">
@@ -33,12 +33,13 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-success fw-bold text-xs popup">Active contributors <span class="fas fa-info-circle"></span>
-                                                <span class="popuptext" id="activePop">Including commits, issues, and PR contributors.</span>
+                                            <div class="text-uppercase fw-bold text-xs popup" style="color:rgb(8, 169, 72)">Active contributors 
+                                                <span class="fas fa-info-circle"></span>
+                                                <span class="popuptext" id="activePop">Includes commits, issues, and PR contributors.</span>
                                             </div>
                                             <div class="text-dark p"><span id="unique_members">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><span class="fas fa-solid fa-user-friends fa-2x text-success"></span></div>
+                                        <div class="col-auto"><span class="fas fa-solid fa-user-friends fa-2x" style="color:rgb(8, 169, 72)"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -48,10 +49,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-danger fw-bold text-xs"><span>Avg Comments to Issues</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(0, 192, 235)"><span>Avg Comments to Issues</span></div>
                                             <div class="text-dark p"><span id="i_avg_comments_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-comments fa-2x text-danger"></i></div>
+                                        <div class="col-auto"><i class="fas fa-comments fa-2x" style="color:rgb(0, 192, 235)"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -61,10 +62,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-warning fw-bold text-xs"><span>Issues closed</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(140, 51, 223)"><span>Issues closed</span></div>
                                             <div class="text-dark p"><span id="issue_closed">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-clipboard-check fa-2x text-warning"></i></div>
+                                        <div class="col-auto"><i class="fas fa-clipboard-check fa-2x" style="color:rgb(140, 51, 223)"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +75,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-info fw-bold text-xs"><span>Avg Days to Close Issues</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(251, 131, 39)"><span>Avg Days to Close Issues</span></div>
                                             <div class="text-dark p"><span id="i_avg_close_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x text-info"></i></div>
+                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x" style="color:rgb(251, 131, 39)"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -89,12 +90,13 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-success fw-bold text-xs popup" id="new_contribs">New contributors <span class="fas fa-info-circle"></span>
-                                                <span class="popuptext" id="newPop">Including commits, issues, and PR contributors.</span>
+                                            <div class="text-uppercase fw-bold text-xs popup" style="color:rgb(8, 169, 72)" id="new_contribs">New contributors 
+                                                <span class="fas fa-info-circle"></span>
+                                                <span class="popuptext" id="newPop">Includes commits, issues, and PR contributors.</span>
                                             </div>
                                             <div class="text-dark p"><span id="new_members">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><span class="fas fa-user fa-2x text-success"></span></div>
+                                        <div class="col-auto"><span class="fas fa-user fa-2x" style="color:rgb(8, 169, 72)"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -104,10 +106,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-danger fw-bold text-xs"><span>Avg Comments to PRs</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(0, 192, 235)"><span>Avg Comments to PRs</span></div>
                                             <div class="text-dark p"><span id="p_avg_comments_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-comment-alt fa-2x text-danger"></i></div>
+                                        <div class="col-auto"><i class="fas fa-comment-alt fa-2x" style="color:rgb(0, 192, 235)"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -117,14 +119,14 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-warning fw-bold text-xs"><span>PRs closed</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(140, 51, 223)"><span>PRs closed</span></div>
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto">
                                                     <div class="text-dark p"><span id="pr_closed">&lt;number&gt;</span></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-code fa-2x text-warning"></i></div>
+                                        <div class="col-auto"><i class="fas fa-code fa-2x" style="color:rgb(140, 51, 223)"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -134,20 +136,20 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase text-info fw-bold text-xs"><span>Avg Days to Close PRs</span></div>
+                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(251, 131, 39)"><span>Avg Days to Close PRs</span></div>
                                             <div class="text-dark p"><span id="p_avg_close_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-info"></i></div>
+                                        <div class="col-auto"><i class="fas fa-calendar fa-2x" style="color:rgb(251, 131, 39)"></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <h6 class="text-dark fw-bold mb-1 mt-2">Trends in the past 6 months:</h6>
+                        <h6 class="text-dark fw-bold mb-1 mt-2" style="font-size:larger">Trends in the past 6 months:</h6>
                     </div>
                     <div class="row">
-                        <p class="text-dark mb-1">How big is your community of developers:</p>
+                        <p class="text-dark mb-1">How big is your community of developers?</p>
                     </div>
                     <div class="row">
                         <div class="col-md-5 p-1">
@@ -215,7 +217,7 @@
 
 
                     <div class="row">
-                        <p class="text-dark mb-1">How fast did you react:</p>
+                        <p class="text-dark mb-1">How fast did the team respond?</p>
                     </div>
 
                     <div class="row mb-3">
@@ -284,7 +286,7 @@
 
 
                     <div class="row">
-                        <p class="text-dark mb-1">How active are the conversations:</p>
+                        <p class="text-dark mb-1">How active are the conversations?</p>
                     </div>
 
                     <div class="row mb-3">
@@ -363,7 +365,7 @@
                         <div class="col-md-12 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1">How friendly are the conversations:</h6>
+                                    <h6 class="text-dark fw-bold m-1">How friendly are the conversations?</h6>
                                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down text-gray-600"></i></button>
                                         <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                                             <p class="dropdown-header">Display Information For:</p>
@@ -374,9 +376,9 @@
                                 </div>
                                 <div class="card-body pb-0">
 
-                                    <div class="row" style="height: 400px !important;">
+                                    <div class="row" style="height: auto;">
                                         <div class="col-md-5">
-                                        <div class="chart-area" style="height: 400px !important;">
+                                        <div class="chart-area" style="height: 300px;">
                                             <canvas id="toxicity_info"></canvas>
                                         </div>
                                         </div>
@@ -400,12 +402,12 @@
                                                 <h6>The highest identity attack score among the comments: <span id="highest_attack">a</span> (range: [0, 1])</h6>
                                             </div>
                                             <div class="row mb-3">
-                                                <h6 class="mb-0">Links to potentially problematic conversations (score > 0.8) *:</h6>
+                                                <h6 class="mb-0">Links to highest five potentially problematic conversations (threshold: 0.8)*:</h6>
                                                 <div id="toxic_links"></div>
                                             </div>
                                             <div class="row">
                                                 <hr>
-                                                <h6 class="mb-0">Links to conversations with negative sentiment**:</h6>
+                                                <h6 class="mb-0">Links to five of the conversations with negative sentiment**:</h6>
                                                 <div id="neg_senti_links"></div>
                                             </div>
 
@@ -427,21 +429,15 @@
                                     <h6 class="text-dark fw-bold m-1 pb-1">Issues by Labels in the Past Month</h6>
                                 </div>
                                 <div id="issue_label_area" class="card-body m-0 pb-2 pt-0">
-                                    <!-- <div id = "issue_label_area" class="chart-area" style="height: 300px !important;">
-                                      <canvas id="issue_labels"></canvas>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 m-0 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests  by Labels in the Past Month</h6>
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests by Labels in the Past Month</h6>
                                 </div>
                                 <div id="pr_label_area" class="card-body m-0 pb-2 pt-0">
-                                    <!-- <div class="chart-area" style="height: 300px !important;">
-                                      <canvas id="PR_labels"></canvas>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -451,7 +447,10 @@
                         <div class="col-md-6 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Comparison to Similar Repositories</h6>
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1 popup">Comparison to Similar Repositories
+                                        <span class="fas fa-info-circle"></span>
+                                        <span class="popuptext" id="activePop">Similar repositories found based on stars, number of contributors, or topic.</span>
+                                    </h6>
                                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down text-gray-600"></i></button>
                                         <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                                             <p class="dropdown-header">Display Information For:</p>
@@ -492,9 +491,9 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/output.json"></script>
     <script src="assets/js/plot_default.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/colors.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
