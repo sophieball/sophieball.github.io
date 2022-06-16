@@ -55,7 +55,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     issue_config["options"]["title"]["text"] = "New Issue Authors";
-    var issue_size_chart = new Chart(document.getElementById("issueSizeChart"), issue_config);
+    issue_size_chart = new Chart(document.getElementById("issueSizeChart"), issue_config);
 
     pr_config = Object.assign({}, line_config);
     pr_config["data"] = {
@@ -71,7 +71,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     pr_config["options"]["title"]["text"] = "New PR Authors";
-    var pr_size_chart = new Chart(document.getElementById("prSizeChart"), pr_config);
+    pr_size_chart = new Chart(document.getElementById("prSizeChart"), pr_config);
 
     issue_label = Object.assign({}, bar_config);
     issue_label["data"] = {
@@ -141,7 +141,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     issue_time["options"]["title"]["text"] = "Average Close Time for Issues (Days)";
-    var issue_time_chart = new Chart(document.getElementById("issueTimeChart"), issue_time);
+    issue_time_chart = new Chart(document.getElementById("issueTimeChart"), issue_time);
 
     pr_time = Object.assign({}, line_config);
     pr_time["data"] = {
@@ -157,7 +157,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     pr_time["options"]["title"]["text"] = "Average Close Time for Pull Requests (Days)";
-    var pr_time_chart = new Chart(document.getElementById("prTimeChart"), pr_time);
+    pr_time_chart = new Chart(document.getElementById("prTimeChart"), pr_time);
 
 
     issue_dis = Object.assign({}, line_config);
@@ -174,7 +174,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     issue_dis["options"]["title"]["text"] = "Average Comments for Issues Closed in Each Month";
-    var issue_dicussion_chart = new Chart(document.getElementById("issueDisChart"), issue_dis);
+    issue_dicussion_chart = new Chart(document.getElementById("issueDisChart"), issue_dis);
 
     pr_dis = Object.assign({}, line_config);
     pr_dis["data"] = {
@@ -190,7 +190,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     pr_dis["options"]["title"]["text"] = "Average Comments for Pull Requests Closed in Each Month";
-    var pr_dicussion_chart = new Chart(document.getElementById("prDisChart"), pr_dis);
+    pr_dicussion_chart = new Chart(document.getElementById("prDisChart"), pr_dis);
 
     toxic_config = Object.assign({}, line_config);
     toxic_config["data"] = {
@@ -206,7 +206,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
     toxic_config["options"]["title"]["text"] = "Number of Potentially Problematic Issues";
-    var toxic_chart = new Chart(document.getElementById("toxicity_info"), toxic_config);
+    toxic_chart = new Chart(document.getElementById("toxicity_info"), toxic_config);
 
     var toxic_score = document.getElementById("highest_toxic");
     toxic_score.innerHTML = data[0].max_toxic[data[0].max_toxic.length - 1];
@@ -235,19 +235,19 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         neg_count += 1;
     });
 
+
     compare_config_d = Object.assign({}, bar_config);
     compare_config_d["data"] = {
             labels: projects_for_comparison,
             datasets: [{
-                // label: '# of Votes',
-                data: [10, 30, 6, 9, 24],
+                data: [5, 7, 8, 2, 9],
                 backgroundColor: color_palette,
                 borderColor: line_palette,
                 borderWidth: 1
             }]
         };
     compare_config_d["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
-    var compareChart = new Chart(comp, compare_config_d);
+    compareChart = new Chart(comp, compare_config_d);
 
     // print new contributors' logins
     displayList(data);
