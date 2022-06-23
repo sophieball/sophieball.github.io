@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="assets/css/popup.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
@@ -466,26 +467,52 @@
                                 </div>
                             </div>
                         </div>
+                        
+                    <div class="row">
+                        <p class="text-dark mb-1">Prior research results</p>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Tips</h6>
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Visible features that affect your project's attractiveness</h6>
                                     
                                 </div>
-                                <div class="card-body m-0 pb-2 pt-0 pl-2">
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                        <div id="findings">
+                                            <p><span style="color:rgb(42, 49, 149)" class="bi bi-activity pb-1"></span>&nbsp;<b style="color:rgb(42, 49, 149)">Projects' activity level</b>: Recent commits signal that the project is still active</p>
+
+                                            <p><span style="color:rgb(169, 53, 131)" class="bi bi-ui-checks pb-1"></span>
+                                            <b style="color:rgb(169, 53, 131)">Issue or PR templates</b>: Providing templates for issues or pull requests signals good maintenance efforts.</p>
+
+                                            <p><span style="color:rgb(218, 51, 97);" class="bi bi-card-heading pb-1"></span>&nbsp;<b style="color:rgb(218, 51, 97);">Comprehensive README files</b>: Make README into clear sections.</p>
+
+                                            <p><span style="color:rgb(255, 0, 0);" class="bi bi-exclamation-octagon-fill pb-1"></span>&nbsp;<b style="color:rgb(255, 0, 0);">Impolite language</b>: Impolite language makes your project less attractive.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Predicting contributors' negative feelings</h6>
+                                </div>
+
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
                                     <div class="chart-area" style="height: 300px !important;">
                                         <div id="tips">
-                                            <p class="pt-3"><b>Pushback</b>: Carolyn Egelman and collegues found that <b>long review time</b> and <b>excessive review rounds</b> are strong predictors of pushback, which can cause contributors' negative feelings (see their <a href="https://research.google/pubs/pub49023/">paper</a>).</p>
-                                            <p class="pt-2"><b>Interpersonal Conflicts</b>: Naveen Raman and Sophie Qiu found that <b>toxicity score</b>, <b>identity attack</b>, and <b>sentiment</b> can help detect interpersonal conflict (see their papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).</p>
+                                            <p><b style="color:rgb(243, 153, 67);">Pushback</b>: Carolyn Egelman and collegues found that <b>long review time</b> and <b>excessive review rounds</b> are strong predictors of pushback, which can cause contributors' negative feelings (see their <a href="https://research.google/pubs/pub49023/">paper</a>).</p>
+                                            <p class="pt-2"><b style="color:rgb(246, 93, 78);">Interpersonal Conflicts</b>: Naveen Raman and Sophie Qiu found that <b>toxicity score</b>, <b>identity attack</b>, and <b>sentiment</b> can help detect interpersonal conflict (see their papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        
-                    </div>
+                    </div> <!-- row -->
+                    
                 </div>
             </div>
         </div>
