@@ -560,7 +560,12 @@
         </div>
     </div>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_odk.json", 
+    function(data) {show_default(data)});
+    </script>
     <script src="assets/js/plot_default.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/colors.js"></script>
