@@ -5,10 +5,10 @@ const num_toxic_to_show = 6;
 // the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
               'Your project',
-              'github.com/CeresDB/ceresdb',
-              'github.com/ivadomed/ivadomed',
-              'github.com/smistad/FAST',
-              'github.com/pygments/pygment'];
+              'monarch-initiative/mondo',
+              'EBISPOT/OLS',
+              'monarch-initiative/MAxO',
+              'biolink/kgx'];
 
 // declare charts
 var compareChart;
@@ -232,17 +232,17 @@ function drawCompareChart(data, selector, chart_id){
     switch (selector.id) {
         case "comp_num_active":
             title = "Active Authors (past month)";
-            metric = [5, 7, 8, 2, 9];
+            metric = [2, 6, 0, 1, 2];
             xtitle = projects_for_comparison;
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [40, 7, 6, 0, 11];
+            metric = [14, 46, 9, 5, 2];
             xtitle = projects_for_comparison;
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [71, 26, 10, 1, 14];
+            metric = [8, 72, 0, 5, 2];
             xtitle = projects_for_comparison;
             break;
         // case "comp_i_time":
@@ -283,7 +283,6 @@ function drawCompareChart(data, selector, chart_id){
         }]
     };
     compare_config["options"]["title"]["text"] = title;
-    console.log(compare_config);
 
     compareChart.destroy();
     compareChart = new Chart(comp, compare_config);
@@ -453,7 +452,6 @@ function drawChart(data, selector, chart_id, chart_obj)
             toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
             toxic_list.innerHTML = "";
             toxic_count = 1;
-            console.log(toxic_count);
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
                     '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
@@ -498,7 +496,6 @@ function drawChart(data, selector, chart_id, chart_obj)
             // display negative sentiment conversations
             var neg_list = document.getElementById('neg_senti_links');
             neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
-            console.log(neg_list);
             neg_list.innerHTML = "";
             neg_count = 1;
             neg_links.forEach((neg_link) => {
@@ -578,7 +575,6 @@ function displayToxic(data, type){
                 month = 5;
                 break;
         }
-        console.log(month);
         var toxic_score = document.getElementById("highest_toxic");
         toxic_score.innerHTML = data[toxic_conv_type].max_toxic[month];
         var attack_score = document.getElementById("highest_attack");
@@ -597,7 +593,6 @@ function displayToxic(data, type){
         // display negative sentiment conversations
         var neg_list = document.getElementById('neg_senti_links');
         neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
-        console.log(neg_links);
         neg_list.innerHTML = "";
         neg_count = 1;
         neg_links.forEach((neg_link) => {
