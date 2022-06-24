@@ -1,6 +1,6 @@
 // reads data
 // plots the charts that are shown when the page is load
-$.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_mm.json", 
+$.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_odk.json", 
     function(data) {
     // display basic stats
     var num_months = data[0]["num_closed"].length;
@@ -24,7 +24,6 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
     // display time consuming issues
     var long_time_convs = document.getElementById('time_consuming_convs');
     long_standings = data[0].long_standing;
-    console.log(long_standings);
     long_time_convs.innerHTML = "Issues that have been opened for the longest time:";
     long_standings.forEach((long_standing) => {
         long_time_convs.innerHTML += 
@@ -87,6 +86,18 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         }]
     };
 
+    // display the list of new authors
+    title = "Issues";
+    people = data[0].new_authors;
+    new_member = document.getElementById('new_members_list');
+    new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+    if (people.length > 0){
+        people.forEach((person) => {
+            new_member.innerHTML += 
+                '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
+        });
+    }
+
     // if neither issue nor pr uses labels, make these two tabs short
     if (data[0].label_counts_values.length == 0 
         && data[1].label_counts_values.length == 0){
@@ -95,6 +106,8 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
     else{
         label_chart_height = "300px";
     }
+
+    // plot issue labels and counts
     var num_labels = data[0].label_counts_values.length;
     var issue_label_field = document.getElementById("issue_label_area");
     if (num_labels == 0){
@@ -112,8 +125,6 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
             backgroundColor: color_palette,
             borderColor: line_palette,
             borderWidth: 1,
-            pointRadius: 6,
-            pointHoverRadius: 8,
             data: data[1].label_counts_values
         }]
     };
@@ -226,7 +237,6 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
     // display negative sentiment conversations
     var neg_list = document.getElementById('neg_senti_links');
     neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
-    console.log(neg_links);
     neg_list.innerHTML = "";
     var neg_count = 1;
     neg_links.forEach((neg_link) => {
@@ -235,7 +245,7 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         neg_count += 1;
     });
 
-
+    // plot the comparison chart
     compare_config_d = Object.assign({}, bar_config);
     compare_config_d["data"] = {
             labels: projects_for_comparison,
@@ -248,6 +258,14 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_m
         };
     compare_config_d["options"]["title"]["text"] = "Active Authors (Issues and Pull Requests)";
     compareChart = new Chart(comp, compare_config_d);
+
+    // display the list of projects to be compared with
+    comp_list = document.getElementById('project_list');
+    comp_list.innerHTML = "";
+    for (let i = 1; i < projects_for_comparison.length; i++) {
+      comp_list.innerHTML += '<a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
+      console.log(projects_for_comparison[i]);
+    }
 
     // print new contributors' logins
     displayList(data);
