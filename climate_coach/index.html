@@ -22,7 +22,7 @@
                 <div class="container">
                     <div class="row mt-2">
                         <h1 class="text-primary mb-0">Climate Report</h1>
-                        <p>Project: monarch-initiative/mondo</p>
+                        <p>Project: INCATools/ontology-development-kit</p>
                         <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Markdown Version</a> -->
                     </div>
                     <div class="row">
@@ -442,7 +442,7 @@
                         
                     </div> <!-- row -->
                     <div class="row">
-                        <div class="col-md-6 m-0 p-2">
+                        <div class="col-md-12 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1 popup">Comparison to Similar Repositories
@@ -460,10 +460,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body m-0 pb-2 pt-0">
+                                <div class="row">
+                                <div class="card-body col-md-6 m-0 pb-2 pt-0">
                                     <div class="chart-area" style="height: 300px !important;">
                                         <canvas id="Compare"></canvas>
                                     </div>
+                                </div>
+                                <div class="col-md-2 m-0 pb-2 pt-3">
+                                    Projects:<br>
+                                    <div id="project_list">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 m-0 pb-2 pt-3">
+                                </div>
+                                
                                 </div>
                             </div>
                         </div>
@@ -476,28 +486,51 @@
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     
-                                        <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Visible features that affect your project's attractiveness&nbsp;</h6> 
+                                        <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Features that Affect Project Attractiveness&nbsp;</h6> 
                                     <div class="popup2">
                                         <a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">
                                         <i class="bi bi-journal-text"></i></a>
 
-                                        <span class="popuptext2">Read the paper.</span>
+                                        <span class="popuptext2">Read the paper</span>
                                         
                                     </div>
-                                        
 
                                 </div>
                                 <div class="card-body m-0 pb-2 pt-3 pl-2">
                                     <div class="chart-area" style="height: 300px !important;">
                                         <div id="findings">
-                                            <p><span style="color:rgb(42, 49, 149)" class="bi bi-activity pb-1"></span>&nbsp;<b style="color:rgb(42, 49, 149)">Projects' activity level</b>: Recent commits signal that the project is still active</p>
+                                                
+                                            <table class="table table-sm" style="width:100%">
+                                                <tr>
+                                                    <th style="width:30%">Attractive Features</th>
+                                                    <th>Explanation</th>
+                                                </tr>
 
-                                            <p><span style="color:rgb(169, 53, 131)" class="bi bi-ui-checks pb-1"></span>
-                                            <b style="color:rgb(169, 53, 131)">Issue or PR templates</b>: Providing templates for issues or pull requests signals good maintenance efforts.</p>
+                                                <tr> <!-- set colors in js -->
+                                                    <td><div id="bi-activity"><span class="bi bi-activity pb-1"></span>
+                                                        <b>Activity level</b></div>
+                                                    </td>
+                                                    <td>Recent commits signal that the project is still active</td>
+                                                </tr>
 
-                                            <p><span style="color:rgb(218, 51, 97);" class="bi bi-card-heading pb-1"></span>&nbsp;<b style="color:rgb(218, 51, 97);">Comprehensive README files</b>: Make README into clear sections.</p>
+                                                <tr>
+                                                    <td><div id="bi-checks"><span class="bi bi-ui-checks pb-1"></span>
+                                                        <b>Issue/PR templates</b></div>
+                                                    </td>
+                                                    <td>Providing templates for issues or pull requests signals good maintenance efforts.</td>
+                                                </tr>
 
-                                            <p><span style="color:rgb(255, 0, 0);" class="bi bi-exclamation-octagon-fill pb-1"></span>&nbsp;<b style="color:rgb(255, 0, 0);">Impolite language</b>: Impolite language makes your project less attractive.</p>
+                                                <tr>
+                                                    <td><div id="README"><span class="bi bi-card-heading pb-1"></span>
+                                                        <b>README file</b></div>
+                                                    </td>
+                                                    <td>Make README comprehensive.<br>Separate README file into clear sections.</td>
+                                                  </tr>
+                                            </table>
+
+                                            <p></p>
+
+                                            <p><span id="impolite" class="bi bi-exclamation-octagon-fill pb-1"></span>&nbsp;<b id="impolite_text" >Impolite language</b>: Impolite language makes your project less attractive.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -526,6 +559,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="assets/js/plot_default.js"></script>
     <script src="assets/js/script.js"></script>
@@ -534,6 +568,14 @@
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+
+    <script>
+        document.getElementById('bi-activity').style.color=line_colors[0];
+        document.getElementById('bi-checks').style.color=line_colors[1];
+        document.getElementById('README').style.color=line_colors[2];
+        document.getElementById('impolite').style.color="rgb(255,0,0)";
+        document.getElementById('impolite_text').style.color="rgb(255,0,0)";
+    </script>
 </body>
 
 </html>
