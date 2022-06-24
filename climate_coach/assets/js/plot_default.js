@@ -1,7 +1,7 @@
 // reads data
 // plots the charts that are shown when the page is load
-$.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_odk.json", 
-    function(data) {
+
+function show_default(data){
     // display basic stats
     var num_months = data[0]["num_closed"].length;
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
@@ -275,4 +275,4 @@ $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_o
     listConvers(data);
 
     displayToxic(data);
-}); 
+}; 
