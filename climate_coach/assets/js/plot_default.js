@@ -44,12 +44,12 @@ function show_default(data){
     var old_friends_icon = document.getElementById('old_friends_icon');
     old_friends.innerHTML = data[1]["num_closed"][5];
     old_friends_icon.classList.add("fa-link");
-    if (data[1]["num_closed"][5] > 3) {
-        old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
-    }
-    else {
-        old_friends_icon.classList.remove("purple");
-    }
+//     if (data[1]["num_closed"][5] > 3) {
+//         old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
+//     }
+//     else {
+//         old_friends_icon.classList.remove("purple");
+//     }
 
     // activity
     var i_avg_comments_top = document.getElementById('i_avg_comments_top');
