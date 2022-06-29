@@ -1,25 +1,103 @@
 // reads data
 // plots the charts that are shown when the page is load
-
 function show_default(data){
     // display basic stats
-    var num_months = data[0]["num_closed"].length;
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
+    var top_new_issue_icon = document.getElementById('basic_new_issue');
     top_new_issue_authors.innerHTML = data[0]["num_new_authors"][5];
+    if (data[0]["num_new_authors"][5] > 0){
+        top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
+        top_new_issue_icon.classList.add("fa-user-friends");
+    }
+    else {
+        top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;So lonely...</span>';
+        top_new_issue_icon.classList.add("fa-user");
+        top_new_pr_icon.classList.remove("orange");
+    }
+
     var top_new_pr_authors = document.getElementById('top_new_pr_authors');
+    var top_new_pr_icon = document.getElementById('basic_new_pr');
     top_new_pr_authors.innerHTML = data[1]["num_new_authors"][5];
-    var issue_closed = document.getElementById('issue_closed');
-    issue_closed.innerHTML = data[0]["num_closed"][num_months-1];
-    var pr_closed = document.getElementById('pr_closed');
-    pr_closed.innerHTML = data[1]["num_closed"][num_months-1];
-    var i_avg_closed_time_top = document.getElementById('i_avg_close_top');
-    i_avg_closed_time_top.innerHTML = data[0]["avg_close_time"][num_months-1];
-    var pr_avg_closed_time_top = document.getElementById('p_avg_close_top');
-    pr_avg_closed_time_top.innerHTML = data[1]["avg_close_time"][num_months-1];
+    if (data[1]["num_new_authors"][5] > 0){
+        top_new_pr_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
+        top_new_pr_icon.classList.add("fa-user-friends");
+    }
+    else {
+        top_new_pr_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;So lonely...</span>';
+        top_new_pr_icon.classList.add("fa-user");
+        top_new_pr_icon.classList.remove("orange");
+    }
+
+    // bonding social capital
+    var bonding = document.getElementById('bonding');
+    var bonding_icon = document.getElementById('bonding_icon');
+    bonding.innerHTML = data[0]["num_closed"][5];
+    bonding_icon.classList.add("fa-link");
+    if (data[0]["num_closed"][5] > 3){
+        bonding.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;An experienced team</span>';
+    }
+    else {
+        bonding_icon.classList.remove("purple");
+    }
+
+    var old_friends = document.getElementById('old_friends');
+    var old_friends_icon = document.getElementById('old_friends_icon');
+    old_friends.innerHTML = data[1]["num_closed"][5];
+    old_friends_icon.classList.add("fa-link");
+    if (data[1]["num_closed"][5] > 3) {
+        old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
+    }
+    else {
+        old_friends_icon.classList.remove("purple");
+    }
+
+    // activity
     var i_avg_comments_top = document.getElementById('i_avg_comments_top');
-    i_avg_comments_top.innerHTML = data[0]["avg_comments_before_close"][num_months-1];
-    var pr_avg_comments_top = document.getElementById('p_avg_comments_top');
-    pr_avg_comments_top.innerHTML = data[1]["avg_comments_before_close"][num_months-1];
+    var i_avg_closed_time_top_icon = document.getElementById('i_avg_comments_top_icon');
+    var i_avg_comments_before_close = data[0]["avg_comments_before_close"][5];  
+
+    i_avg_comments_top.innerHTML = i_avg_comments_before_close;
+    if (i_avg_comments_before_close > 3 & i_avg_comments_before_close < 15) {
+        i_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Vivid discussion</span>';
+        i_avg_closed_time_top_icon.classList.add("fa-comments");
+    }
+    else if (i_avg_comments_before_close > 15) {
+        i_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Heated discussions!</span>';
+        i_avg_closed_time_top_icon.classList.add("fa-comments");
+        i_avg_closed_time_top_icon.classList.remove("blue");
+        i_avg_closed_time_top_icon.classList.add("text-danger");
+    }
+    else {
+        i_avg_closed_time_top_icon.classList.add("fa-comment-alt");
+        i_avg_closed_time_top_icon.classList.remove("blue");
+    }
+
+    var p_avg_comments_top = document.getElementById('p_avg_comments_top');
+    var p_avg_closed_time_top_icon = document.getElementById('p_avg_comments_top_icon');
+    var p_avg_comments_before_close = data[1]["avg_comments_before_close"][5];  
+
+    p_avg_comments_top.innerHTML = p_avg_comments_before_close;
+    if (p_avg_comments_before_close > 3 & p_avg_comments_before_close < 15) {
+        p_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Vivid discussion</span>';
+        p_avg_closed_time_top_icon.classList.add("fa-comments");
+    }
+    else if (p_avg_comments_before_close > 15) {
+        p_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Heated discussions!</span>';
+        p_avg_closed_time_top_icon.classList.add("fa-comments");
+        p_avg_closed_time_top_icon.classList.remove("blue");
+        p_avg_closed_time_top_icon.classList.add("text-danger");
+    }
+    else {
+        p_avg_closed_time_top_icon.classList.add("fa-comment-alt");
+        p_avg_closed_time_top_icon.classList.remove("blue");
+    }
+
+    // responsiveness
+    var i_avg_closed_time_top = document.getElementById('i_avg_close_top');
+    i_avg_closed_time_top.innerHTML = data[0]["avg_close_time"][5];
+
+    var pr_avg_closed_time_top = document.getElementById('p_avg_close_top');
+    pr_avg_closed_time_top.innerHTML = data[1]["avg_close_time"][5];
 
     // display time consuming issues
     var long_time_convs = document.getElementById('time_consuming_convs');
@@ -248,7 +326,7 @@ function show_default(data){
     // plot the comparison chart
     compare_config_d = Object.assign({}, bar_config);
     compare_config_d["data"] = {
-            labels: projects_for_comparison,
+            labels: ["You", "proj1", "proj2", "proj3", "proj4"],
             datasets: [{
                 data: [5, 7, 8, 2, 9],
                 backgroundColor: color_palette,
@@ -263,9 +341,16 @@ function show_default(data){
     comp_list = document.getElementById('project_list');
     comp_list.innerHTML = "";
     for (let i = 1; i < projects_for_comparison.length; i++) {
-      comp_list.innerHTML += '<a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
+      comp_list.innerHTML += 'proj'+i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
       console.log(projects_for_comparison[i]);
     }
+
+    // set tip tab height
+    var finding_tab = document.getElementById("finding_area");
+    finding_tab_height = finding_tab.clientHeight;
+    console.log(finding_tab_height);
+    var tips_area = document.getElementById("tips_area");
+    tips_area.style.clientHeight = finding_tab_height;
 
     // print new contributors' logins
     displayList(data);
