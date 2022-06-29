@@ -5,10 +5,10 @@ const num_toxic_to_show = 6;
 // the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
               'Your project',
-              'monarch-initiative/mondo',
-              'EBISPOT/OLS',
-              'monarch-initiative/MAxO',
-              'biolink/kgx'];
+              'github.com/actions/starter-workflows',
+              'github.com/sogou/workflow',
+              'github.com/argoproj/argo-workflows',
+              '/github.com/loft-sh/devspace'];
 
 // declare charts
 var compareChart;
@@ -41,13 +41,6 @@ const line_config = {
         ticks: {
           beginAtZero: true,
           callback: function(value) {if (value % 1 === 0) {return value;}}
-        }
-      }],
-      xAxes: [{
-        scaleLabel: {
-            fontColor: 'black',
-            display: true,
-            labelString: 'Month'
         }
       }]
     } 
@@ -242,17 +235,17 @@ function drawCompareChart(data, selector, chart_id){
     switch (selector.id) {
         case "comp_num_active":
             title = "Active Authors (past month)";
-            metric = [2, 6, 0, 1, 2];
+            metric = [16, 19, 5, 24, 8];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [14, 46, 9, 5, 2];
+            metric = [48, 9, 12, 54, 9];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [8, 72, 0, 5, 2];
+            metric = [205, 22, 29, 64, 32];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         // case "comp_i_time":
@@ -375,13 +368,13 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "p_close_time":
-            title = "Median Time for Closing Pull Requests (Days)";
+            title = "Median Time for Closing Pull Requests";
             metric = data[1].median_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_close_time":
-            title = "Average Time for Closing Pull Requests (Days)";
+            title = "Average Time for Closing Pull Requests";
             metric = data[1].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
