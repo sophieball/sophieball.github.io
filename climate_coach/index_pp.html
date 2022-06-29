@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Climate Report</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/popup.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container">
+                    <div class="row mt-2">
+                        <h1 class="text-primary mb-0" id="proj_name">Climate Report for Your Project: </h1>
+                        <h4>A dashboard for open-source maintainers to monitor project team dynamics and improve community health. </h4>
+                        <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Markdown Version</a> -->
+                    </div>
+                    
+                    <div class="row">
+                        <h6 class="text-dark fw-bold mb-1" style="font-size:larger">Basic stats of team activities for the past month:</h6>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs popup orange">New Issue Authors</div>
+                                            <div class="text-dark p"><span id="top_new_issue_authors">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><span class="fas fa-solid fa-2x orange text-primary" id="basic_new_issue"></span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-success">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs purple"><span>Number of Close Issues</span></div>
+                                            <div class="text-dark p"><span id="bonding">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-2x purple text-primary" id="bonding_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-warning">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Comments to Issues</span></div>
+                                            <div class="text-dark p"><span id="i_avg_comments_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-comments fa-2x blue text-primary" id="i_avg_comments_top_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-info">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Days to Close Issues</span></div>
+                                            <div class="text-dark p"><span id="i_avg_close_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x blue text-primary"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs popup orange" id="new_contribs">New PR Authors</div>
+                                            <div class="text-dark p"><span id="top_new_pr_authors">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><span class="fas fa-2x orange text-primary" id="basic_new_pr"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs purple"><span>Number of closed PRs</span></div>
+                                            <div class="row g-0 align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark p"><span id="old_friends">&lt;number&gt;</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-2x purple text-primary" id="old_friends_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Comments to PRs</span></div>
+                                            <div class="text-dark p"><span id="p_avg_comments_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-comments fa-2x blue text-primary" id="p_avg_comments_top_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Days to Close PRs</span></div>
+                                            <div class="text-dark p"><span id="p_avg_close_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x blue text-primary"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="text-dark fw-bold mb-1 mt-2" style="font-size:larger">Trends in the past 6 months:</h6>
+                    </div>
+                    <div class="row">
+                        <p class="text-dark mb-1">How big is your community of developers?</p>
+                    </div>
+                    <div class="row" style="height: auto;">
+                        <div class="col-md-5 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Issue Author Stats</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item issueSizeChartSelect" id="n_i_active">&nbsp;New Issue Authors</button>
+                                            <button class="dropdown-item issueSizeChartSelect" id="u_i_active">&nbsp;Active Issue Authors</button>
+                                            <button class="dropdown-item issueSizeChartSelect" id="i_new">&nbsp;Number of New Issues</button>
+                                            <button class="dropdown-item issueSizeChartSelect" id="i_closed">&nbsp;Number of Issues Closed</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="issueSizeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Pull Request Author Stats</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item prSizeChartSelect" id="u_p_active">&nbsp;Active PR Authors</button>
+                                            <button class="dropdown-item prSizeChartSelect" id="n_p_active">&nbsp;New PR Authors</button>
+                                            <button class="dropdown-item prSizeChartSelect" id="p_new">&nbsp;Number of New PRs</button>
+                                            <button class="dropdown-item prSizeChartSelect" id="p_closed">&nbsp;Number of PRs Closed</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="prSizeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-3 m-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">New Authors</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display List For:</p>
+                                            <button class="dropdown-item authorList" id="new_issue_authors">&nbsp;New Issue Authors</button>
+                                            <button class="dropdown-item authorList" id="new_pr_authors">&nbsp;New PR Authors</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-0 pt-2">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                        <div id="new_members_list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+
+
+                    <div class="row">
+                        <p class="text-dark mb-1">How fast was the response?</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Issue Response Times</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item issueTimeChartSelect" id="i_avg_close_time">&nbsp;Average Close Times</button>
+                                            <button class="dropdown-item issueTimeChartSelect" id="i_close_time">&nbsp;Median Close Times</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="issueTimeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Pull Request Response Times</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item prTimeChartSelect" id="p_avg_close_time">&nbsp;Average Close Times</button>
+                                            <button class="dropdown-item prTimeChartSelect" id="p_close_time">&nbsp;Median Close Times</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="prTimeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <div class="popup">
+                                        <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Long-standing Open Threads <span class="fas fa-question-circle text-gray-600"></span>
+                                        </h6>
+                                        <span class="popuptext" id="activePop">Long review time is found to be an indicator of contributors' negative feeling</span>
+                                    </div>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><span class="fas fa-caret-down fa-lg text-gray-600"></span></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display List For:</p>
+                                            <button class="dropdown-item timeList" id="i_long_time">&nbsp;Long-standing Open Issues</button>
+                                            <button class="dropdown-item timeList" id="p_long_time">&nbsp;Long-standing Open PRs</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row px-2">
+                                    <div class="card-body col-md-6 m-0 pb-0 pt-3">
+                                        <div class="chart-area" style="height: auto;">
+                                            <div id="time_consuming_convs"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body col-md-6 pb-3 pt-3"> 
+                                        <b>Tip:</b> 
+                                        Researchers have found that excessive review delays, nitpicking, and long wait for review are predictors of negative experiences in the code review process. 
+                                        Blocking a change request can cause unnecessary interpersonal conflict and negative feelings among contributors.
+                                        [<a href="https://research.google/pubs/pub49023/">Egelman</a>]
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  <!-- row -->
+
+                    <div class="row">
+                        <p class="text-dark mb-1">How active are the conversations?</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mx-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Issue Activity</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item issueDisChartSelect" id="i_avg_closed_comments">&nbsp;Average Num Comments for Closed Issues</button>
+                                            <button class="dropdown-item issueDisChartSelect" id="i_closed_comments">&nbsp;Median Num Comments for Closed Issues</button>
+                                            <button class="dropdown-item issueDisChartSelect" id="i_avg_open_comments">&nbsp;Average Num Comments for New Issues</button>
+                                            <button class="dropdown-item issueDisChartSelect" id="i_open_comments">&nbsp;Median Num Comments for New Issues</button>
+                                            <button class="dropdown-item issueDisChartSelect" id="i_0_comments">&nbsp;Num Issues Closed with 0 Comments</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="issueDisChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mx-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Pull Request Activity</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Chart For:</p>
+                                            <button class="dropdown-item prDisChartSelect" id="p_avg_closed_comments">&nbsp;Average Num Comments for Closed PRs</button>
+                                            <button class="dropdown-item prDisChartSelect" id="p_closed_comments">&nbsp;Median Num Comments for Closed PRs</button>
+                                            <button class="dropdown-item prDisChartSelect" id="p_avg_open_comments">&nbsp;Average Num Comments for New PRs</button>
+                                            <button class="dropdown-item prDisChartSelect" id="p_open_comments">&nbsp;Median Num Comments for New PRs</button>
+                                            <button class="dropdown-item prDisChartSelect" id="p_0_comments">&nbsp;Num PRs Closed with 0 Comments</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-0">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                      <canvas id="prDisChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <div class="popup">
+                                        <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Lengthy Open Threads <span class="fas fa-question-circle text-gray-600"></span></h6>
+                                        <span class="popuptext" id="activePop">Excessive rounds of reviews is found to be an indicator of contributors' negative feeling</span>
+                                    </div>
+                                    <div class="dropdown no-arrow">
+                                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down fa-lg text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display List For:</p>
+                                            <button class="dropdown-item commentList" id="i_most_comments">&nbsp;Longest Issue Discussions</button>
+                                            <button class="dropdown-item commentList" id="p_most_comments">&nbsp;Longest Pull Request Discussions</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body m-0 pb-0 pt-2">
+                                    <div class="chart-area" style="height: 300px !important;">
+                                        <div id="many_comments_convs"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+
+                    <div class="row">
+                        <p class="text-dark mb-1">How friendly are the conversations?</p>
+                    </div>
+
+                    <div class="row mb-3">      
+                        <div class="col-md-12 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1">Conversation Tone Analysis</h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Information For:</p>
+                                            <button class="dropdown-item toxicityList" id="toxic_issues">&nbsp;Potentially Problematic Issues</button>
+                                            <button class="dropdown-item toxicityList" id="toxic_prs">&nbsp;Potentially Problematic PRs</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="row" style="height: auto;">
+                                        <div class="col-md-5">
+                                            <div class="chart-area" style="height: 300px;">
+                                                <canvas id="toxicity_info"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="row mb-3 mt-0"> 
+                                                <div class="btn-toolbar justify-content-center" aria-label="Toolbar with button groups">
+                                                    <div class="btn-group btn-group-toggle" role="group"  data-bs-toggle="buttons">
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="6" data-toggle="button" aria-pressed="false" >December</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="5" data-toggle="button" aria-pressed="false">January</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="4" data-toggle="button" aria-pressed="false" >February</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="3" data-toggle="button" aria-pressed="false" >March</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector" id="2" data-toggle="button" aria-pressed="false" >April</button>
+                                                    <button type="button" class="py-0 btn btn-outline-dark toxic_month_selector active" data-toggle="button" aria-pressed="false" id="1">May</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-0">
+                                                <h6>The highest toxicity score among the comments: <span id="highest_toxic">a</span> (range: [0, 1])</h6>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <h6>The highest identity attack score among the comments: <span id="highest_attack">a</span> (range: [0, 1])</h6>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <h6 class="mb-0">Links to highest five potentially problematic conversations (threshold: 0.8)*:</h6>
+                                                <div id="toxic_links"></div>
+                                            </div>
+                                            <div class="row">
+                                                <hr>
+                                                <h6 class="mb-0">Links to five of the conversations with negative sentiment**:</h6>
+                                                <div id="neg_senti_links"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p><b>Note: </b>Toxicity score, identity attack, and sentiment can help detect interpersonal conflict 
+                                                (read papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], 
+                                                [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and 
+                                                [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-0 pb-0 mt-2">
+                                                <p class="fa-sm py-0 my-0">* Toxicity is calculated by <a href="https://perspectiveapi.com/">Google's Perspective API</a></p>
+                                                <p class="fa-sm py-0 mt-0 mb-2">** Sentiment is calculated by <a href="https://github.com/senticr/SentiCR">SentiCR</a>, a sentiment analysis tool developed for code review data.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+
+                    <div class="row mb-3"> <!-- labels -->
+                        <div class="col-md-6 m-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Issues by Label in the Past Month</h6>
+                                </div>
+                                <div id="issue_label_area" class="card-body m-0 pt-0"></div>
+                                <div class="card-body"> 
+                                    <p>
+                                        <b>Tip:</b> 
+                                        Consider adding issue labels that explicitly highlight starter tasks for new contributors. 
+                                        Labels such as “newcomer friendly” or “good first issue” can help attract and retain new contributors.
+                                        [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani</a>]
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 m-0 p-1">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests by Label in the Past Month</h6>
+                                </div>
+                                <div id="pr_label_area" class="card-body m-0 pb-2 pt-0"></div>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 popup">Comparison to Similar Repositories
+                                        <span class="fas fa-info-circle"></span>
+                                        <span class="popuptext" id="activePop">Similar repositories identified based on stars, number of contributors, or topic.</span>
+                                    </h6>
+                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-caret-down text-gray-600"></i></button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="dropdown-header">Display Information For:</p>
+                                            <button class="dropdown-item compareList" id="comp_num_active">&nbsp;Number of Active Users</button>
+                                            <button class="dropdown-item compareList" id="comp_i_closed">&nbsp;Number of Issues Closed</button>
+                                            <button class="dropdown-item compareList" id="comp_p_closed">&nbsp;Number of PRs Closed</button>
+                                            <!-- <button class="dropdown-item compareList" id="comp_i_time">&nbsp;Avg Time to Close Issues</button>
+                                            <button class="dropdown-item compareList" id="comp_p_time">&nbsp;Avg Time to Close PRs</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-4">
+                                    <div class="row" style="height: auto;">
+                                        <div class="col-md-5">
+                                            <div class="chart-area" style="height: 300px !important;">
+                                                <canvas class="ml-4" id="Compare"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-0 pb-2 pt-3">
+                                            <b>Projects:</b><br>
+                                            <div id="project_list"></div>
+                                        </div>
+                                        <div class="col-md-4 m-0 pb-2 pt-3">
+                                            <h6><b>The Aim of Comparison:</b></h6>
+                                            <p> Comparison between similar projects can help put your project activity in context. 
+                                                Situating a project within its particular ecosystem can help open source maintainers understand project health and sustainability.
+                                                [<a href="https://zenodo.org/record/4627236#.YrodIRPMKLo">Goggins</a>]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <p class="text-dark mb-1">Prior research results</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    
+                                        <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Features that Affect Project Attractiveness&nbsp;</h6> 
+                                    <div class="popup2">
+                                        <a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">
+                                        <i class="bi bi-journal-text"></i></a>
+
+                                        <span class="popuptext2">Read the paper</span>
+                                        
+                                    </div>
+
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
+                                    <div class="chart-area pb-3" id="finding_area" style="height: inherit;">
+                                        <div class="row">
+                                            <h6> Project attractiveness affects which open-source projects developers choose to contribute to. 
+                                                Some features that developers consider may include [<a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">Qiu</a>]: <h6>
+                                        </div>
+                                        <div id="findings">
+                                            <table class="table table-sm mb-1 pb-3" style="width:100%">
+                                                <tr>
+                                                    <th style="width:34%">Features</th>
+                                                    <th>Explanation</th>
+                                                </tr>
+
+                                                <tr> <!-- set colors in js -->
+                                                    <td><div id="bi-activity">
+                                                        <!-- <span class="bi bi-activity pb-1"></span> -->
+                                                        <b>Activity level</b></div>
+                                                    </td>
+                                                    <td>Recent commits signal that the project is still active</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><div id="bi-checks">
+                                                        <!-- <span class="bi bi-ui-checks pb-1"></span> -->
+                                                        <b>Scaffolding</b></div>
+                                                    </td>
+                                                    <td>Project infrastructure such as labels and templates for issues and pull requests can help contributors navigate the project.</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><div id="README">
+                                                        <!-- <span class="bi bi-card-heading pb-1"></span> -->
+                                                        <b>README file</b></div>
+                                                    </td>
+                                                    <td>A comprehensive README should be organized into clear sections and include a project description, goals, contributing guidelines, and community contact information.</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><div id="language">
+                                                        <!-- <span class="bi bi-card-heading pb-1"></span> -->
+                                                        <b>Inclusive Language</b></div>
+                                                    </td>
+                                                    <td>Language used in the docs, code of conduct, and conversations for issues and pull requests can impact contributors’ impressions of the project.</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Methods</h6>
+                                </div>
+
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
+                                    <div id="methods">
+                                        <p>This dashboard was created by Sophie Qiu and colleagues from the 
+                                            <a href="https://cmustrudel.github.io/">STRUDEL</a> 
+                                            group at the Carnegie Mellon University School of Computer Science. 
+                                            It uses publicly accessible data retrieved from the 
+                                            <a href="https://docs.github.com/en/rest">GitHub REST API</a>
+                                            , including data on activity, contributions, and authors relevant to the project.
+                                        </p>
+                                        <p>
+                                            We use 
+                                            <a href="https://perspectiveapi.com/">Google’s Perspective API</a> 
+                                            to identify potentially abusive or “toxic” comments with machine learning models, along with 
+                                            <a href="https://github.com/senticr/SentiCR">SentiCR</a>
+                                            , a sentiment analysis tool for code review comments.
+                                        </p>
+                                        <p>
+                                            The code for this dashboard is located in a publicly available 
+                                            <a href="http://www.link-here.com">GitHub repository</a>. 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">References</h6>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
+                                    <div class="chart-area" id="tips_area" style="height: auto !important;">
+                                        <div id="references">
+                                            <ol>
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Egelman, C. D., Murphy-Hill, E., Kammer, E., Hodges, M. M., Green, C., Jaspan, C., & Lin, J. (2020, October). 
+                                                    Predicting developers' negative feelings about code review. 
+                                                    In 2020 IEEE/ACM 42nd International Conference on Software Engineering (ICSE) (pp. 174-185). IEEE. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Goggins, S., Lumbard, K., & Germonprez, M. (2021, May). 
+                                                    Open source community health: Analytical metrics and their corresponding narratives. 
+                                                    In 2021 IEEE/ACM 4th International Workshop on Software Health in Projects, Ecosystems and Communities (SoHeal) (pp. 25-33). IEEE. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Guizani, M., Zimmermann, T., Sarma, A., & Ford, D. (2022). 
+                                                    Attracting and Retaining OSS Contributors with a Maintainer Dashboard. 
+                                                    arXiv preprint arXiv:2202.07740. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Qiu, H. S., Li, Y. L., Padala, S., Sarma, A., & Vasilescu, B. (2019). 
+                                                    The signals that potential contributors look for when choosing open-source projects. 
+                                                    Proceedings of the ACM on Human-Computer Interaction, 3(CSCW), 1-29. </li> <br> 
+                                            </ol> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    // CHANGE THESE TWO FIELDS FOR EACH INTERVIEWEE
+    document.getElementById('proj_name').innerHTML += "pantsbuild/pants";
+        $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_pp.json", 
+    function(data) {show_default(data)});
+    </script>
+    <script src="assets/js/plot_default.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/colors.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <script>
+        document.getElementById('bi-activity').style.color=line_colors[0];
+        document.getElementById('bi-checks').style.color=line_colors[1];
+        document.getElementById('README').style.color=line_colors[2];
+        document.getElementById('language').style.color=line_colors[4];
+    </script>
+</body>
+
+</html>
