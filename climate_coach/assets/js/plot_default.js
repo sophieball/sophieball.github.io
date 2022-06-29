@@ -12,7 +12,7 @@ function show_default(data){
     else {
         top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;So lonely...</span>';
         top_new_issue_icon.classList.add("fa-user");
-        //top_new_pr_icon.classList.remove("orange");
+        top_new_issue_icon.classList.remove("orange");
     }
 
     var top_new_pr_authors = document.getElementById('top_new_pr_authors');
