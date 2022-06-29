@@ -42,6 +42,13 @@ const line_config = {
           beginAtZero: true,
           callback: function(value) {if (value % 1 === 0) {return value;}}
         }
+      }],
+      xAxes: [{
+        scaleLabel: {
+            fontColor: 'black',
+            display: true,
+            labelString: 'Month'
+        }
       }]
     } 
   },
@@ -65,6 +72,9 @@ const bar_config = {
           beginAtZero: true,
           callback: function(value) {if (value % 1 === 0) {return value;}}
         }
+      }],
+      xAxes: [{
+        maxBarThickness: 100
       }]
     } 
   },
@@ -233,17 +243,17 @@ function drawCompareChart(data, selector, chart_id){
         case "comp_num_active":
             title = "Active Authors (past month)";
             metric = [2, 6, 0, 1, 2];
-            xtitle = projects_for_comparison;
+            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
             metric = [14, 46, 9, 5, 2];
-            xtitle = projects_for_comparison;
+            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
             metric = [8, 72, 0, 5, 2];
-            xtitle = projects_for_comparison;
+            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         // case "comp_i_time":
         //     title = "Average Time before Closing Issues";
@@ -365,13 +375,13 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "p_close_time":
-            title = "Median Time for Closing Pull Requests";
+            title = "Median Time for Closing Pull Requests (Days)";
             metric = data[1].median_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_close_time":
-            title = "Average Time for Closing Pull Requests";
+            title = "Average Time for Closing Pull Requests (Days)";
             metric = data[1].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
