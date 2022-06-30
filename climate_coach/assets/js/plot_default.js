@@ -4,6 +4,7 @@ function show_default(data){
     // display basic stats
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
     var top_new_issue_icon = document.getElementById('basic_new_issue');
+    console.log(top_new_issue_icon.classList);
     top_new_issue_authors.innerHTML = data[0]["num_new_authors"][5];
     if (data[0]["num_new_authors"][5] > 0){
         top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
@@ -31,9 +32,9 @@ function show_default(data){
     // bonding social capital
     var bonding = document.getElementById('bonding');
     var bonding_icon = document.getElementById('bonding_icon');
-    bonding.innerHTML = data[0]["num_closed"][5];
+    bonding.innerHTML = Math.round(data[1]["avg_tenure"][5]/30);
     bonding_icon.classList.add("fa-link");
-    if (data[0]["num_closed"][5] > 3){
+    if (data[1]["avg_tenure"][5] > 3){
         bonding.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;An experienced team</span>';
     }
     else {
@@ -42,14 +43,15 @@ function show_default(data){
 
     var old_friends = document.getElementById('old_friends');
     var old_friends_icon = document.getElementById('old_friends_icon');
-    old_friends.innerHTML = data[1]["num_closed"][5];
+    num_recur_authors = data[0]["num_recur_authors"][5] + data[1]["num_recur_authors"][5];
+    old_friends.innerHTML = num_recur_authors
     old_friends_icon.classList.add("fa-link");
-//     if (data[1]["num_closed"][5] > 3) {
-//         old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
-//     }
-//     else {
-//         old_friends_icon.classList.remove("purple");
-//     }
+    if (num_recur_authors > 3) {
+        old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
+    }
+    else {
+        old_friends_icon.classList.remove("purple");
+    }
 
     // activity
     var i_avg_comments_top = document.getElementById('i_avg_comments_top');
@@ -163,6 +165,7 @@ function show_default(data){
             data: data[0].label_counts_values
         }]
     };
+    issue_label["options"]["title"]["text"] = "Issues by Label in the Past Month";
 
     // display the list of new authors
     title = "Issues";
@@ -206,6 +209,7 @@ function show_default(data){
             data: data[1].label_counts_values
         }]
     };
+    pr_label["options"]["title"]["text"] = "Pull Requests by Label in the Past Month";
     var pr_num_labels = data[1].label_counts_values.length;
     var pr_label_field = document.getElementById("pr_label_area");
     if (pr_num_labels == 0){
@@ -361,4 +365,3 @@ function show_default(data){
 
     displayToxic(data);
 }; 
- 
