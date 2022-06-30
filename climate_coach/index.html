@@ -283,10 +283,10 @@
                                         </div>
                                     </div>
                                     <div class="card-body col-md-6 pb-3 pt-3"> 
-                                        <b>Tip:</b> 
-                                        Researchers have found that excessive review delays, nitpicking, and long wait for review are predictors of negative experiences in the code review process. 
-                                        Blocking a change request can cause unnecessary interpersonal conflict and negative feelings among contributors.
-                                        [<a href="https://research.google/pubs/pub49023/">Egelman</a>]
+                                        <b class="purple">Tip:</b> 
+                                        Researchers have found that <span class="purple">excessive review delays</span>, <span class="purple">nitpicking</span>, and <span class="purple">long wait for review</span> are predictors of negative experiences in the code review process. 
+                                        Blocking a change request can cause unnecessary interpersonal conflict and negative feelings among contributors
+                                        [<a href="https://research.google/pubs/pub49023/">Egelman</a>].
                                     </div>
                                 </div>
                             </div>
@@ -362,7 +362,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body m-0 pb-0 pt-2">
-                                    <div class="chart-area" style="height: 300px !important;">
+                                    <div class="chart-area" style="height: 200px !important;">
                                         <div id="many_comments_convs"></div>
                                     </div>
                                 </div>
@@ -389,12 +389,12 @@
                                 </div>
                                 <div class="card-body pb-0">
                                     <div class="row" style="height: auto;">
-                                        <div class="col-md-5">
+                                        <div class="col-md-6">
                                             <div class="chart-area" style="height: 300px;">
                                                 <canvas id="toxicity_info"></canvas>
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-6">
                                             <div class="row mb-3 mt-0"> 
                                                 <div class="btn-toolbar justify-content-center" aria-label="Toolbar with button groups">
                                                     <div class="btn-group btn-group-toggle" role="group"  data-bs-toggle="buttons">
@@ -423,15 +423,17 @@
                                                 <div id="neg_senti_links"></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <p><b>Note: </b>Toxicity score, identity attack, and sentiment can help detect interpersonal conflict 
+                                    </div>
+                                    <div class="row mt-2 mb-0 pb-0">
+                                        <!-- <div class="col-md-2"> -->
+                                            <p><b class="orange-red">Note: </b>Toxicity score, identity attack, and sentiment can help detect interpersonal conflict 
                                                 (read papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], 
                                                 [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and 
                                                 [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).
                                             </p>
-                                        </div>
+                                        <!-- </div> -->
                                     </div>
-                                    <div class="row mb-0 pb-0 mt-2">
+                                    <div class="row mb-0 pb-0">
                                                 <p class="fa-sm py-0 my-0">* Toxicity is calculated by <a href="https://perspectiveapi.com/">Google's Perspective API</a></p>
                                                 <p class="fa-sm py-0 mt-0 mb-2">** Sentiment is calculated by <a href="https://github.com/senticr/SentiCR">SentiCR</a>, a sentiment analysis tool developed for code review data.</p>
                                     </div>
@@ -457,7 +459,7 @@
                                     </div> <!-- row -->
                                     <div class="row m-0"> 
                                         <p>
-                                            <b>Tip:</b> 
+                                            <b class="text-primary">Tip:</b> 
                                             Consider adding issue labels that explicitly highlight starter tasks for new contributors. 
                                             Labels such as “newcomer friendly” or “good first issue” can help attract and retain new contributors
                                             [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani</a>].
@@ -501,8 +503,8 @@
                                         <div class="col-md-4 m-0 pb-2 pt-3">
                                             <h6><b>The Aim of Comparison:</b></h6>
                                             <p> Comparison between similar projects can help put your project activity in context. 
-                                                Situating a project within its particular ecosystem can help open source maintainers understand project health and sustainability.
-                                                [<a href="https://zenodo.org/record/4627236#.YrodIRPMKLo">Goggins</a>]
+                                                Situating a project within its particular ecosystem can help open source maintainers understand project health and sustainability
+                                                [<a href="https://zenodo.org/record/4627236#.YrodIRPMKLo">Goggins</a>].
                                             </p>
                                         </div>
                                     </div>
@@ -515,10 +517,9 @@
                         <p class="text-dark mb-1">Prior research results</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-7 m-0 p-2">
+                        <div class="col-md-12 mb-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    
                                         <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Features that Affect Project Attractiveness&nbsp;</h6> 
                                     <div class="popup2">
                                         <a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">
@@ -533,7 +534,7 @@
                                     <div class="chart-area pb-3" id="finding_area" style="height: inherit;">
                                         <div class="row">
                                             <h6> Project attractiveness affects which open-source projects developers choose to contribute to. 
-                                                Some features that developers consider may include [<a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">Qiu</a>]: <h6>
+                                                Some features that developers consider may include [<a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">Qiu</a>]: </h6>
                                         </div>
                                         <div id="findings">
                                             <table class="table table-sm mb-1 pb-3" style="width:100%">
@@ -559,7 +560,7 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td><div class="pink">
+                                                    <td><div class="orange">
                                                         <!-- <span class="bi bi-card-heading pb-1"></span> -->
                                                         <b>README file</b></div>
                                                     </td>
@@ -579,7 +580,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5 m-0 p-2">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 m-0">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Methods</h6>
@@ -612,7 +615,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg m-0 p-2">
+                        <div class="col-md-12 mb-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">References</h6>
