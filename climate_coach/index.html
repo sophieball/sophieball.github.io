@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="assets/css/popup.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -21,12 +22,13 @@
             <div id="content">
                 <div class="container">
                     <div class="row mt-2">
-                        <h1 class="text-primary mb-0">Climate Report</h1>
-                        <p>Project: INCATools/ontology-development-kit</p>
+                        <h1 class="text-primary mb-0" id="proj_name">Climate Report for Your Project: </h1>
+                        <h4>A dashboard for open-source maintainers to monitor project team dynamics and improve community health. </h4>
                         <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Markdown Version</a> -->
                     </div>
+                    
                     <div class="row">
-                        <h6 class="text-dark fw-bold mb-1" style="font-size:larger">Basic stats for the past month:</h6>
+                        <h6 class="text-dark fw-bold mb-1" style="font-size:larger">Basic stats of team activities for the past month:</h6>
                     </div>
                     <div class="row mb-1">
                         <div class="col-md-3 p-1">
@@ -34,23 +36,11 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs popup" style="color:rgb(243, 153, 67)">New Issue Authors</div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs popup orange">New Issue Authors</div>
                                             <div class="text-dark p"><span id="top_new_issue_authors">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><span class="fas fa-solid fa-user-friends fa-2x" style="color:rgb(243, 153, 67)"></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-1">
-                            <div class="card shadow border-start-warning">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(218, 51, 97)"><span>Avg Comments to Issues</span></div>
-                                            <div class="text-dark p"><span id="i_avg_comments_top">&lt;number&gt;</span></div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-comments fa-2x" style="color:rgb(218, 51, 97)"></i></div>
+                                        <div class="col-auto"><span class="fas fa-solid fa-2x orange text-primary" id="basic_new_issue"></span></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -60,10 +50,23 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(169, 53, 131)"><span>Issues closed</span></div>
-                                            <div class="text-dark p"><span id="issue_closed">&lt;number&gt;</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs purple"><span>Avg months experience</span></div>
+                                            <div class="text-dark p"><span id="bonding">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-clipboard-check fa-2x" style="color:rgb(169, 53, 131)"></i></div>
+                                        <div class="col-auto"><i class="fas fa-2x purple text-primary" id="bonding_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-warning">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Comments to Issues</span></div>
+                                            <div class="text-dark p"><span id="i_avg_comments_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-comments fa-2x blue text-primary" id="i_avg_comments_top_icon"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -73,10 +76,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(42, 49, 149)"><span>Avg Days to Close Issues</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Days to Close Issues</span></div>
                                             <div class="text-dark p"><span id="i_avg_close_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x" style="color:rgb(42, 49, 149)"></i></div>
+                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x blue text-primary"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -88,10 +91,10 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs popup" style="color:rgb(243, 153, 67)" id="new_contribs">New PR Authors</div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs popup orange" id="new_contribs">New PR Authors</div>
                                             <div class="text-dark p"><span id="top_new_pr_authors">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><span class="fas fa-user fa-2x" style="color:rgb(243, 153, 67)"></span></div>
+                                        <div class="col-auto"><span class="fas fa-2x orange text-primary" id="basic_new_pr"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -101,27 +104,14 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(218, 51, 97)"><span>Avg Comments to PRs</span></div>
-                                            <div class="text-dark p"><span id="p_avg_comments_top">&lt;number&gt;</span></div>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-comment-alt fa-2x" style="color:rgb(218, 51, 97)"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-1">
-                            <div class="card shadow border-start-primary">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(169, 53, 131)"><span>PRs closed</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs purple"><span>How many old authors</span></div>
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="text-dark p"><span id="pr_closed">&lt;number&gt;</span></div>
+                                                    <div class="text-dark p"><span id="old_friends">&lt;number&gt;</span></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-code fa-2x" style="color:rgb(169, 53, 131)"></i></div>
+                                        <div class="col-auto"><i class="fas fa-2x purple text-primary" id="old_friends_icon"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -131,10 +121,23 @@
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col">
-                                            <div class="text-uppercase fw-bold text-xs" style="color:rgb(42, 49, 149)"><span>Avg Days to Close PRs</span></div>
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Comments to PRs</span></div>
+                                            <div class="text-dark p"><span id="p_avg_comments_top">&lt;number&gt;</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-comments fa-2x blue text-primary" id="p_avg_comments_top_icon"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 p-1">
+                            <div class="card shadow border-start-primary">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="text-uppercase text-primary fw-bold text-xs blue"><span>Avg Days to Close PRs</span></div>
                                             <div class="text-dark p"><span id="p_avg_close_top">&lt;number&gt;</span></div>
                                         </div>
-                                        <div class="col-auto"><i class="fas fa-calendar fa-2x" style="color:rgb(42, 49, 149)"></i></div>
+                                        <div class="col-auto"><i class="fas fa-calendar-alt fa-2x blue text-primary"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -215,8 +218,8 @@
                         <p class="text-dark mb-1">How fast was the response?</p>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-4 p-1">
+                    <div class="row">
+                        <div class="col-md-6 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Issue Response Times</h6>
@@ -235,7 +238,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 p-1">
+                        <div class="col-md-6 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Pull Request Response Times</h6>
@@ -254,7 +257,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 p-1">
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <div class="popup">
@@ -270,22 +276,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body m-0 pb-0 pt-2">
-                                    <div class="chart-area" style="height: 300px !important;">
-                                        <div id="time_consuming_convs"></div>
+                                <div class="row px-2">
+                                    <div class="card-body col-md-6 m-0 pb-0 pt-3">
+                                        <div class="chart-area" style="height: auto;">
+                                            <div id="time_consuming_convs"></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body col-md-6 pb-3 pt-3"> 
+                                        <b>Tip:</b> 
+                                        Researchers have found that excessive review delays, nitpicking, and long wait for review are predictors of negative experiences in the code review process. 
+                                        Blocking a change request can cause unnecessary interpersonal conflict and negative feelings among contributors.
+                                        [<a href="https://research.google/pubs/pub49023/">Egelman</a>]
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- row -->
-
+                    </div>  <!-- row -->
 
                     <div class="row">
                         <p class="text-dark mb-1">How active are the conversations?</p>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-4 mx-0 p-1">
+                    <div class="row">
+                        <div class="col-md-6 mx-0 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Issue Activity</h6>
@@ -307,7 +320,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mx-0 p-1">
+                        <div class="col-md-6 mx-0 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-dark fw-bold mt-1 mb-0 text-s">Pull Request Activity</h6>
@@ -329,7 +342,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 p-1">
+                    </div> 
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 p-1">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <div class="popup">
@@ -352,7 +368,6 @@
                                 </div>
                             </div>
                         </div>
-                            
                     </div> <!-- row -->
 
                     <div class="row">
@@ -373,14 +388,13 @@
                                     </div>
                                 </div>
                                 <div class="card-body pb-0">
-
                                     <div class="row" style="height: auto;">
                                         <div class="col-md-5">
-                                        <div class="chart-area" style="height: 300px;">
-                                            <canvas id="toxicity_info"></canvas>
+                                            <div class="chart-area" style="height: 300px;">
+                                                <canvas id="toxicity_info"></canvas>
+                                            </div>
                                         </div>
-                                        </div>
-                                        <div class="col-md-7">
+                                        <div class="col-md-5">
                                             <div class="row mb-3 mt-0"> 
                                                 <div class="btn-toolbar justify-content-center" aria-label="Toolbar with button groups">
                                                     <div class="btn-group btn-group-toggle" role="group"  data-bs-toggle="buttons">
@@ -408,7 +422,13 @@
                                                 <h6 class="mb-0">Links to five of the conversations with negative sentiment**:</h6>
                                                 <div id="neg_senti_links"></div>
                                             </div>
-
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p><b>Note: </b>Toxicity score, identity attack, and sentiment can help detect interpersonal conflict 
+                                                (read papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], 
+                                                [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and 
+                                                [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row mb-0 pb-0 mt-2">
@@ -420,32 +440,39 @@
                         </div>
                     </div> <!-- row -->
 
-                    <div class="row mb-2"> <!-- labels -->
-                        <div class="col-md-6 m-0 p-1">
-                            <div class="card shadow mb-2">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Issues by Label in the Past Month</h6>
-                                </div>
-                                <div id="issue_label_area" class="card-body m-0 pb-2 pt-0">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 m-0 p-1">
-                            <div class="card shadow mb-2">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Pull Requests by Label in the Past Month</h6>
-                                </div>
-                                <div id="pr_label_area" class="card-body m-0 pb-2 pt-0">
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div> <!-- row -->
-                    <div class="row">
+<div class="row mb-3"> <!-- labels -->
                         <div class="col-md-12 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1 popup">Comparison to Similar Repositories
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Conversations by Label in the Past Month</h6>
+                                </div>
+                                <div class="card-body pb-0">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="issue_label_area" class="card-body m-0 pt-0"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="pr_label_area" class="card-body m-0 pb-2 pt-0"></div>
+                                        </div>
+                                    </div> <!-- row -->
+                                    <div class="row m-0"> 
+                                        <p>
+                                            <b>Tip:</b> 
+                                            Consider adding issue labels that explicitly highlight starter tasks for new contributors. 
+                                            Labels such as “newcomer friendly” or “good first issue” can help attract and retain new contributors
+                                            [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani</a>].
+                                        </p>
+                                    </div> <!-- row -->
+                                </div>
+                            </div>
+                        </div> <!-- col12 -->
+                    </div> <!-- row -->
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold m-1 popup">Comparison to Similar Repositories
                                         <span class="fas fa-info-circle"></span>
                                         <span class="popuptext" id="activePop">Similar repositories identified based on stars, number of contributors, or topic.</span>
                                     </h6>
@@ -460,29 +487,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                <div class="card-body col-md-6 m-0 pb-2 pt-0">
-                                    <div class="chart-area" style="height: 300px !important;">
-                                        <canvas id="Compare"></canvas>
+                                <div class="card-body pb-4">
+                                    <div class="row" style="height: auto;">
+                                        <div class="col-md-5">
+                                            <div class="chart-area" style="height: 300px !important;">
+                                                <canvas class="ml-4" id="Compare"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 m-0 pb-2 pt-3">
+                                            <b>Projects:</b><br>
+                                            <div id="project_list"></div>
+                                        </div>
+                                        <div class="col-md-4 m-0 pb-2 pt-3">
+                                            <h6><b>The Aim of Comparison:</b></h6>
+                                            <p> Comparison between similar projects can help put your project activity in context. 
+                                                Situating a project within its particular ecosystem can help open source maintainers understand project health and sustainability.
+                                                [<a href="https://zenodo.org/record/4627236#.YrodIRPMKLo">Goggins</a>]
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 m-0 pb-2 pt-3">
-                                    Projects:<br>
-                                    <div id="project_list">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 m-0 pb-2 pt-3">
-                                </div>
-                                
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
                     <div class="row">
                         <p class="text-dark mb-1">Prior research results</p>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 m-0 p-2">
+                        <div class="col-md-7 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     
@@ -497,62 +530,119 @@
 
                                 </div>
                                 <div class="card-body m-0 pb-2 pt-3 pl-2">
-                                    <div class="chart-area" style="height: 300px !important;">
+                                    <div class="chart-area pb-3" id="finding_area" style="height: inherit;">
+                                        <div class="row">
+                                            <h6> Project attractiveness affects which open-source projects developers choose to contribute to. 
+                                                Some features that developers consider may include [<a href="https://cmustrudel.github.io/papers/cscw19signals.pdf">Qiu</a>]: <h6>
+                                        </div>
                                         <div id="findings">
-                                                
-                                            <table class="table table-sm" style="width:100%">
+                                            <table class="table table-sm mb-1 pb-3" style="width:100%">
                                                 <tr>
-                                                    <th style="width:30%">Attractive Features</th>
+                                                    <th style="width:34%">Features</th>
                                                     <th>Explanation</th>
                                                 </tr>
 
                                                 <tr> <!-- set colors in js -->
-                                                    <td><div id="bi-activity"><span class="bi bi-activity pb-1"></span>
+                                                    <td><div class="blue">
+                                                        <!-- <span class="bi bi-activity pb-1"></span> -->
                                                         <b>Activity level</b></div>
                                                     </td>
                                                     <td>Recent commits signal that the project is still active</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td><div id="bi-checks"><span class="bi bi-ui-checks pb-1"></span>
-                                                        <b>Issue/PR templates</b></div>
+                                                    <td><div class="purple">
+                                                        <!-- <span class="bi bi-ui-checks pb-1"></span> -->
+                                                        <b>Scaffolding</b></div>
                                                     </td>
-                                                    <td>Providing templates for issues or pull requests signals good maintenance efforts.</td>
+                                                    <td>Project infrastructure such as labels and templates for issues and pull requests can help contributors navigate the project.</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td><div id="README"><span class="bi bi-card-heading pb-1"></span>
+                                                    <td><div class="pink">
+                                                        <!-- <span class="bi bi-card-heading pb-1"></span> -->
                                                         <b>README file</b></div>
                                                     </td>
-                                                    <td>Make README comprehensive.<br>Separate README file into clear sections.</td>
-                                                  </tr>
+                                                    <td>A comprehensive README should be organized into clear sections and include a project description, goals, contributing guidelines, and community contact information.</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><div class="text-danger">
+                                                        <!-- <span class="bi bi-card-heading pb-1"></span> -->
+                                                        <b>Inclusive Language</b></div>
+                                                    </td>
+                                                    <td>Language used in the docs, code of conduct, and conversations for issues and pull requests can impact contributors’ impressions of the project.</td>
+                                                </tr>
                                             </table>
-
-                                            <p></p>
-
-                                            <p><span id="impolite" class="bi bi-exclamation-octagon-fill pb-1"></span>&nbsp;<b id="impolite_text" >Impolite language</b>: Impolite language makes your project less attractive.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 m-0 p-2">
+                        <div class="col-md-5 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Predicting contributors' negative feelings</h6>
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Methods</h6>
                                 </div>
 
                                 <div class="card-body m-0 pb-2 pt-3 pl-2">
-                                    <div class="chart-area" style="height: 300px !important;">
-                                        <div id="tips">
-                                            <p><b style="color:rgb(243, 153, 67);">Pushback</b>: Carolyn Egelman and collegues found that <b>long review time</b> and <b>excessive review rounds</b> are strong predictors of pushback, which can cause contributors' negative feelings (see their <a href="https://research.google/pubs/pub49023/">paper</a>).</p>
-                                            <p class="pt-2"><b style="color:rgb(246, 93, 78);">Interpersonal Conflicts</b>: Naveen Raman and Sophie Qiu found that <b>toxicity score</b>, <b>identity attack</b>, and <b>sentiment</b> can help detect interpersonal conflict (see their papers [<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">1</a>], [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">2</a>], and [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">3</a>]).</p>
-                                        </div>
+                                    <div id="methods">
+                                        <p>This dashboard was created by Sophie Qiu and colleagues from the 
+                                            <a href="https://cmustrudel.github.io/">STRUDEL</a> 
+                                            group at the Carnegie Mellon University School of Computer Science. 
+                                            It uses publicly accessible data retrieved from the 
+                                            <a href="https://docs.github.com/en/rest">GitHub REST API</a>
+                                            , including data on activity, contributions, and authors relevant to the project.
+                                        </p>
+                                        <p>
+                                            We use 
+                                            <a href="https://perspectiveapi.com/">Google’s Perspective API</a> 
+                                            to identify potentially abusive or “toxic” comments with machine learning models, along with 
+                                            <a href="https://github.com/senticr/SentiCR">SentiCR</a>
+                                            , a sentiment analysis tool for code review comments.
+                                        </p>
+                                        <p>
+                                            The code for this dashboard is located in a publicly available 
+                                            <a href="http://www.link-here.com">GitHub repository</a>. 
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg m-0 p-2">
+                            <div class="card shadow mb-2">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">References</h6>
+                                </div>
+                                <div class="card-body m-0 pb-2 pt-3 pl-2">
+                                    <div class="chart-area" id="tips_area" style="height: auto !important;">
+                                        <div id="references">
+                                            <ol>
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Egelman, C. D., Murphy-Hill, E., Kammer, E., Hodges, M. M., Green, C., Jaspan, C., & Lin, J. (2020, October). 
+                                                    Predicting developers' negative feelings about code review. 
+                                                    In 2020 IEEE/ACM 42nd International Conference on Software Engineering (ICSE) (pp. 174-185). IEEE. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Goggins, S., Lumbard, K., & Germonprez, M. (2021, May). 
+                                                    Open source community health: Analytical metrics and their corresponding narratives. 
+                                                    In 2021 IEEE/ACM 4th International Workshop on Software Health in Projects, Ecosystems and Communities (SoHeal) (pp. 25-33). IEEE. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Guizani, M., Zimmermann, T., Sarma, A., & Ford, D. (2022). 
+                                                    Attracting and Retaining OSS Contributors with a Maintainer Dashboard. 
+                                                    arXiv preprint arXiv:2202.07740. </li> <br> 
+                                                <li style="text-indent: -36px; padding-left: 36px;">
+                                                    Qiu, H. S., Li, Y. L., Padala, S., Sarma, A., & Vasilescu, B. (2019). 
+                                                    The signals that potential contributors look for when choosing open-source projects. 
+                                                    Proceedings of the ACM on Human-Computer Interaction, 3(CSCW), 1-29. </li> <br> 
+                                            </ol> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div> <!-- row -->
                     
                 </div>
@@ -563,6 +653,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+    // CHANGE THESE TWO FIELDS FOR EACH INTERVIEWEE
+    document.getElementById('proj_name').innerHTML += "INCATools/ontology-development-kit";
         $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_odk.json", 
     function(data) {show_default(data)});
     </script>
@@ -573,14 +665,6 @@
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
-
-    <script>
-        document.getElementById('bi-activity').style.color=line_colors[0];
-        document.getElementById('bi-checks').style.color=line_colors[1];
-        document.getElementById('README').style.color=line_colors[2];
-        document.getElementById('impolite').style.color="rgb(255,0,0)";
-        document.getElementById('impolite_text').style.color="rgb(255,0,0)";
-    </script>
 </body>
 
 </html>
