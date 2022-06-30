@@ -4,11 +4,11 @@ const dot_color = 'rgb(39, 15, 163)';
 const num_toxic_to_show = 6;
 // the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
-              'Your project',
-              'github.com/actions/starter-workflows',
-              'github.com/sogou/workflow',
-              'github.com/argoproj/argo-workflows',
-              '/github.com/loft-sh/devspace'];
+            'Your project',
+              'monarch-initiative/mondo',
+              'EBISPOT/OLS',
+              'monarch-initiative/MAxO',
+              'biolink/kgx'];
 
 // declare charts
 var compareChart;
@@ -235,17 +235,17 @@ function drawCompareChart(data, selector, chart_id){
     switch (selector.id) {
         case "comp_num_active":
             title = "Active Authors (past month)";
-            metric = [16, 19, 5, 24, 8];
+            metric = [2, 6, 0, 1, 2];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [48, 9, 12, 54, 9];
+            metric = [14, 46, 9, 5, 2];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [205, 22, 29, 64, 32];
+            metric = [8, 72, 0, 5, 2];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         // case "comp_i_time":
