@@ -66,7 +66,7 @@ function show_default(data){
     else if (i_avg_comments_before_close > 15) {
         i_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Heated discussions!</span>';
         i_avg_closed_time_top_icon.classList.add("fa-comments");
-        i_avg_closed_time_top_icon.classList.remove("blue");
+        i_avg_closed_time_top_icon.classList.remove("text-primary");
         i_avg_closed_time_top_icon.classList.add("text-danger");
     }
     else {
@@ -332,7 +332,7 @@ function show_default(data){
     compare_config_d["data"] = {
             labels: ["You", "proj1", "proj2", "proj3", "proj4"],
             datasets: [{
-                data: [5, 7, 8, 2, 9],
+                data: [2, 6, 0, 1, 2],
                 backgroundColor: color_palette,
                 borderColor: line_palette,
                 borderWidth: 1
@@ -345,7 +345,7 @@ function show_default(data){
     comp_list = document.getElementById('project_list');
     comp_list.innerHTML = "";
     for (let i = 1; i < projects_for_comparison.length; i++) {
-      comp_list.innerHTML += 'proj'+i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
+      comp_list.innerHTML += +i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
       console.log(projects_for_comparison[i]);
     }
 
