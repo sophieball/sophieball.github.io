@@ -248,26 +248,26 @@ function drawCompareChart(data, selector, chart_id){
             metric = [8, 72, 0, 5, 2];
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
-        // case "comp_i_time":
-        //     title = "Average Time before Closing Issues";
-        //     metric = [0, 0, 0, 0, 0];
-        //     xtitle = [
-        //       'Your project',
-        //       'github.com/CeresDB/ceresdb',
-        //       'github.com/ivadomed/ivadomed',
-        //       'github.com/smistad/FAST',
-        //       'github.com/pygments/pygment'];
-        //     break;
-        // case "comp_p_time":
-        //     title = "Average Time before Closing PRs";
-        //     metric = [0, 0, 0, 0, 0];
-        //     xtitle = [
-        //       'Your project',
-        //       'github.com/CeresDB/ceresdb',
-        //       'github.com/ivadomed/ivadomed',
-        //       'github.com/smistad/FAST',
-        //       'github.com/pygments/pygment'];
-        //     break;
+        case "comp_i_time":
+            title = "Average Time before Closing Issues";
+            metric = [0, 0, 0, 0, 0];
+            xtitle = [
+              'Your project',
+              'github.com/CeresDB/ceresdb',
+              'github.com/ivadomed/ivadomed',
+              'github.com/smistad/FAST',
+              'github.com/pygments/pygment'];
+            break;
+        case "comp_p_time":
+            title = "Average Time before Closing PRs";
+            metric = [0, 0, 0, 0, 0];
+            xtitle = [
+              'Your project',
+              'github.com/CeresDB/ceresdb',
+              'github.com/ivadomed/ivadomed',
+              'github.com/smistad/FAST',
+              'github.com/pygments/pygment'];
+            break;
         default:
             break;
     }
