@@ -25,6 +25,10 @@ var issue_size_chart;
 var toxic_conv_type = 0;
 var title;
 var metric;
+var point_radius = 3;
+var hover_radius = 5;
+var line_width = 2;
+
 const line_config = {
   type: 'line',
   options: {
@@ -49,7 +53,7 @@ const line_config = {
 
 const bar_config = {
   type: 'bar',
-  fillOpacity: .3,
+  fillOpacity: .7,
   options: {
     maintainAspectRatio: false,
     responsive: true,
@@ -74,12 +78,12 @@ const bar_config = {
 };
 
 const months = [
-    'December',
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
+    'Jun'
 ];
 
 function displayList(data) {
@@ -88,10 +92,12 @@ function displayList(data) {
     selector.addEventListener('click', (event) => {
         switch (selector.id) {
         case "new_issue_authors":
-            title = "Issues";
+            title = "New Issue Authors";
+            member_list_id = document.getElementById('author_type');
+            member_list_id.innerHTML = title;
             people = data[0].new_authors;
             new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+            new_member.innerHTML = '';
             if (people.length > 0){
                 people.forEach((person) => {
                     new_member.innerHTML += 
@@ -100,10 +106,12 @@ function displayList(data) {
             }
             break;
         case "new_pr_authors":
-            title = "PRs";
+            title = "New PR Authors";
             people = data[1].new_authors;
+            member_list_id = document.getElementById('author_type');
+            member_list_id.innerHTML = title;
             new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+            new_member.innerHTML = '';
             if (people.length > 0){
                 people.forEach((person) => {
                     new_member.innerHTML += 
@@ -126,23 +134,38 @@ function listConvers(data) {
     timeListSelects.forEach((selector) =>
     selector.addEventListener('click', (event) => {
         switch (selector.id) {
-            case "i_long_time":
+            case "i_attention":
                 var long_time_convs = document.getElementById('time_consuming_convs');
                 long_standings = data[0].long_standing;
-                long_time_convs.innerHTML = "Issues that have been opened for the longest time:";
+                long_time_convs.innerHTML = 'Issues that have been opened for the longest time:<br>';
                 long_standings.forEach((long_standing) => {
                     long_time_convs.innerHTML += 
-                        '<p class="pb-1"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
+                        '<p class="mb-2"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
+                });
+                var most_comment_conv = document.getElementById('many_comments_convs');
+                most_comments = data[0].most_comments;
+                most_comment_conv.innerHTML = 'Open issues with the most comments:<br>';
+                most_comments.forEach((most_comment) => {
+                    most_comment_conv.innerHTML += 
+                        '<p class="mb-2"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
                 });
                 break;
-            case "p_long_time":
+            case "p_attention":
                 var long_time_convs = document.getElementById('time_consuming_convs');
-                console.log(long_standings);
+                // console.log(long_standings);
                 long_standings = data[1].long_standing;
-                long_time_convs.innerHTML = "Pull requests  that have been opened for the longest time:";
+                long_time_convs.innerHTML = 'Pull requests that have been opened for the longest time:<br>';
                 long_standings.forEach((long_standing) => {
                     long_time_convs.innerHTML += 
-                        '<p class="pb-1"><a href="'+long_standing.link+'">'+long_standing.title+'</a></p>';
+                        '<p class="mb-2"><a href="'+long_standing.link+'">'+long_standing.title+'</a></p>';
+                });
+                var most_comment_conv = document.getElementById('many_comments_convs');
+                // console.log(long_standings);
+                most_comments = data[1].most_comments;
+                most_comment_conv.innerHTML = 'Open pull requests with the most comments:<br>';
+                most_comments.forEach((most_comment) => {
+                    most_comment_conv.innerHTML += 
+                        '<p class="mb-2"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
                 });
                 break;
             default:
@@ -154,23 +177,10 @@ function listConvers(data) {
     selector.addEventListener('click', (event) => {
         switch (selector.id) {
             case "i_most_comments":
-                var most_comment_conv = document.getElementById('many_comments_convs');
-                most_comments = data[0].most_comments;
-                most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
-                most_comments.forEach((most_comment) => {
-                    most_comment_conv.innerHTML += 
-                        '<p class="p-0"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
-                });
+                
                 break;
             case "p_most_comments":
-                var most_comment_conv = document.getElementById('many_comments_convs');
-                console.log(long_standings);
-                most_comments = data[1].most_comments;
-                most_comment_conv.innerHTML = "<p>Open pull requests with the most comments:</p>";
-                most_comments.forEach((most_comment) => {
-                    most_comment_conv.innerHTML += 
-                        '<p class="pb-1"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
-                });
+                
                 break;
             default:
                 break;
@@ -232,41 +242,32 @@ function createGraphs(data) {
 
 // drop down
 function drawCompareChart(data, selector, chart_id){
+    console.log(data[2].num_issue_closed);
     switch (selector.id) {
         case "comp_num_active":
             title = "Active Authors (past month)";
-            metric = [2, 6, 0, 1, 2];
+            metric = data[2].num_active_authors;
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
-            metric = [14, 46, 9, 5, 2];
+            metric = data[2].num_issue_closed;
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
-            metric = [8, 72, 0, 5, 2];
+            metric = data[2].num_pr_closed;
             xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_i_time":
-            title = "Average Time before Closing Issues";
-            metric = [0, 0, 0, 0, 0];
-            xtitle = [
-              'Your project',
-              'github.com/CeresDB/ceresdb',
-              'github.com/ivadomed/ivadomed',
-              'github.com/smistad/FAST',
-              'github.com/pygments/pygment'];
+            title = "Average Time before Closing Issues (Days)";
+            metric = data[2].avg_time_issue;
+            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         case "comp_p_time":
-            title = "Average Time before Closing PRs";
-            metric = [0, 0, 0, 0, 0];
-            xtitle = [
-              'Your project',
-              'github.com/CeresDB/ceresdb',
-              'github.com/ivadomed/ivadomed',
-              'github.com/smistad/FAST',
-              'github.com/pygments/pygment'];
+            title = "Average Time before Closing PRs (Days)";
+            metric = data[2].avg_time_pr;
+            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
             break;
         default:
             break;
@@ -280,8 +281,8 @@ function drawCompareChart(data, selector, chart_id){
             borderColor: line_palette,
             borderWidth: 1,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: metric
         }]
     };
@@ -368,13 +369,13 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "p_close_time":
-            title = "Median Time for Closing Pull Requests";
+            title = "Median Time for Closing Pull Requests (Days)";
             metric = data[1].median_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_close_time":
-            title = "Average Time for Closing Pull Requests";
+            title = "Average Time for Closing Pull Requests (Days)";
             metric = data[1].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
@@ -523,8 +524,8 @@ function drawChart(data, selector, chart_id, chart_obj)
             borderColor: cur_colour,//line_color,
             fill: false,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: metric
         }]
     };
