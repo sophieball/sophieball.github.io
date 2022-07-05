@@ -32,7 +32,7 @@ function show_default(data){
     // bonding social capital
     var bonding = document.getElementById('bonding');
     var bonding_icon = document.getElementById('bonding_icon');
-    bonding.innerHTML = Math.round(data[1]["avg_tenure"][5]/30);
+    bonding.innerHTML = Math.round(data[1]["avg_tenure"][5]);
     bonding_icon.classList.add("fa-link");
     if (data[1]["avg_tenure"][5] > 3){
         bonding.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;An experienced team</span>';
@@ -104,19 +104,19 @@ function show_default(data){
     // display time consuming issues
     var long_time_convs = document.getElementById('time_consuming_convs');
     long_standings = data[0].long_standing;
-    long_time_convs.innerHTML = "Issues that have been opened for the longest time:";
+    long_time_convs.innerHTML = 'Issues that have been opened for the longest time:<br>';
     long_standings.forEach((long_standing) => {
         long_time_convs.innerHTML += 
-            '<p class="pb-1"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
+            '<p class="mb-2"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
     });
 
     // display issues with many rounds
     var most_comment_conv = document.getElementById('many_comments_convs');
     most_comments = data[0].most_comments;
-    most_comment_conv.innerHTML = "<p>Open issues with the most comments:</p>";
+    most_comment_conv.innerHTML = 'Open issues with the most comments:<br>';
     most_comments.forEach((most_comment) => {
         most_comment_conv.innerHTML += 
-            '<p class="p-0"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
+            '<p class="mb-2"><a href="'+most_comment.url+'">'+most_comment.title+'</a></p>';
     });
 
     // display default charts
@@ -127,9 +127,10 @@ function show_default(data){
             backgroundColor: line_colors[0],
             borderColor: line_colors[0],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[0].num_new_authors,
         }]
     };
@@ -143,9 +144,10 @@ function show_default(data){
             backgroundColor: line_colors[0],
             borderColor: line_colors[0],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[1].num_new_authors
         }]
     };
@@ -160,18 +162,18 @@ function show_default(data){
             borderColor: line_palette,
             borderWidth: 1,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[0].label_counts_values
         }]
     };
     issue_label["options"]["title"]["text"] = "Issues by Label in the Past Month";
 
     // display the list of new authors
-    title = "Issues";
+    // title = "New Issue Authors";
     people = data[0].new_authors;
     new_member = document.getElementById('new_members_list');
-    new_member.innerHTML = '<p class="m-0">'+title+'</p>';
+    new_member.innerHTML = '';
     if (people.length > 0){
         people.forEach((person) => {
             new_member.innerHTML += 
@@ -185,14 +187,14 @@ function show_default(data){
         label_chart_height = "70px";
     }
     else{
-        label_chart_height = "300px";
+        label_chart_height = "250px";
     }
 
     // plot issue labels and counts
     var num_labels = data[0].label_counts_values.length;
     var issue_label_field = document.getElementById("issue_label_area");
     if (num_labels == 0){
-        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='pt-3'>Seems like you aren't using labels to manage your issues</p></div>"
+        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='text-xs'>Seems like you aren't using labels to manage your issues</p></div>"
     }
     else{        
         issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><canvas id='issue_labels'></canvas></div>"
@@ -213,7 +215,7 @@ function show_default(data){
     var pr_num_labels = data[1].label_counts_values.length;
     var pr_label_field = document.getElementById("pr_label_area");
     if (pr_num_labels == 0){
-        pr_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='pt-3'>Seems like you aren't using labels to manage your pull requests</p></div>"
+        pr_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p>Seems like you aren't using labels to manage your pull requests</p></div>"
     }
     else{
         pr_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><canvas id='PR_labels'></canvas></div>"
@@ -227,9 +229,10 @@ function show_default(data){
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[0].avg_close_time
         }]
     };
@@ -243,9 +246,10 @@ function show_default(data){
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[1].avg_close_time
         }]
     };
@@ -260,9 +264,10 @@ function show_default(data){
             backgroundColor: line_colors[2],
             borderColor: line_colors[2],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[0].avg_comments_before_close
         }]
     };
@@ -276,9 +281,10 @@ function show_default(data){
             backgroundColor: line_colors[2],
             borderColor: line_colors[2],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
-            pointHoverRadius: 8,
+            pointRadius: point_radius,
+            pointHoverRadius: hover_radius,
             data: data[1].avg_comments_before_close
         }]
     };
@@ -293,8 +299,9 @@ function show_default(data){
             backgroundColor: line_colors[3],
             borderColor: line_colors[3],
             fill: false,
+            borderWidth: line_width,
             tension: 0,
-            pointRadius: 6,
+            pointRadius: point_radius,
             data: data[0].num_toxic
         }]
     };
@@ -312,7 +319,7 @@ function show_default(data){
     var toxic_count = 1;
     toxic_links.forEach((toxic_link) => {
         toxic_list.innerHTML += 
-            '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+            '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
         toxic_count = toxic_count + 1;
     });
 
@@ -332,7 +339,7 @@ function show_default(data){
     compare_config_d["data"] = {
             labels: ["You", "proj1", "proj2", "proj3", "proj4"],
             datasets: [{
-                data: [2, 6, 0, 1, 2],
+                data: data[2].num_active_authors,
                 backgroundColor: color_palette,
                 borderColor: line_palette,
                 borderWidth: 1
