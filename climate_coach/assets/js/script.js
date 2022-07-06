@@ -4,11 +4,11 @@ const dot_color = 'rgb(39, 15, 163)';
 const num_toxic_to_show = 6;
 // the list of projects to compare. CHANGE THIS
 const projects_for_comparison = [
-            'Your project',
-              'monarch-initiative/mondo',
-              'EBISPOT/OLS',
-              'monarch-initiative/MAxO',
-              'biolink/kgx'];
+            "Your project",
+            "actions/starter-workflows",
+            "sogou/workflow",
+            "argoproj/argo-workflows",
+            "loft-sh/devspace"];
 
 // declare charts
 var compareChart;
@@ -453,25 +453,31 @@ function drawChart(data, selector, chart_id, chart_obj)
             attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
             var toxic_list = document.getElementById('toxic_links');
+            var toxic_title = document.getElementById("links_to_toxicity");
             toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
-            toxic_list.innerHTML = "";
-            toxic_count = 1;
-            toxic_links.forEach((toxic_link) => {
-                toxic_list.innerHTML += 
-                    '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
-                toxic_count += 1;
-            });
+            if (toxic_links.length == 0) {
+                toxic_title.innerHTML = "No conversation has a toxicity score above the threshold.";
+            }
+            else {
+                var toxic_count = 1;
+                toxic_title.innerHTML = "Links to highest potentially problematic conversations (threshold: 0.7)";
+                toxic_links.forEach((toxic_link) => {
+                    toxic_list.innerHTML += 
+                        '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+                    toxic_count = toxic_count + 1;
+                });
+            }
 
-            // display negative sentiment conversations
-            var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
-            neg_list.innerHTML = "";
-            neg_count = 1;
-            neg_links.forEach((neg_link) => {
-                neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-                neg_count += 1;
-            });
+            // // display negative sentiment conversations
+            // var neg_list = document.getElementById('neg_senti_links');
+            // neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
+            // neg_list.innerHTML = "";
+            // neg_count = 1;
+            // neg_links.forEach((neg_link) => {
+            //     neg_list.innerHTML += 
+            //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+            //     neg_count += 1;
+            // });
 
             break;
         case "toxic_prs":
@@ -497,16 +503,16 @@ function drawChart(data, selector, chart_id, chart_obj)
             });
 
 
-            // display negative sentiment conversations
-            var neg_list = document.getElementById('neg_senti_links');
-            neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
-            neg_list.innerHTML = "";
-            neg_count = 1;
-            neg_links.forEach((neg_link) => {
-                neg_list.innerHTML += 
-                    '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-                neg_count += 1;
-            });
+            // // display negative sentiment conversations
+            // var neg_list = document.getElementById('neg_senti_links');
+            // neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
+            // neg_list.innerHTML = "";
+            // neg_count = 1;
+            // neg_links.forEach((neg_link) => {
+            //     neg_list.innerHTML += 
+            //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+            //     neg_count += 1;
+            // });
             break;
         default:
             // title = "Active Members";
@@ -585,24 +591,30 @@ function displayToxic(data, type){
         attack_score.innerHTML = data[toxic_conv_type].max_attack[month];
 
         var toxic_list = document.getElementById('toxic_links');
-        toxic_links = data[toxic_conv_type].toxic[month].slice(1, num_toxic_to_show);
-        toxic_list.innerHTML = "";
-        toxic_count = 1;
-        toxic_links.forEach((toxic_link) => {
-            toxic_list.innerHTML += 
-                '<p class="m-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
-            toxic_count += 1;
-        });
+        var toxic_title = document.getElementById("links_to_toxicity");
+        toxic_links = data[toxic_conv_type].toxic[month];
+        if (toxic_links.length == 0) {
+            toxic_title.innerHTML = "No conversation has a toxicity score above the threshold.";
+        }
+        else {
+            var toxic_count = 1;
+            toxic_title.innerHTML = "Links to highest potentially problematic conversations (threshold: 0.7)";
+            toxic_links.forEach((toxic_link) => {
+                toxic_list.innerHTML += 
+                    '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
+                toxic_count = toxic_count + 1;
+            });
+        }
 
-        // display negative sentiment conversations
-        var neg_list = document.getElementById('neg_senti_links');
-        neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
-        neg_list.innerHTML = "";
-        neg_count = 1;
-        neg_links.forEach((neg_link) => {
-            neg_list.innerHTML += 
-                '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-            neg_count += 1;
-        });
+        // // display negative sentiment conversations
+        // var neg_list = document.getElementById('neg_senti_links');
+        // neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
+        // neg_list.innerHTML = "";
+        // neg_count = 1;
+        // neg_links.forEach((neg_link) => {
+        //     neg_list.innerHTML += 
+        //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
+        //     neg_count += 1;
+        // });
     })});
 }
