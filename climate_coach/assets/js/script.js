@@ -591,6 +591,7 @@ function displayToxic(data, type){
         attack_score.innerHTML = data[toxic_conv_type].max_attack[month];
 
         var toxic_list = document.getElementById('toxic_links');
+        toxic_list.innerHTML = "";
         var toxic_title = document.getElementById("links_to_toxicity");
         toxic_links = data[toxic_conv_type].toxic[month];
         if (toxic_links.length == 0) {
