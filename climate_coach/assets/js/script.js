@@ -2,13 +2,8 @@ const line_color = 'rgb(2, 117, 216)';
 const dot_color = 'rgb(39, 15, 163)';
 // for big projects, we can't fit the entire list of problematic conversations
 const num_toxic_to_show = 6;
-// the list of projects to compare. CHANGE THIS
-const projects_for_comparison = [
-            "Your project",
-            "actions/starter-workflows",
-            "sogou/workflow",
-            "argoproj/argo-workflows",
-            "loft-sh/devspace"];
+const last_win = 3;
+const compare_title = ["You", "proj1", "proj2", "proj3", "proj4", "proj5"];
 
 // declare charts
 var compareChart;
@@ -78,54 +73,11 @@ const bar_config = {
 };
 
 const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun'
+    'week-3',
+    'week-2',
+    'week-1',
+    'this week'
 ];
-
-function displayList(data) {
-    authorListSelector = document.querySelectorAll(".authorList");
-    authorListSelector.forEach((selector) =>
-    selector.addEventListener('click', (event) => {
-        switch (selector.id) {
-        case "new_issue_authors":
-            title = "New Issue Authors";
-            member_list_id = document.getElementById('author_type');
-            member_list_id.innerHTML = title;
-            people = data[0].new_authors;
-            new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = '';
-            if (people.length > 0){
-                people.forEach((person) => {
-                    new_member.innerHTML += 
-                        '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
-                });
-            }
-            break;
-        case "new_pr_authors":
-            title = "New PR Authors";
-            people = data[1].new_authors;
-            member_list_id = document.getElementById('author_type');
-            member_list_id.innerHTML = title;
-            new_member = document.getElementById('new_members_list');
-            new_member.innerHTML = '';
-            if (people.length > 0){
-                people.forEach((person) => {
-                    new_member.innerHTML += 
-                        '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
-                });
-            }
-            break;
-        default:
-            break;
-        }
-
-        
-    }));   
-}
 
 const timeListSelects = document.querySelectorAll(".timeList");
 const commentListSelects = document.querySelectorAll(".commentList");
@@ -229,10 +181,10 @@ function createGraphs(data) {
         drawChart(data, selector, "prDisChart", pr_dicussion_chart);
     }));
 
-    toxicSelect.forEach((selector) =>
-    selector.addEventListener('click', (event) => {
-        drawChart(data, selector, "toxicity_info", toxic_chart);
-    }));
+    // toxicSelect.forEach((selector) =>
+    // selector.addEventListener('click', (event) => {
+    //     drawChart(data, selector, "toxicity_info", toxic_chart);
+    // }));
 
     compareListSelect.forEach((selector) =>
     selector.addEventListener('click', (event) => {
@@ -247,27 +199,27 @@ function drawCompareChart(data, selector, chart_id){
         case "comp_num_active":
             title = "Active Authors (past month)";
             metric = data[2].num_active_authors;
-            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
+            xtitle = compare_title;
             break;
         case "comp_i_closed":
             title = "Number of Issues Closed (past month)";
             metric = data[2].num_issue_closed;
-            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
+            xtitle = compare_title;
             break;
         case "comp_p_closed":
             title = "Number of PRs Closed (past month)";
             metric = data[2].num_pr_closed;
-            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
+            xtitle = compare_title;
             break;
         case "comp_i_time":
             title = "Average Time before Closing Issues (Days)";
             metric = data[2].avg_time_issue;
-            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
+            xtitle = compare_title;
             break;
         case "comp_p_time":
             title = "Average Time before Closing PRs (Days)";
             metric = data[2].avg_time_pr;
-            xtitle = ["You", "proj1", "proj2", "proj3", "proj4"];
+            xtitle = compare_title;
             break;
         default:
             break;
@@ -363,7 +315,7 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "i_avg_close_time":
-            title = "Average Time for Closing Issues (Days)";
+            title = "Avg Time for Closing Issues (Days)";
             metric = data[0].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
@@ -375,7 +327,7 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "p_avg_close_time":
-            title = "Average Time for Closing Pull Requests (Days)";
+            title = "Avg Time for Closing Pull Requests (Days)";
             metric = data[1].avg_close_time;
             xtitle = months;
             cur_colour = line_colors[1];
@@ -384,142 +336,64 @@ function drawChart(data, selector, chart_id, chart_obj)
             title = "Median Comments for Issues Closed in Each Month";
             metric = data[0].median_comments_before_close;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "i_avg_closed_comments":
-            title = "Average Comments for Issues Closed in Each Month";
+            title = "Avg Comments for Issues Closed in Each Month";
             metric = data[0].avg_comments_before_close;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "p_closed_comments":
             title = "Median Comments for Pull Requests Closed in Each Month";
             metric = data[1].median_comments_before_close;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "p_avg_closed_comments":
-            title = "Average Comments for Pull Requests Closed in Each Month";
+            title = "Avg Comments for Pull Requests Closed in Each Month";
             metric = data[1].avg_comments_before_close;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "i_open_comments":
             title = "Median Comments for Issues Opened in Each Month";
             metric = data[0].median_comments_recent;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "i_avg_open_comments":
-            title = "Average Comments for Issues Opened in Each Month";
+            title = "Avg Comments for Issues Opened in Each Month";
             metric = data[0].avg_comments_recent;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "p_open_comments":
             title = "Median Comments for Pull Requests Opened in Each Month";
             metric = data[1].median_comments_recent;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "p_avg_open_comments":
-            title = "Average Comments for Pull Requests Opened in Each Month";
+            title = "Avg Comments for Pull Requests Opened in Each Month";
             metric = data[1].avg_comments_recent;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "i_0_comments":
             title = "Number of Issues Closed with 0 Comments";
             metric = data[0].num_closed_0_comments;
             xtitle = months;
-            cur_colour = line_colors[2];
+            cur_colour = line_colors[1];
             break;
         case "p_0_comments":
             title = "Number of Pull Requests Closed with 0 Comments";
             metric = data[1].num_closed_0_comments;
             xtitle = months;
-            cur_colour = line_colors[2];
-            break;
-        case "toxic_issues":
-            title = "Number of Potentially Problematic Issues";
-            metric = data[0].num_toxic;
-            xtitle = months;
-            cur_colour = line_colors[3];
-            toxic_conv_type = 0;
-
-            var toxic_score = document.getElementById("highest_toxic");
-            toxic_score.innerHTML = data[0].max_toxic[0];
-            var attack_score = document.getElementById("highest_attack");
-            attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
-
-            var toxic_list = document.getElementById('toxic_links');
-            var toxic_title = document.getElementById("links_to_toxicity");
-            toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
-            if (toxic_links.length == 0) {
-                toxic_title.innerHTML = "No conversation has a toxicity score above the threshold.";
-            }
-            else {
-                var toxic_count = 1;
-                toxic_title.innerHTML = "Links to highest potentially problematic conversations (threshold: 0.7)";
-                toxic_links.forEach((toxic_link) => {
-                    toxic_list.innerHTML += 
-                        '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
-                    toxic_count = toxic_count + 1;
-                });
-            }
-
-            // // display negative sentiment conversations
-            // var neg_list = document.getElementById('neg_senti_links');
-            // neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
-            // neg_list.innerHTML = "";
-            // neg_count = 1;
-            // neg_links.forEach((neg_link) => {
-            //     neg_list.innerHTML += 
-            //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-            //     neg_count += 1;
-            // });
-
-            break;
-        case "toxic_prs":
-            title = "Number of Potentially Problematic Pull Requests";
-            metric = data[1].num_toxic;
-            xtitle = months;
-            cur_colour = line_colors[3];
-            toxic_conv_type = 1;
-
-            var toxic_score = document.getElementById("highest_toxic");
-            toxic_score.innerHTML = data[1].max_toxic[data[1].max_toxic.length - 1];
-            var attack_score = document.getElementById("highest_attack");
-            attack_score.innerHTML = data[1].max_attack[data[1].max_attack.length - 1];
-
-            var toxic_list = document.getElementById('toxic_links');
-            toxic_links = data[1].toxic[5].slice(1, num_toxic_to_show);
-            toxic_list.innerHTML = "";
-            toxic_count = 1;
-            toxic_links.forEach((toxic_link) => {
-                toxic_list.innerHTML += 
-                    '<p class="m-0><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
-                toxic_count += 1;
-            });
-
-
-            // // display negative sentiment conversations
-            // var neg_list = document.getElementById('neg_senti_links');
-            // neg_links = data[1].neg_senti[5].slice(1, num_toxic_to_show);
-            // neg_list.innerHTML = "";
-            // neg_count = 1;
-            // neg_links.forEach((neg_link) => {
-            //     neg_list.innerHTML += 
-            //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-            //     neg_count += 1;
-            // });
+            cur_colour = line_colors[1];
             break;
         default:
-            // title = "Active Members";
-            // metric = data[0].num_unique_authors;
-            // xtitle = months;
             break;
-            
     }
 
     line_config["data"] = {
@@ -544,7 +418,7 @@ function drawChart(data, selector, chart_id, chart_obj)
 
 
 function displayToxic(data, type){
-    const toxicMonthSelect = document.querySelectorAll(".toxic_month_selector");
+    const toxicMonthSelect = document.querySelectorAll(".issue_toxic_month_selector");
     var month = 5;
     toxicMonthSelect.forEach(function (selector){
         selector.addEventListener('click', (event) => {
@@ -556,11 +430,11 @@ function displayToxic(data, type){
         button_t = document.getElementById("4");
         button_t.classList.remove("active");
         button_t = document.getElementById("3");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("2");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("1");
-        button_t.classList.remove("active");
+        // button_t.classList.remove("active");
+        // button_t = document.getElementById("2");
+        // button_t.classList.remove("active");
+        // button_t = document.getElementById("1");
+        // button_t.classList.remove("active");
         
         switch (selector.id) {
             case "6":
@@ -575,47 +449,101 @@ function displayToxic(data, type){
             case "3":
                 month = 3;
                 break;
-            case "2":
-                month = 4;
-                break;
-            case "1":
-                month = 5;
-                break;
+            // case "2":
+            //     month = 4;
+            //     break;
+            // case "1":
+            //     month = 5;
+            //     break;
             default:
-                month = 5;
+                month = 3;
                 break;
         }
-        var toxic_score = document.getElementById("highest_toxic");
-        toxic_score.innerHTML = data[toxic_conv_type].max_toxic[month];
-        var attack_score = document.getElementById("highest_attack");
-        attack_score.innerHTML = data[toxic_conv_type].max_attack[month];
+        var toxic_score = document.getElementById("issue_highest_toxic");
+        toxic_score.innerHTML = data[0].max_toxic[month];
+        var attack_score = document.getElementById("issue_highest_attack");
+        attack_score.innerHTML = data[0].max_attack[month];
 
-        var toxic_list = document.getElementById('toxic_links');
+        var toxic_list = document.getElementById('issue_toxic_links');
         toxic_list.innerHTML = "";
-        var toxic_title = document.getElementById("links_to_toxicity");
-        toxic_links = data[toxic_conv_type].toxic[month];
+        var toxic_title = document.getElementById("issue_links_to_toxicity");
+        toxic_links = data[0].toxic[month];
         if (toxic_links.length == 0) {
-            toxic_title.innerHTML = "No conversation has a toxicity score above the threshold.";
+            toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
         }
         else {
             var toxic_count = 1;
-            toxic_title.innerHTML = "Links to highest potentially problematic conversations (threshold: 0.7)";
+            toxic_title.innerHTML = "Links to highest potentially problematic comments (threshold: 0.7):";
             toxic_links.forEach((toxic_link) => {
                 toxic_list.innerHTML += 
                     '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
                 toxic_count = toxic_count + 1;
             });
         }
+    })});
 
-        // // display negative sentiment conversations
-        // var neg_list = document.getElementById('neg_senti_links');
-        // neg_links = data[toxic_conv_type].neg_senti[month].slice(1, num_toxic_to_show);
-        // neg_list.innerHTML = "";
-        // neg_count = 1;
-        // neg_links.forEach((neg_link) => {
-        //     neg_list.innerHTML += 
-        //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-        //     neg_count += 1;
-        // });
+    const pr_toxicMonthSelect = document.querySelectorAll(".pr_toxic_month_selector");
+    var pr_month = 5;
+    pr_toxicMonthSelect.forEach(function (selector){
+        selector.addEventListener('click', (event) => {
+
+        var button_t = document.getElementById("pr_6");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("pr_5");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("pr_4");
+        button_t.classList.remove("active");
+        button_t = document.getElementById("pr_3");
+        button_t.classList.remove("active");
+        // button_t = document.getElementById("pr_2");
+        // button_t.classList.remove("active");
+        // button_t = document.getElementById("pr_1");
+        // button_t.classList.remove("active");
+        
+        switch (selector.id) {
+            case "pr_6":
+                pr_month = 0;
+                break;
+            case "pr_5":
+                pr_month = 1;
+                break;
+            case "pr_4":
+                pr_month = 2;
+                break;
+            case "pr_3":
+                pr_month = 3;
+                break;
+            // case "pr_2":
+            //     pr_month = 4;
+            //     break;
+            // case "pr_1":
+            //     pr_month = 5;
+            //     break;
+            default:
+                pr_month = 3;
+                break;
+        }
+        var pr_toxic_score = document.getElementById("pr_highest_toxic");
+        pr_toxic_score.innerHTML = data[1].max_toxic[pr_month];
+        var pr_attack_score = document.getElementById("pr_highest_attack");
+        pr_attack_score.innerHTML = data[1].max_attack[pr_month];
+
+        var pr_toxic_list = document.getElementById("pr_toxic_links");
+        pr_toxic_list.innerHTML = "";
+        var pr_toxic_title = document.getElementById("pr_links_to_toxicity");
+        pr_toxic_links = data[1].toxic[pr_month];
+        console.log(pr_toxic_links);
+        if (pr_toxic_links.length == 0) {
+            pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
+        }
+        else {
+            var pr_toxic_count = 1;
+            pr_toxic_title.innerHTML = "Links to highest potentially problematic comments (threshold: 0.7):";
+            pr_toxic_links.forEach((pr_toxic_link) => {
+                pr_toxic_list.innerHTML += 
+                    '<p class="m-0 p-0"><a href="'+pr_toxic_link.url+'">'+String(pr_toxic_count)+". "+pr_toxic_link.title+'</a></p>';
+                pr_toxic_count = pr_toxic_count + 1;
+            });
+        }
     })});
 }
