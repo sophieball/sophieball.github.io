@@ -5,58 +5,60 @@ function show_default(data){
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
     var top_new_issue_icon = document.getElementById('basic_new_issue');
     console.log(top_new_issue_icon.classList);
-    top_new_issue_authors.innerHTML = data[0]["num_new_authors"][5];
-    if (data[0]["num_new_authors"][5] > 0){
+    top_new_issue_authors.innerHTML = data[0]["num_new_authors"][last_win];
+    if (data[0]["num_new_authors"][last_win] > 0){
         top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
         top_new_issue_icon.classList.add("fa-user-friends");
     }
     else {
         top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;So lonely...</span>';
         top_new_issue_icon.classList.add("fa-user");
-        top_new_issue_icon.classList.remove("orange");
+        // top_new_issue_icon.classList.remove("blue");
     }
 
     var top_new_pr_authors = document.getElementById('top_new_pr_authors');
     var top_new_pr_icon = document.getElementById('basic_new_pr');
-    top_new_pr_authors.innerHTML = data[1]["num_new_authors"][5];
-    if (data[1]["num_new_authors"][5] > 0){
+    top_new_pr_authors.innerHTML = data[1]["num_new_authors"][last_win];
+    if (data[1]["num_new_authors"][last_win] > 0){
         top_new_pr_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
         top_new_pr_icon.classList.add("fa-user-friends");
     }
     else {
         top_new_pr_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;So lonely...</span>';
         top_new_pr_icon.classList.add("fa-user");
-        top_new_pr_icon.classList.remove("orange");
+        // top_new_pr_icon.classList.remove("blue");
     }
 
     // bonding social capital
     var bonding = document.getElementById('bonding');
     var bonding_icon = document.getElementById('bonding_icon');
-    bonding.innerHTML = Math.round(data[1]["avg_tenure"][5]);
+    bonding.innerHTML = Math.round(data[1]["avg_tenure"][last_win]);
     bonding_icon.classList.add("fa-link");
-    if (data[1]["avg_tenure"][5] > 3){
+    if (data[1]["avg_tenure"][last_win] > 3){
         bonding.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;An experienced team</span>';
     }
     else {
-        bonding_icon.classList.remove("purple");
+        bonding.innerHTML += "";
+        // bonding_icon.classList.remove("blue"); // display grey
     }
 
     var old_friends = document.getElementById('old_friends');
     var old_friends_icon = document.getElementById('old_friends_icon');
-    num_recur_authors = data[0]["num_recur_authors"][5] + data[1]["num_recur_authors"][5];
+    num_recur_authors = data[0]["num_recur_authors"][last_win] + data[1]["num_recur_authors"][last_win];
     old_friends.innerHTML = num_recur_authors
     old_friends_icon.classList.add("fa-link");
     if (num_recur_authors > 3) {
         old_friends.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Friends around :-D</span>';    
     }
     else {
-        old_friends_icon.classList.remove("purple");
+        old_friends.innerHTML += "";
+        // old_friends_icon.classList.remove("blue"); // display grey
     }
 
     // activity
     var i_avg_comments_top = document.getElementById('i_avg_comments_top');
     var i_avg_closed_time_top_icon = document.getElementById('i_avg_comments_top_icon');
-    var i_avg_comments_before_close = data[0]["avg_comments_before_close"][5];  
+    var i_avg_comments_before_close = data[0]["avg_comments_before_close"][last_win];  
 
     i_avg_comments_top.innerHTML = i_avg_comments_before_close;
     if (i_avg_comments_before_close > 3 & i_avg_comments_before_close < 15) {
@@ -66,17 +68,17 @@ function show_default(data){
     else if (i_avg_comments_before_close > 15) {
         i_avg_comments_top.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Heated discussions!</span>';
         i_avg_closed_time_top_icon.classList.add("fa-comments");
-        i_avg_closed_time_top_icon.classList.remove("text-primary");
+        i_avg_closed_time_top_icon.classList.remove("blue");
         i_avg_closed_time_top_icon.classList.add("text-danger");
     }
     else {
         i_avg_closed_time_top_icon.classList.add("fa-comment-alt");
-        i_avg_closed_time_top_icon.classList.remove("blue");
+        // i_avg_closed_time_top_icon.classList.remove("blue"); // display grey
     }
 
     var p_avg_comments_top = document.getElementById('p_avg_comments_top');
     var p_avg_closed_time_top_icon = document.getElementById('p_avg_comments_top_icon');
-    var p_avg_comments_before_close = data[1]["avg_comments_before_close"][5];  
+    var p_avg_comments_before_close = data[1]["avg_comments_before_close"][last_win];  
 
     p_avg_comments_top.innerHTML = p_avg_comments_before_close;
     if (p_avg_comments_before_close > 3 & p_avg_comments_before_close < 15) {
@@ -91,15 +93,15 @@ function show_default(data){
     }
     else {
         p_avg_closed_time_top_icon.classList.add("fa-comment-alt");
-        p_avg_closed_time_top_icon.classList.remove("blue");
+        // p_avg_closed_time_top_icon.classList.remove("blue"); // display grey
     }
 
     // responsiveness
     var i_avg_closed_time_top = document.getElementById('i_avg_close_top');
-    i_avg_closed_time_top.innerHTML = data[0]["avg_close_time"][5];
+    i_avg_closed_time_top.innerHTML = data[0]["avg_close_time"][last_win];
 
     var pr_avg_closed_time_top = document.getElementById('p_avg_close_top');
-    pr_avg_closed_time_top.innerHTML = data[1]["avg_close_time"][5];
+    pr_avg_closed_time_top.innerHTML = data[1]["avg_close_time"][last_win];
 
     // display time consuming issues
     var long_time_convs = document.getElementById('time_consuming_convs');
@@ -172,11 +174,20 @@ function show_default(data){
     // display the list of new authors
     // title = "New Issue Authors";
     people = data[0].new_authors;
-    new_member = document.getElementById('new_members_list');
+    new_member = document.getElementById('new_issue_members_list');
     new_member.innerHTML = '';
     if (people.length > 0){
         people.forEach((person) => {
             new_member.innerHTML += 
+                '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
+        });
+    }
+    pr_people = data[1].new_authors;
+    pr_new_member = document.getElementById('new_pr_members_list');
+    pr_new_member.innerHTML = '';
+    if (pr_people.length > 0){
+        pr_people.forEach((person) => {
+            pr_new_member.innerHTML += 
                 '<a class="m-0" href="http://www.github.com/'+person+'">'+person+'</a><br>';
         });
     }
@@ -187,7 +198,7 @@ function show_default(data){
         label_chart_height = "70px";
     }
     else{
-        label_chart_height = "250px";
+        label_chart_height = "300px";
     }
 
     // plot issue labels and counts
@@ -236,7 +247,7 @@ function show_default(data){
             data: data[0].avg_close_time
         }]
     };
-    issue_time["options"]["title"]["text"] = "Average Close Time for Issues (Days)";
+    issue_time["options"]["title"]["text"] = "Avg Close Time for Issues (Days)";
     issue_time_chart = new Chart(document.getElementById("issueTimeChart"), issue_time);
 
     pr_time = Object.assign({}, line_config);
@@ -253,7 +264,7 @@ function show_default(data){
             data: data[1].avg_close_time
         }]
     };
-    pr_time["options"]["title"]["text"] = "Average Close Time for Pull Requests (Days)";
+    pr_time["options"]["title"]["text"] = "Avg Close Time for Pull Requests (Days)";
     pr_time_chart = new Chart(document.getElementById("prTimeChart"), pr_time);
 
 
@@ -261,8 +272,8 @@ function show_default(data){
     issue_dis["data"] = {
         labels: months,
         datasets: [{
-            backgroundColor: line_colors[2],
-            borderColor: line_colors[2],
+            backgroundColor: line_colors[1],
+            borderColor: line_colors[1],
             fill: false,
             borderWidth: line_width,
             tension: 0,
@@ -271,15 +282,15 @@ function show_default(data){
             data: data[0].avg_comments_before_close
         }]
     };
-    issue_dis["options"]["title"]["text"] = "Average Comments for Issues Closed in Each Month";
+    issue_dis["options"]["title"]["text"] = "Avg Comments for Issues Closed in Each Month";
     issue_dicussion_chart = new Chart(document.getElementById("issueDisChart"), issue_dis);
 
     pr_dis = Object.assign({}, line_config);
     pr_dis["data"] = {
         labels: months,
         datasets: [{
-            backgroundColor: line_colors[2],
-            borderColor: line_colors[2],
+            backgroundColor: line_colors[1],
+            borderColor: line_colors[1],
             fill: false,
             borderWidth: line_width,
             tension: 0,
@@ -288,9 +299,10 @@ function show_default(data){
             data: data[1].avg_comments_before_close
         }]
     };
-    pr_dis["options"]["title"]["text"] = "Average Comments for Pull Requests Closed in Each Month";
+    pr_dis["options"]["title"]["text"] = "Avg Comments for Pull Requests Closed in Each Month";
     pr_dicussion_chart = new Chart(document.getElementById("prDisChart"), pr_dis);
 
+    // toxic issues
     toxic_config = Object.assign({}, line_config);
     toxic_config["data"] = {
         labels: months,
@@ -306,24 +318,24 @@ function show_default(data){
         }]
     };
     toxic_config["options"]["title"]["text"] = "Number of Potentially Problematic Issues";
-    toxic_chart = new Chart(document.getElementById("toxicity_info"), toxic_config);
+    toxic_chart = new Chart(document.getElementById("issue_toxicity_info"), toxic_config);
 
-    var toxic_score = document.getElementById("highest_toxic");
+    var toxic_score = document.getElementById("issue_highest_toxic");
     toxic_score.innerHTML = data[0].max_toxic[data[0].max_toxic.length - 1];
-    var attack_score = document.getElementById("highest_attack");
+    var attack_score = document.getElementById("issue_highest_attack");
     attack_score.innerHTML = data[0].max_attack[data[0].max_attack.length - 1];
 
-    var toxic_list = document.getElementById('toxic_links');
+    var toxic_list = document.getElementById("issue_toxic_links");
     toxic_list.innerHTML = "";
 
-    toxic_links = data[0].toxic[5].slice(1, num_toxic_to_show);
-    var toxic_title = document.getElementById("links_to_toxicity");
+    toxic_links = data[0].toxic[last_win].slice(1, num_toxic_to_show);
+    var toxic_title = document.getElementById("issue_links_to_toxicity");
     if (toxic_links.length == 0) {
-        toxic_title.innerHTML = "No conversation has a toxicity score above the threshold.";
+        toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
     }
     else {
         var toxic_count = 1;
-        toxic_title.innerHTML = "Links to highest potentially problematic conversations (threshold: 0.7)";
+        toxic_title.innerHTML = "Links to highest potentially problematic comments (threshold: 0.7)";
         toxic_links.forEach((toxic_link) => {
             toxic_list.innerHTML += 
                 '<p class="m-0 p-0"><a href="'+toxic_link.url+'">'+String(toxic_count)+". "+toxic_link.title+'</a></p>';
@@ -331,21 +343,52 @@ function show_default(data){
         });
     }
 
-    // // display negative sentiment conversations
-    // var neg_list = document.getElementById('neg_senti_links');
-    // neg_links = data[0].neg_senti[5].slice(1, num_toxic_to_show);
-    // neg_list.innerHTML = "";
-    // var neg_count = 1;
-    // neg_links.forEach((neg_link) => {
-    //     neg_list.innerHTML += 
-    //         '<p class="m-0"><a href="'+neg_link.url+'">'+String(neg_count)+". "+neg_link.title+'</a></p>';
-    //     neg_count += 1;
-    // });
+    // toxic prs
+    pr_toxic_config = Object.assign({}, line_config);
+    pr_toxic_config["data"] = {
+        labels: months,
+        datasets: [{
+            // label: title,
+            backgroundColor: line_colors[3],
+            borderColor: line_colors[3],
+            fill: false,
+            borderWidth: line_width,
+            tension: 0,
+            pointRadius: point_radius,
+            data: data[1].num_toxic
+        }]
+    };
+    pr_toxic_config["options"]["title"]["text"] = "Number of Potentially Problematic PRs";
+    pr_toxic_chart = new Chart(document.getElementById("pr_toxicity_info"), pr_toxic_config);
+
+    var pr_toxic_score = document.getElementById("pr_highest_toxic");
+    console.log(pr_toxic_score);
+    pr_toxic_score.innerHTML = data[1].max_toxic[data[1].max_toxic.length - 1];
+    var pr_attack_score = document.getElementById("pr_highest_attack");
+    pr_attack_score.innerHTML = data[1].max_attack[data[1].max_attack.length - 1];
+
+    var pr_toxic_list = document.getElementById("pr_toxic_links");
+    pr_toxic_list.innerHTML = "";
+
+    pr_toxic_links = data[1].toxic[last_win].slice(1, num_toxic_to_show);
+    var pr_toxic_title = document.getElementById("pr_links_to_toxicity");
+    if (pr_toxic_links.length == 0) {
+        pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
+    }
+    else {
+        var pr_toxic_count = 1;
+        pr_toxic_title.innerHTML = "Links to highest potentially problematic comments (threshold: 0.7)";
+        pr_toxic_links.forEach((toxic_link) => {
+            pr_toxic_list.innerHTML += 
+                '<p class="m-0 p-0"><a href="'+pr_toxic_link.url+'">'+String(pr_toxic_count)+". "+pr_toxic_link.title+'</a></p>';
+            pr_toxic_count = pr_toxic_count + 1;
+        });
+    }
 
     // plot the comparison chart
     compare_config_d = Object.assign({}, bar_config);
     compare_config_d["data"] = {
-            labels: ["You", "proj1", "proj2", "proj3", "proj4"],
+            labels: compare_title,
             datasets: [{
                 data: data[2].num_active_authors,
                 backgroundColor: color_palette,
@@ -360,7 +403,7 @@ function show_default(data){
     comp_list = document.getElementById('project_list');
     comp_list.innerHTML = "";
     for (let i = 1; i < projects_for_comparison.length; i++) {
-      comp_list.innerHTML += +i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
+      comp_list.innerHTML += 'proj'+i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
       console.log(projects_for_comparison[i]);
     }
 
@@ -372,11 +415,9 @@ function show_default(data){
     tips_area.style.clientHeight = finding_tab_height;
 
     // print new contributors' logins
-    displayList(data);
-
     createGraphs(data);
 
     listConvers(data);
 
     displayToxic(data);
-};  
+}; 
