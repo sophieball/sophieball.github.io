@@ -297,13 +297,13 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[0];
             break;
         case "i_types":
-            title = "Number of Issues by Label (in the past month)";
+            title = "Number of Issues by Label (in the past week)";
             metric = data[0].label_counts_values;
             xtitle = data[0].label_counts_keys;
             cur_colour = line_colors[0];
             break;
         case "p_types":
-            title = "Number of Pull Requests by Label (in the past month)";
+            title = "Number of Pull Requests by Label (in the past week)";
             metric = data[1].label_counts_values;
             xtitle = data[1].label_counts_keys;
             cur_colour = line_colors[0];
@@ -333,49 +333,49 @@ function drawChart(data, selector, chart_id, chart_obj)
             cur_colour = line_colors[1];
             break;
         case "i_closed_comments":
-            title = "Median Comments for Issues Closed in Each Month";
+            title = "Median Comments for Issues Closed in Each Week";
             metric = data[0].median_comments_before_close;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "i_avg_closed_comments":
-            title = "Avg Comments for Issues Closed in Each Month";
+            title = "Avg Comments for Issues Closed in Each Week";
             metric = data[0].avg_comments_before_close;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_closed_comments":
-            title = "Median Comments for Pull Requests Closed in Each Month";
+            title = "Median Comments for Pull Requests Closed in Each Week";
             metric = data[1].median_comments_before_close;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_closed_comments":
-            title = "Avg Comments for Pull Requests Closed in Each Month";
+            title = "Avg Comments for Pull Requests Closed in Each Week";
             metric = data[1].avg_comments_before_close;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "i_open_comments":
-            title = "Median Comments for Issues Opened in Each Month";
+            title = "Median Comments for Issues Opened in Each Week";
             metric = data[0].median_comments_recent;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "i_avg_open_comments":
-            title = "Avg Comments for Issues Opened in Each Month";
+            title = "Avg Comments for Issues Opened in Each Week";
             metric = data[0].avg_comments_recent;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_open_comments":
-            title = "Median Comments for Pull Requests Opened in Each Month";
+            title = "Median Comments for Pull Requests Opened in Each Week";
             metric = data[1].median_comments_recent;
             xtitle = months;
             cur_colour = line_colors[1];
             break;
         case "p_avg_open_comments":
-            title = "Avg Comments for Pull Requests Opened in Each Month";
+            title = "Avg Comments for Pull Requests Opened in Each Week";
             metric = data[1].avg_comments_recent;
             xtitle = months;
             cur_colour = line_colors[1];
