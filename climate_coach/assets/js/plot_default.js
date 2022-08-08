@@ -169,7 +169,7 @@ function show_default(data){
             data: data[0].label_counts_values
         }]
     };
-    issue_label["options"]["title"]["text"] = "Issues by Label in the Past Month";
+    issue_label["options"]["title"]["text"] = "Issues by Label in the Past Week";
 
     // display the list of new authors
     // title = "New Issue Authors";
@@ -222,7 +222,7 @@ function show_default(data){
             data: data[1].label_counts_values
         }]
     };
-    pr_label["options"]["title"]["text"] = "Pull Requests by Label in the Past Month";
+    pr_label["options"]["title"]["text"] = "Pull Requests by Label in the Past Week";
     var pr_num_labels = data[1].label_counts_values.length;
     var pr_label_field = document.getElementById("pr_label_area");
     if (pr_num_labels == 0){
@@ -282,7 +282,7 @@ function show_default(data){
             data: data[0].avg_comments_before_close
         }]
     };
-    issue_dis["options"]["title"]["text"] = "Avg Comments for Issues Closed in Each Month";
+    issue_dis["options"]["title"]["text"] = "Avg Comments for Issues Closed in Each Week";
     issue_dicussion_chart = new Chart(document.getElementById("issueDisChart"), issue_dis);
 
     pr_dis = Object.assign({}, line_config);
@@ -299,7 +299,7 @@ function show_default(data){
             data: data[1].avg_comments_before_close
         }]
     };
-    pr_dis["options"]["title"]["text"] = "Avg Comments for Pull Requests Closed in Each Month";
+    pr_dis["options"]["title"]["text"] = "Avg Comments for Pull Requests Closed in Each Week";
     pr_dicussion_chart = new Chart(document.getElementById("prDisChart"), pr_dis);
 
     // toxic issues
