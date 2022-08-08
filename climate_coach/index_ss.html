@@ -35,23 +35,20 @@
 
                     <div class="row mb-4">
                         <div class="col-md-6 m-0 p-2">
-                            <div class="card shadow mb-2">
+                            <div class="card shadow">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Health in Open Source Software Communities</h6>
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 pb-1">Health in Open Source Software Communities</h6>
                                 </div>
-                                <div class="card-body m-0 pb-2 pt-3 pl-2" style="height: 280px !important;">
+                                <div class="card-body m-0 pb-2 pt-3 pl-2" style="height: 250px !important;">
                                     <div class="chart-area" id="tips_area">
                                         <div class="pb-1" id="health">
                                             <p class="text-dark mb-0">
-                                                Open source developer communities struggle with a variety of challenges that can 
-                                                impact project health and sustainability. Certain groups of users, such as new contributors 
-                                                [<a href="https://www.academia.edu/17719424/Social_Barriers_Faced_by_Newcomers_Placing_Their_First_Contribution_in_Open_Source_Software_Projects">Steinmacher et al., 2015</a>] 
-                                                or women [<a href="https://cmustrudel.github.io/papers/icse19social.pdf">Qiu et al., 2019</a>], 
-                                                face more barriers when making contributions. Since prior studies showed that open-source projects with higher 
-                                                gender and tenure diversity are associated with higher productivity [<a href="https://cmustrudel.github.io/papers/chi15.pdf">Vasilescu et al., 2015</a>; 
-                                                <a href="https://ieeexplore.ieee.org/abstract/document/8797636">Catolino et al., 2019</a>], increasing diversity and inclusion is important for a project's health.
-                                                By taking steps to reduce social barriers, maintainers can work to create a welcoming culture and attract a more diverse group of newcomers 
-                                                [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani et al 2022</a>]. 
+                                                By taking steps to <b>reduce barriers</b> to new contributors
+                                                [<a href="https://www.academia.edu/17719424/Social_Barriers_Faced_by_Newcomers_Placing_Their_First_Contribution_in_Open_Source_Software_Projects">Steinmacher et al., 2015</a>],
+                                                maintainers can create a welcoming culture that <b>attracts more newcomers</b> [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani et al 2022</a>] and increases project diversity. <br> <br>
+                                                Increasing diversity and inclusion can benefit the health of open-source projects because prior studies show
+                                                that projects with <b>more gender and tenure diversity</b> are associated with <b>higher productivity</b> 
+                                                [<a href="https://cmustrudel.github.io/papers/chi15.pdf">Vasilescu et al., 2015</a>; <a href="https://ieeexplore.ieee.org/abstract/document/8797636">Catolino et al., 2019</a>].
                                             </p>
                                         </div>
                                     </div>
@@ -59,11 +56,11 @@
                             </div>
                         </div>
                         <div class="col-md-6 m-0 p-2">
-                            <div class="card shadow mb-2">
+                            <div class="card shadow">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold ml-0 mt-1 mb-1 pb-1">Goals</h6>
+                                    <h6 class="text-dark fw-bold ml-0 mt-1 pb-1">Goals</h6>
                                 </div>
-                                <div class="card-body m-0 pb-2 pt-3 pl-2" style="height: 280px !important;">
+                                <div class="card-body m-0 pb-2 pt-3 pl-2" style="height: 250px !important;">
                                     <div class="chart-area" id="tips_area">
                                         <div id="goals">
                                             <h6><b>This dashboard was built with open source community health as a top priority to serve the following goals:</b></h6>
@@ -437,7 +434,7 @@
                         <div class="col-md-12 p-0">
                             <div class="card shadow mb-0">
                                     <div class="row m-0 pt-2 pb-0 text-dark">
-                                        <p><b>Tip:</b> If the PR is coming from an external contributor, try to comment on the PR before closing it. This can be helpful for the author and acknowledges their contribution. 
+                                        <p><b>Tip:</b> If a pull request is coming from an external contributor, try to comment on the PR before closing it. This can be helpful for the author and acknowledges their contribution. 
 </p>
                                     </div>
                             </div>
@@ -541,15 +538,14 @@
                                     <hr>
                                     <div class="row pb-0 mb-0">
                                         <p class="text-dark mb-1"><b>Note</b>: This analysis flags potentially problematic conversations, but it isn’t perfect! These conversations may need further review from maintainers to ensure that they have a friendly tone and follow the code of conduct. </p>
-                                                <p class="text-dark mb-1"><b>Note: </b>Toxicity score and identity attack can help detect interpersonal conflict 
-                                                    ([<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">Egelman et al., 2020</a>], 
-                                                    [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">Raman et al., 2020</a>], and 
-                                                    [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">Qiu et al., 2022</a>]).
-                                                </p>
-                                                <p class="text-dark mb-1"><b>Tip:</b> If you do not already have one, consider creating a code of conduct for your community to promote respectful, productive discussions! Here is a template to get you started: https://www.contributor-covenant.org/ </p>
-                                            </div>
+                                        <p class="text-dark mb-1"><b>Tip:</b> If you do not already have one, consider creating a <b>code of conduct</b> for your community to promote respectful, productive discussions! Here is a template to get you started: <a href=https://www.contributor-covenant.org>https://www.contributor-covenant.org</a> </p>
+                                    </div> <br>
                                     <div class="row my-0 py-0">
-                                        <p class="fa-sm pt-0 mt-0 mb-2"><span class="orange-red">*</span> Toxicity score and identity attack score are calculated by <a href="https://perspectiveapi.com/">Google's Perspective API</a>. Both have range [0,1].</p>
+                                        <p class="fa-sm pt-0 mt-0 mb-2"><span class="orange-red">*</span> The toxicity score and identity attack score (both with range [0,1]) are calculated by <a href="https://perspectiveapi.com/">Google's Perspective API</a>. <br> These attributes can help detect interpersonal conflict
+                                            ([<a href="https://cmustrudel.github.io/papers/raman20toxicity.pdf">Egelman et al., 2020</a>], [<a href="https://cmustrudel.github.io/papers/seis22pushback.pdf">Raman et al., 2020</a>], and [<a href="https://cmustrudel.github.io/papers/osstoxicity22.pdf">Qiu et al., 2022</a>]). <br>
+                                            <b>Toxicity</b>: <i>A rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion. </i> <br>
+                                            <b>Identity Attack</b>: <i>Negative or hateful comments targeting someone because of their identity. </i>
+                                        </p>
                                         <!-- <p class="fa-sm py-0 mt-0 mb-2"><span class="orange-red">**</span> Sentiment is calculated by <a href="https://github.com/senticr/SentiCR">SentiCR</a>, a sentiment analysis tool developed for code review data.</p> -->
                                     </div>
                                 </div>
@@ -579,11 +575,9 @@
                                     </div>
                                     <div class="row">
                                         <!-- <div class="col-md-2 m-0"> -->
-                                        <p class="text-dark my-1"><b>Tip:</b> Consider adding issue labels that explicitly highlight starter tasks for new contributors. 
-                                        Labels such as “newcomer friendly”, “good first issue”, and "help wanted" can help attract 
-                                        and retain new contributors
-                                        [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani et al., 2022</a>].</p>
-                                        <p class="text-dark mb-1"><b>Tip:</b> Consider using a “Help wanted” label to invite new contributors to the project. This label will appear in GitHub repository search results.</p>
+                                        <p class="text-dark my-1"><b>Tip:</b> Consider adding issue labels that explicitly highlight starter tasks for new contributors.
+                                        Labels like “<b>newcomer friendly</b>”, “<b>good first issue</b>”, and "<b>help wanted</b>" can help attract 
+                                        and retain new contributors [<a href="https://arxiv.org/pdf/2202.07740.pdf">Guizani et al., 2022</a>]. These labels will appear in GitHub repository search results.</p>
                                         <!-- </div> -->
                                     </div>
                                 </div>
@@ -638,14 +632,14 @@
                         <div class="col-md-4 m-0 p-2">
                             <div class="card shadow mb-2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-dark fw-bold m-1 pb-1">Tips</h6>
+                                    <h6 class="text-dark fw-bold m-1 pb-1">Notes</h6>
                                 </div>
                                 <div class="card-body pb-4">
                                     <div class="chart-area" style="height: 200px !important;">
                                         <!-- <b class="text-dark"></b><br> -->
-                                        <p class="text-dark">&nbsp;&nbsp;&nbsp;Comparison between similar projects can help put your project activity in context. <br>
-                                            &nbsp;&nbsp;&nbsp;This comparison with other projects can help you understand your project’s metrics relative to your peers. <br>
-                                            &nbsp;&nbsp;&nbsp;Situating a project within its particular ecosystem can help open source maintainers understand project health and sustainability
+                                        <p class="text-dark">
+                                            Comparison between similar projects can put your project activity in context by helping you understand your project's metrics relative to your peers. <br>
+                                            <br>Situating a project within its particular ecosystem can help open-source maintainers understand project health and sustainability
                                             [<a href="https://zenodo.org/record/4627236#.YrodIRPMKLo">Goggins et al., 2021</a>]. 
                                         </p>
                                     </div>
@@ -654,6 +648,7 @@
                         </div>
                     </div> <!-- row -->
                         
+                    <hr>    
                     <div class="row">
                         <h5 class="text-dark fw-bold mb-1 mt-2">Prior Research Results: </h5>
                     </div>
@@ -701,7 +696,7 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td><div class="text-danger">
+                                                    <td><div class="blue">
                                                         <!-- <span class="bi bi-card-heading pb-1"></span> -->
                                                         <b>Inclusive Language</b></div>
                                                     </td>
