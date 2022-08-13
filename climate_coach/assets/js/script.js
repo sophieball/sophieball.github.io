@@ -416,6 +416,15 @@ function drawChart(data, selector, chart_id, chart_obj)
         document.getElementById(chart_id), line_config);
 }
 
+var button_i_6 = document.getElementById("6");
+var button_i_5 = document.getElementById("5");
+var button_i_4 = document.getElementById("4");
+var button_i_3 = document.getElementById("3");
+
+var button_t_6 = document.getElementById("pr_6");
+var button_t_5 = document.getElementById("pr_5");
+var button_t_4 = document.getElementById("pr_4");
+var button_t_3 = document.getElementById("pr_3");
 
 function displayToxic(data, type){
     const toxicMonthSelect = document.querySelectorAll(".issue_toxic_month_selector");
@@ -423,13 +432,6 @@ function displayToxic(data, type){
     toxicMonthSelect.forEach(function (selector){
         selector.addEventListener('click', (event) => {
 
-        var button_t = document.getElementById("6");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("5");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("4");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("3");
         // button_t.classList.remove("active");
         // button_t = document.getElementById("2");
         // button_t.classList.remove("active");
@@ -439,15 +441,31 @@ function displayToxic(data, type){
         switch (selector.id) {
             case "6":
                 month = 0;
+                button_i_6.classList.add("active");
+                button_i_5.classList.remove("active");
+                button_i_4.classList.remove("active");
+                button_i_3.classList.remove("active");
                 break;
             case "5":
                 month = 1;
+                button_i_5.classList.add("active");
+                button_i_6.classList.remove("active");
+                button_i_4.classList.remove("active");
+                button_i_3.classList.remove("active");
                 break;
             case "4":
                 month = 2;
+                button_i_4.classList.add("active");
+                button_i_6.classList.remove("active");
+                button_i_5.classList.remove("active");
+                button_i_3.classList.remove("active");
                 break;
             case "3":
                 month = 3;
+                button_i_3.classList.add("active");
+                button_i_6.classList.remove("active");
+                button_i_5.classList.remove("active");
+                button_i_4.classList.remove("active");
                 break;
             // case "2":
             //     month = 4;
@@ -457,6 +475,10 @@ function displayToxic(data, type){
             //     break;
             default:
                 month = 3;
+                button_i_3.classList.add("active");
+                button_i_6.classList.remove("active");
+                button_i_5.classList.remove("active");
+                button_i_4.classList.remove("active");
                 break;
         }
         var toxic_score = document.getElementById("issue_highest_toxic");
@@ -487,14 +509,6 @@ function displayToxic(data, type){
     pr_toxicMonthSelect.forEach(function (selector){
         selector.addEventListener('click', (event) => {
 
-        var button_t = document.getElementById("pr_6");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("pr_5");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("pr_4");
-        button_t.classList.remove("active");
-        button_t = document.getElementById("pr_3");
-        button_t.classList.remove("active");
         // button_t = document.getElementById("pr_2");
         // button_t.classList.remove("active");
         // button_t = document.getElementById("pr_1");
@@ -503,15 +517,31 @@ function displayToxic(data, type){
         switch (selector.id) {
             case "pr_6":
                 pr_month = 0;
+                button_t_6.classList.add("active");
+                button_t_5.classList.remove("active");
+                button_t_4.classList.remove("active");
+                button_t_3.classList.remove("active");
                 break;
             case "pr_5":
                 pr_month = 1;
+                button_t_5.classList.add("active");
+                button_t_6.classList.remove("active");
+                button_t_4.classList.remove("active");
+                button_t_3.classList.remove("active");
                 break;
             case "pr_4":
                 pr_month = 2;
+                button_t_4.classList.add("active");
+                button_t_6.classList.remove("active");
+                button_t_5.classList.remove("active");
+                button_t_3.classList.remove("active");
                 break;
             case "pr_3":
                 pr_month = 3;
+                button_t_3.classList.add("active");
+                button_t_6.classList.remove("active");
+                button_t_5.classList.remove("active");
+                button_t_4.classList.remove("active");
                 break;
             // case "pr_2":
             //     pr_month = 4;
@@ -521,8 +551,13 @@ function displayToxic(data, type){
             //     break;
             default:
                 pr_month = 3;
+                button_t_3.classList.add("active");
+                button_t_6.classList.remove("active");
+                button_t_5.classList.remove("active");
+                button_t_4.classList.remove("active");
                 break;
         }
+
         var pr_toxic_score = document.getElementById("pr_highest_toxic");
         pr_toxic_score.innerHTML = data[1].max_toxic[pr_month];
         var pr_attack_score = document.getElementById("pr_highest_attack");
@@ -532,7 +567,6 @@ function displayToxic(data, type){
         pr_toxic_list.innerHTML = "";
         var pr_toxic_title = document.getElementById("pr_links_to_toxicity");
         pr_toxic_links = data[1].toxic[pr_month];
-        console.log(pr_toxic_links);
         if (pr_toxic_links.length == 0) {
             pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
         }
