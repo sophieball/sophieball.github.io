@@ -4,7 +4,6 @@ function show_default(data){
     // display basic stats
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
     var top_new_issue_icon = document.getElementById('basic_new_issue');
-    console.log(top_new_issue_icon.classList);
     top_new_issue_authors.innerHTML = data[0]["num_new_authors"][last_win];
     if (data[0]["num_new_authors"][last_win] > 0){
         top_new_issue_authors.innerHTML += '<span class="small text-gray-600">&nbsp;&nbsp;Team is growing!</span>';
@@ -328,7 +327,8 @@ function show_default(data){
     var toxic_list = document.getElementById("issue_toxic_links");
     toxic_list.innerHTML = "";
 
-    toxic_links = data[0].toxic[last_win].slice(1, num_toxic_to_show);
+    // by default, show the most recent window
+    toxic_links = data[0].toxic[last_win];
     var toxic_title = document.getElementById("issue_links_to_toxicity");
     if (toxic_links.length == 0) {
         toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
@@ -362,7 +362,6 @@ function show_default(data){
     pr_toxic_chart = new Chart(document.getElementById("pr_toxicity_info"), pr_toxic_config);
 
     var pr_toxic_score = document.getElementById("pr_highest_toxic");
-    console.log(pr_toxic_score);
     pr_toxic_score.innerHTML = data[1].max_toxic[data[1].max_toxic.length - 1];
     var pr_attack_score = document.getElementById("pr_highest_attack");
     pr_attack_score.innerHTML = data[1].max_attack[data[1].max_attack.length - 1];
@@ -370,7 +369,8 @@ function show_default(data){
     var pr_toxic_list = document.getElementById("pr_toxic_links");
     pr_toxic_list.innerHTML = "";
 
-    pr_toxic_links = data[1].toxic[last_win].slice(1, num_toxic_to_show);
+    // by default, show the most recent window
+    pr_toxic_links = data[1].toxic[last_win];
     var pr_toxic_title = document.getElementById("pr_links_to_toxicity");
     if (pr_toxic_links.length == 0) {
         pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
@@ -404,13 +404,11 @@ function show_default(data){
     comp_list.innerHTML = "";
     for (let i = 1; i < projects_for_comparison.length; i++) {
       comp_list.innerHTML += 'proj'+i+': <a href="http://github.com/'+projects_for_comparison[i]+'">'+projects_for_comparison[i]+'</a><br>';
-      console.log(projects_for_comparison[i]);
     }
 
     // set tip tab height
     var finding_tab = document.getElementById("finding_area");
     finding_tab_height = finding_tab.clientHeight;
-    console.log(finding_tab_height);
     var tips_area = document.getElementById("tips_area");
     tips_area.style.clientHeight = finding_tab_height;
 
