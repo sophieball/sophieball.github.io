@@ -3,7 +3,6 @@ const dot_color = 'rgb(39, 15, 163)';
 // for big projects, we can't fit the entire list of problematic conversations
 const num_toxic_to_show = 6;
 const last_win = 3;
-const compare_title = ["You", "proj1", "proj2", "proj3", "proj4", "proj5"];
 
 // declare charts
 var compareChart;
