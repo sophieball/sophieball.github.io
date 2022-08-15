@@ -204,7 +204,7 @@ function show_default(data){
     var num_labels = data[0].label_counts_values.length;
     var issue_label_field = document.getElementById("issue_label_area");
     if (num_labels == 0){
-        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p class='text-xs'>Seems like you aren't using labels to manage your issues</p></div>"
+        issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><p>Seems like you aren't using labels to manage your issues</p></div>"
     }
     else{        
         issue_label_field.innerHTML = "<div class='chart-area' style='height: "+label_chart_height+" !important;'><canvas id='issue_labels'></canvas></div>"
