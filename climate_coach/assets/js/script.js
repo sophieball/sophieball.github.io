@@ -71,13 +71,6 @@ const bar_config = {
   },
 };
 
-const months = [
-    'week-3',
-    'week-2',
-    'week-1',
-    'this week'
-];
-
 const timeListSelects = document.querySelectorAll(".timeList");
 const commentListSelects = document.querySelectorAll(".commentList");
 function listConvers(data) {
