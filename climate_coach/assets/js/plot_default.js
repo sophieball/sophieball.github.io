@@ -1,6 +1,10 @@
+$.getJSON(data_link, 
+    function(data) {show_default(data)});
+
 // reads data
 // plots the charts that are shown when the page is load
 function show_default(data){
+    document.getElementById('proj_name').innerHTML += slug;
     // display basic stats
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
     var top_new_issue_icon = document.getElementById('basic_new_issue');
