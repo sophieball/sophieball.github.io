@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="assets/js/jquery-1.11.2.min.js "></script> 
+	<script> 
+    $(function(){
+      $("#includedNav").load("index.html"); 
+    });
+</script> 
+</head>
+<body>
+	<div id="includedNav"></div>
+	<script>
+    const slug="sss";
+    $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_sj.json", 
+    function(data) {show_default(data)});
+    // the list of projects to compare. CHANGE THIS
+    const projects_for_comparison = [
+        "Your project",
+        "facebook/react",
+        "OSCPU/NutShell",
+        "ziglang/zig",
+        "rust-lang/rust",
+        "flutter/flutter"];
+    const compare_title = ["You", "proj1", "proj2", "proj3", "proj4", "proj5"];
+    const months = [
+        '7/20-7/26',
+        '7/27-8/2',
+        '8/3-8/9',
+        '8/10-8/16'
+    ];
+    </script>
+</body>
+</html>
