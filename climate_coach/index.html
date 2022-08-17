@@ -797,8 +797,8 @@
     <script>
     // CHANGE THESE TWO FIELDS FOR EACH INTERVIEWEE
     document.getElementById('proj_name').innerHTML += "<h4>SerenityOS/jakt</h4>";
-        $.getJSON("https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_sj.json", 
-    function(data) {show_default(data)});
+    const data_link = "https://raw.githubusercontent.com/CMUSTRUDEL/climate_coach/main/out_sj.json"
+    
     // the list of projects to compare. CHANGE THIS
     const projects_for_comparison = [
         "Your project",
@@ -815,7 +815,7 @@
         '8/10-8/16'
     ];
     </script>
-    <script src="assets/js/plot_default.js"></script>
+    <script src="assets/js/plot_default_test.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/colors.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
