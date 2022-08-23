@@ -311,6 +311,8 @@ function show_default(data){
     var button_i_5_text = document.getElementById("5_text");
     var button_i_4_text = document.getElementById("4_text");
     var button_i_3_text = document.getElementById("3_text");
+    console.log(button_i_3_text);
+    console.log(months[num_months-1]);
     button_i_6_text.innerHTML = months[num_months-1];
     button_i_5_text.innerHTML = months[num_months-2];
     button_i_4_text.innerHTML = months[num_months-3];
