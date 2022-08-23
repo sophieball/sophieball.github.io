@@ -71,6 +71,8 @@ const bar_config = {
   },
 };
 
+
+
 const timeListSelects = document.querySelectorAll(".timeList");
 const commentListSelects = document.querySelectorAll(".commentList");
 function listConvers(data) {
@@ -391,7 +393,7 @@ function drawChart(data, selector, chart_id, chart_obj)
     line_config["data"] = {
         labels: xtitle,
         datasets: [{
-            label: title,
+            // label: title,
             backgroundColor: cur_colour,//'rgb(39, 15, 163)',
             borderColor: cur_colour,//line_color,
             fill: false,
@@ -413,10 +415,21 @@ var button_i_5 = document.getElementById("5");
 var button_i_4 = document.getElementById("4");
 var button_i_3 = document.getElementById("3");
 
+num_months = months.length;
+button_i_6.innerHTML = months[num_months-1];
+button_i_5.innerHTML = months[num_months-2];
+button_i_4.innerHTML = months[num_months-3];
+button_i_3.innerHTML = months[num_months-4];
+
 var button_t_6 = document.getElementById("pr_6");
 var button_t_5 = document.getElementById("pr_5");
 var button_t_4 = document.getElementById("pr_4");
 var button_t_3 = document.getElementById("pr_3");
+
+button_t_6.innerHTML = months[num_months-1];
+button_t_5.innerHTML = months[num_months-2];
+button_t_4.innerHTML = months[num_months-3];
+button_t_3.innerHTML = months[num_months-4];
 
 function displayToxic(data, type){
     const toxicMonthSelect = document.querySelectorAll(".issue_toxic_month_selector");
