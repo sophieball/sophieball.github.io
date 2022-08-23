@@ -305,6 +305,26 @@ function show_default(data){
     pr_dis["options"]["title"]["text"] = "Avg Comments for Pull Requests Closed in Each Week";
     pr_dicussion_chart = new Chart(document.getElementById("prDisChart"), pr_dis);
 
+    // display week date range in the toxicity tab
+    num_months = months.length;
+    var button_i_6_text = document.getElementById("6_text");
+    var button_i_5_text = document.getElementById("5_text");
+    var button_i_4_text = document.getElementById("4_text");
+    var button_i_3_text = document.getElementById("3_text");
+    button_i_6_text.innerHTML = months[num_months-1];
+    button_i_5_text.innerHTML = months[num_months-2];
+    button_i_4_text.innerHTML = months[num_months-3];
+    button_i_3_text.innerHTML = months[num_months-4];
+
+    var button_t_6_text = document.getElementById("pr_6_text");
+    var button_t_5_text = document.getElementById("pr_5_text");
+    var button_t_4_text = document.getElementById("pr_4_text");
+    var button_t_3_text = document.getElementById("pr_3_text");
+    button_t_6_text.innerHTML = months[num_months-1];
+    button_t_5_text.innerHTML = months[num_months-2];
+    button_t_4_text.innerHTML = months[num_months-3];
+    button_t_3_text.innerHTML = months[num_months-4];
+
     // toxic issues
     toxic_config = Object.assign({}, line_config);
     toxic_config["data"] = {
