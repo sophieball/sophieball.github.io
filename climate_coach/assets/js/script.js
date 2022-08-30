@@ -103,7 +103,7 @@ function listConvers(data) {
                 long_time_convs.innerHTML = 'Pull requests that have been opened for the longest time:<br>';
                 long_standings.forEach((long_standing) => {
                     long_time_convs.innerHTML += 
-                        '<p class="mb-2"><a href="'+long_standing.link+'">'+long_standing.title+'</a></p>';
+                        '<p class="mb-2"><a href="'+long_standing.url+'">'+long_standing.title+'</a></p>';
                 });
                 var most_comment_conv = document.getElementById('many_comments_convs');
                 // console.log(long_standings);
