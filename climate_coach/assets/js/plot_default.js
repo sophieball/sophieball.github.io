@@ -357,7 +357,7 @@ function show_default(data){
     toxic_links = data[0].toxic[last_win];
     var toxic_title = document.getElementById("issue_links_to_toxicity");
     if (toxic_links.length == 0) {
-        toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
+        toxic_title.innerHTML = "No comment has a toxicity score above the threshold (0.7).";
     }
     else {
         var toxic_count = 1;
@@ -399,7 +399,7 @@ function show_default(data){
     pr_toxic_links = data[1].toxic[last_win];
     var pr_toxic_title = document.getElementById("pr_links_to_toxicity");
     if (pr_toxic_links.length == 0) {
-        pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold.";
+        pr_toxic_title.innerHTML = "No comment has a toxicity score above the threshold (0.7).";
     }
     else {
         var pr_toxic_count = 1;
