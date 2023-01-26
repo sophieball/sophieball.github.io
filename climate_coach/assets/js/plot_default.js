@@ -1,8 +1,6 @@
 $.getJSON(data_link, 
  function(data) {show_default(data)});
 
-show_default(data);
-
 // reads data
 // plots the charts that are shown when the page is load
 function show_default(data){
