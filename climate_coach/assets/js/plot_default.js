@@ -498,6 +498,7 @@ function show_default(data){
     issue_config["data"] = {
         labels: months,
         datasets: [{
+            label: "Number of New Authors",
             backgroundColor: line_colors[0],
             borderColor: line_colors[0],
             fill: false,
@@ -515,6 +516,7 @@ function show_default(data){
     pr_config["data"] = {
         labels: months,
         datasets: [{
+            label: "Number of New Authors",
             backgroundColor: line_colors[0],
             borderColor: line_colors[0],
             fill: false,
@@ -531,7 +533,8 @@ function show_default(data){
     issue_label = Object.assign({}, bar_config);
     issue_label["data"] = {
         labels: data[0].label_counts_keys,
-        datasets: [{
+        datasets: [{          
+            label: "Number of Issues in Each Label",
             backgroundColor: color_palette,
             borderColor: line_palette,
             borderWidth: 1,
@@ -588,6 +591,7 @@ function show_default(data){
     pr_label["data"] = {
         labels: data[1].label_counts_keys,
         datasets: [{
+            label: "Number of PRs in Each Label",
             backgroundColor: color_palette,
             borderColor: line_palette,
             borderWidth: 1,
@@ -609,6 +613,7 @@ function show_default(data){
     issue_time["data"] = {
         labels: months,
         datasets: [{
+            label: "Average Close Time",
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
@@ -626,6 +631,7 @@ function show_default(data){
     pr_time["data"] = {
         labels: months,
         datasets: [{
+            label: "Average Close Time",
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
@@ -644,6 +650,7 @@ function show_default(data){
     issue_dis["data"] = {
         labels: months,
         datasets: [{
+            label: "Average Number of Comments",
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
@@ -661,6 +668,7 @@ function show_default(data){
     pr_dis["data"] = {
         labels: months,
         datasets: [{
+            label: "Average Number of Comments",
             backgroundColor: line_colors[1],
             borderColor: line_colors[1],
             fill: false,
@@ -701,7 +709,7 @@ function show_default(data){
     toxic_config["data"] = {
         labels: months,
         datasets: [{
-            // label: title,
+            label: "Number of Issues",
             backgroundColor: line_colors[3],
             borderColor: line_colors[3],
             fill: false,
@@ -743,7 +751,7 @@ function show_default(data){
     pr_toxic_config["data"] = {
         labels: months,
         datasets: [{
-            // label: title,
+            label: "Number of PRs",
             backgroundColor: line_colors[3],
             borderColor: line_colors[3],
             fill: false,
@@ -785,6 +793,7 @@ function show_default(data){
     compare_config_d["data"] = {
             labels: compare_title,
             datasets: [{
+                label: "Active Authors",
                 data: data[2].num_active_authors,
                 backgroundColor: color_palette,
                 borderColor: line_palette,
