@@ -403,8 +403,9 @@ function drawChart(data, selector, chart_id, chart_obj)
             pointRadius: point_radius,
             pointHoverRadius: hover_radius,
             data: metric
-        }]
+        }],
     };
+    line_config["options"]["plugins"]["legend"]["display"] = false;
     line_config["options"]["title"]["text"] = title;
 
     chart_obj.destroy();
