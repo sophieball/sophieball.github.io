@@ -4,6 +4,7 @@ $.getJSON(data_link,
 // reads data
 // plots the charts that are shown when the page is load
 function show_default(data){
+    console.log(slug);
     document.getElementById('proj_name').innerHTML += slug;
     // display basic stats
     var top_new_issue_authors = document.getElementById('top_new_issue_authors');
