@@ -793,7 +793,7 @@ function show_default(data){
     compare_config_d["data"] = {
             labels: compare_title,
             datasets: [{
-                label: "Active Authors",
+                label: "",
                 data: data[2].num_active_authors,
                 backgroundColor: color_palette,
                 borderColor: line_palette,
