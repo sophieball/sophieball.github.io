@@ -155,6 +155,8 @@ function createGraphs(data) {
     selector.addEventListener('click', (event) => {
         drawChart(data, selector, "prSizeChart", pr_size_chart);
     }));
+  
+    console.log("here");
 
 
     issueTimeChartSelects.forEach((selector) =>
