@@ -1,3 +1,4 @@
+console.log("here");
 $.getJSON(data_link, 
     function(data) {show_default(data)});
 
