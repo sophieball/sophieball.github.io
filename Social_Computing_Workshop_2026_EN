@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Social Computing Workshop 2026 | Registration and Call for Posters</title>
+<meta name="description" content="Explore how computational methods can help us understand people and society. Join us at HKUST(GZ), 27-29 November 2026. Registration and Poster submissions close on 25 October.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1833'/%3E%3Cpath d='M9 10h14v4H13v4h10v4H9z' fill='%23c8ff59'/%3E%3C/svg%3E">
+<style>
+:root{--navy:#0b1833;--green:#c8ff59;--ink:#12223e;--muted:#596780;--paper:#f5f7fb;--line:#dce2eb}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;font-size:16px;line-height:1.8}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #65a6ff;outline-offset:5px}.wrap{max-width:1180px;margin:auto;padding:0 36px}header{background:var(--navy);color:white;border-bottom:1px solid #ffffff20}nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:84px}.brand{font-weight:750;font-size:18px;line-height:1.3;letter-spacing:-.4px}.brand small{font-size:12px;display:block;letter-spacing:2px;font-weight:400;color:#c2cce0;margin-top:6px}.navlinks{display:flex;gap:26px;font-size:14px}.navlinks a:hover{color:var(--green)}.hero{background:var(--navy);color:white;padding:60px 0 0;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:70px;align-items:center;padding-bottom:62px}.eyebrow{font-size:14px;text-transform:uppercase;letter-spacing:2px;font-weight:650;display:flex;align-items:center;gap:14px}.eyebrow:before{content:"";height:2px;width:30px;background:var(--green)}h1{font-size:clamp(48px,6vw,78px);line-height:1.07;letter-spacing:-2.5px;margin:26px 0}h1 em{font-style:normal;color:var(--green)}.hero-sub{font-size:24px;line-height:1.6;margin:0 0 14px;letter-spacing:1px}.hero-desc{max-width:540px;color:#bbc7dc;margin:0 0 30px}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:4px;padding:12px 22px;font-size:15px;font-weight:650;cursor:pointer}.primary{background:var(--green);color:var(--navy)}.secondary{color:white;border-color:#ffffff50;background:transparent}.primary:hover{background:#dcff9b}.secondary:hover{border-color:var(--green)}.hero-note{font-size:13px;color:#9aabc8;margin-top:14px}.poster{border:1px solid #ffffff35;padding:30px;transform:rotate(3deg);background:#112344;box-shadow:16px 16px 0 #ffffff07}.poster-top{display:flex;justify-content:space-between;font-size:13px;color:#b3c4e1;letter-spacing:1px}.poster-word{font-size:clamp(35px,4.5vw,62px);font-weight:850;line-height:1.1;letter-spacing:-2px;margin:34px 0}.poster-word span{color:var(--green)}.poster-rule{height:1px;background:#ffffff30;margin:24px 0}.poster-bottom{font-size:16px;line-height:1.6}.poster-bottom strong{font-size:26px;letter-spacing:1px}.dates{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #ffffff30}.date{padding:24px 30px 28px 0}.date+.date{border-left:1px solid #ffffff30;padding-left:32px}.date-label{font-size:14px;color:#afbdd5}.date strong{display:block;font-size:30px;letter-spacing:-.5px;line-height:1.3;margin:8px 0}.date small{font-size:14px;color:#afbdd5}.section{padding:88px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;margin-bottom:36px;align-items:end}.kicker{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px}h2{font-size:36px;letter-spacing:-1px;line-height:1.35;margin:0}h3{font-size:21px;line-height:1.45;margin:0 0 12px}p{margin:0 0 16px}.section-head p{margin:0;color:var(--muted)}.statline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:white;margin-top:38px}.stat{padding:24px}.stat+.stat{border-left:1px solid var(--line)}.stat b{display:block;font-size:40px;line-height:1.3}.stat span{font-size:14px;color:var(--muted)}.topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.tag{padding:7px 14px;background:#e7edf6;border-radius:3px;font-size:14px}.columns{display:grid;grid-template-columns:1.15fr 1fr;gap:46px}.list{padding:0;list-style:none;margin:20px 0}.list li{padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:20px}.list span{color:var(--muted);font-size:13px;padding-top:3px}.submission{background:white;border:1px solid var(--line);padding:30px}.submission .item{display:flex;gap:16px;margin-top:20px}.num{height:28px;min-width:28px;background:var(--navy);color:var(--green);display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1}.submission strong{display:block}.submission small{display:block;font-size:14px;color:var(--muted)}.notice{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;margin-top:26px}.schedule-tabs{display:flex;gap:8px;margin-bottom:24px}.tab{border:1px solid var(--line);background:transparent;cursor:pointer;padding:14px 22px;flex:1;text-align:left;border-radius:3px;color:var(--muted);font-size:14px}.tab strong{display:block;font-size:18px;color:var(--ink)}.tab[aria-selected=true]{background:var(--navy);color:#b9c8df;border-color:var(--navy)}.tab[aria-selected=true] strong{color:var(--green)}.schedule{background:white;border:1px solid var(--line);padding:8px 28px}.slot{display:grid;grid-template-columns:140px 1fr 1.2fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}.slot:last-child{border:0}.slot time{font-size:14px;color:var(--muted)}.slot b{font-size:16px}.slot p{font-size:14px;color:var(--muted);margin:0}.highlight b{color:#34551c}.schedule-note{font-size:14px;color:var(--muted);margin-top:18px}.fees{display:grid;grid-template-columns:1fr 1fr;gap:24px}.fee-box{border-top:3px solid var(--navy);background:white;padding:32px}.price{font-size:48px;font-weight:750;letter-spacing:-2px;line-height:1.4;margin:16px 0}.price small{font-size:16px;color:var(--muted);font-weight:400;letter-spacing:0}.fee-box p{font-size:15px;color:var(--muted)}.fund{background:var(--green);padding:32px;margin-top:24px;display:grid;grid-template-columns:.85fr 1.15fr;gap:36px}.fund h3{font-size:26px}.fund p{font-size:15px;margin-bottom:0}.fund strong{font-size:32px;line-height:1.4}.faq{max-width:850px;margin:auto}details{border-bottom:1px solid var(--line);padding:22px 0}summary{font-weight:650;cursor:pointer;padding-right:24px}details p{color:var(--muted);font-size:15px;margin:18px 0 0}.final{background:var(--navy);color:white;padding:70px 0}.final .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:70px;align-items:center}.final h2{font-size:40px}.final p{color:#b5c3db;margin-top:18px}.callout{border-left:2px solid var(--green);padding-left:28px}.callout strong{font-size:22px;display:block;color:var(--green)}.callout p{font-size:15px;margin:12px 0 0}footer{background:var(--navy);color:#98aac7;border-top:1px solid #ffffff20;padding:22px 0;font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:18px}[hidden]{display:none!important}@media(max-width:850px){.hero-grid{gap:35px}.wrap{padding:0 24px}.poster{padding:22px}.section-head{gap:30px}.slot{grid-template-columns:120px 1fr}.slot p{grid-column:2}.final .wrap{gap:32px}.navlinks{gap:16px}}@media(max-width:640px){nav{min-height:78px}.brand{font-size:16px}.navlinks a:nth-child(n+3){display:none}.navlinks{font-size:13px;gap:15px}.hero{padding-top:38px}.hero-grid{grid-template-columns:1fr;padding-bottom:36px;gap:36px}h1{font-size:56px;letter-spacing:-2px}.hero-sub{font-size:21px}.poster{transform:none;padding:24px}.poster-word{font-size:48px;margin:24px 0}.poster-bottom{display:flex;justify-content:space-between;gap:15px;align-items:end;font-size:14px}.poster-bottom strong{font-size:22px}.poster-rule{margin:18px 0}.dates{grid-template-columns:1fr}.date,.date+.date{padding:18px 0;border-left:0;border-bottom:1px solid #ffffff20;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6px}.date strong{font-size:25px;text-align:right;margin:0}.date small{grid-column:2;text-align:right}.section{padding:54px 0}.section-head,.columns{grid-template-columns:1fr;gap:22px}.section-head{margin-bottom:28px}h2{font-size:29px}.statline{grid-template-columns:1fr 1fr}.stat{padding:20px}.stat:nth-child(3){border-left:0;border-top:1px solid var(--line)}.stat:nth-child(4){border-top:1px solid var(--line)}.stat b{font-size:34px}.submission{padding:24px}.schedule-tabs{gap:6px}.tab{padding:12px 10px;font-size:12px}.tab strong{font-size:16px}.schedule{padding:4px 18px}.slot{grid-template-columns:100px 1fr;gap:10px;padding:18px 0}.slot time{font-size:12px}.slot p{grid-column:1/-1}.fees{grid-template-columns:1fr;gap:14px}.fee-box{padding:24px}.price{font-size:40px}.fund{grid-template-columns:1fr;gap:20px;padding:24px}.final{padding:48px 0}.final .wrap{grid-template-columns:1fr;gap:32px}.final h2{font-size:31px}footer .wrap{display:block}footer span{display:block;margin-top:5px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0 0 34px}.topic-box{background:white;border:1px solid var(--line);padding:28px}.topic-box h3{border-bottom:1px solid var(--line);padding-bottom:12px}.topic-box ul{margin:0;padding-left:20px}.topic-box li{margin:14px 0}.topic-box strong{display:block}.topic-box small{display:block;color:var(--muted);font-size:14px}.guest-line{background:#e7edf6;padding:20px 24px;margin-bottom:28px}.guest-line strong{margin-right:12px}.submit-link{display:inline-flex;margin-top:16px}@media(max-width:640px){.topic-grid{grid-template-columns:1fr}.topic-box{padding:22px}}
+</style>
+</head>
+<body>
+<header>
+<nav class="wrap" aria-label="Main navigation">
+<a class="brand" href="#">SOCIAL COMPUTING<small>WORKSHOP 2026 · GUANGZHOU</small>
+</a>
+<div class="navlinks">
+<a href="Social_Computing_Workshop_2026.html" lang="zh-CN">中文</a>
+<a href="#posters">Posters</a>
+<a href="#program">Program</a>
+<a href="#registration">Fees &amp; Support</a>
+<a href="#faq">FAQ</a>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div class="wrap">
+<div class="hero-grid">
+<div>
+<div class="eyebrow">Explore Social Computing · 2026</div>
+<h1>Can social phenomena<br><em>be computed?</em></h1>
+<p class="hero-sub">Social Computing Workshop</p>
+<p class="hero-desc">How do social relationships form? Why does information spread? Can data, networks and large language models help us understand society? Spend three days exploring the theories, methods and practice of social computing through accessible examples.</p>
+<div class="actions">
+<a class="btn primary" href="https://v.wjx.cn/vm/m70Mfmi.aspx#" target="_blank" rel="noopener noreferrer">Register / Submit a Poster</a>
+<a class="btn secondary" href="#about">What is social computing?</a>
+</div>
+<p class="hero-note">In person · Main language: Mandarin · English subtitles available · HKUST(GZ)</p>
+</div>
+<div class="poster" aria-label="Workshop poster">
+<div class="poster-top">
+<span>SC / 2026</span>
+<span>Nansha · Guangzhou</span>
+</div>
+<div class="poster-word">POSTERS<br>
+<span>TOGETHER.</span>
+<br>PROTOTYPES.</div>
+<div class="poster-rule">
+</div>
+<div class="poster-bottom">
+<div>
+<strong>11.27 — 29</strong>
+<br>HKUST(GZ)</div>
+<div>From Posters to<br>Collaborative Prototypes</div>
+</div>
+</div>
+</div>
+<div class="dates">
+<div class="date">
+<div class="date-label">01 / Registration &amp; Poster deadline</div>
+<strong>2026.10.25</strong>
+<small>You may register without a Poster</small>
+</div>
+<div class="date">
+<div class="date-label">02 / Notification</div>
+<strong>2026.11.01</strong>
+<small>Notification of Acceptance</small>
+</div>
+<div class="date">
+<div class="date-label">03 / Workshop</div>
+<strong>2026.11.27–29</strong>
+<small>Friday afternoon to Sunday evening</small>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="about">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker">What is social computing?</div>
+<p>It starts with human interaction and uses computational methods to observe, analyse and understand society.</p>
+</div>
+<div class="section-head">
+<h2>Start with familiar social phenomena.<br>Step into computational methods.</h2>
+<p>Social networks, collective behaviour, information diffusion, algorithmic influence and human-AI interaction are all part of social computing. Accessible lectures introduce the fundamentals, hands-on tutorials let you try real tools and methods, and team projects bring participants from different backgrounds together.</p>
+</div>
+<div class="statline">
+<div class="stat">
+<b>3</b>
+<span>days to learn, practise and connect</span>
+</div>
+<div class="stat">
+<b>0</b>
+<span>prior experience required</span>
+</div>
+<div class="stat">
+<b>Theory</b>
+<span>Understand social phenomena</span>
+</div>
+<div class="stat">
+<b>Practice</b>
+<span>Try computational methods</span>
+</div>
+</div>
+<div class="topics">
+<span class="tag">Social Computing / Computational Social Science</span>
+<span class="tag">AI / LLMs / Agents</span>
+<span class="tag">HCI / Design</span>
+<span class="tag">Sociology / Communication</span>
+<span class="tag">Psychology / Behavioural Science</span>
+<span class="tag">Data Science / Network Science</span>
+</div>
+</div>
+</section>
+<section class="section" id="posters">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">Registration &amp; Call for Posters</div>
+<h2>Share your research,<br>or join without a Poster.</h2>
+</div>
+<p>Complete the form to register and choose whether to submit a Poster. Whether you are new to social computing or already have research to share, there is a way to take part.</p>
+</div>
+<div class="columns">
+<div>
+<h3>We welcome</h3>
+<ul class="list">
+<li>
+<span>01</span>
+<div>
+<strong>Completed and ongoing research</strong>
+<br>Published or unpublished studies, work in progress and preliminary findings.</div>
+</li>
+<li>
+<span>02</span>
+<div>
+<strong>Research plans and questions</strong>
+<br>A promising research question or a social problem you hope to address.</div>
+</li>
+<li>
+<span>03</span>
+<div>
+<strong>Systems, tools and datasets</strong>
+<br>AI applications, interactive systems, analytical tools or relevant data resources.</div>
+</li>
+<li>
+<span>04</span>
+<div>
+<strong>Prototype Idea</strong>
+<br>An idea you would like to develop with collaborators during the workshop.</div>
+</li>
+</ul>
+</div>
+<div class="submission">
+<h3>Poster format and submission</h3>
+<div class="item">
+<span class="num">1</span>
+<div>
+<strong>Length and format</strong>
+<small>Maximum one A4 page, excluding references; single-spaced; 10-point font.</small>
+</div>
+</div>
+<div class="item">
+<span class="num">2</span>
+<div>
+<strong>Figures, tables and margins</strong>
+<small>At most one figure OR one table; 1-inch margins on all sides.</small>
+</div>
+</div>
+<div class="item">
+<span class="num">3</span>
+<div>
+<strong>Submission language</strong>
+<small>Chinese or English.</small>
+</div>
+</div>
+<div class="item">
+<span class="num">4</span>
+<div>
+<strong>Anonymity</strong>
+<small>Anonymous and non-anonymous submissions are both accepted.</small>
+</div>
+</div>
+<div class="notice">Registration and Poster submission deadline: <strong>25 October 2026</strong><br>Applicants submitting Posters receive priority for workshop places. Poster presentation decisions and general attendance decisions will be communicated separately.
+<br><a class="btn primary submit-link" href="https://v.wjx.cn/vm/m70Mfmi.aspx#" target="_blank" rel="noopener noreferrer">Register / Submit a Poster</a></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="program">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">Program / Three days</div>
+<h2>Understand the fundamentals,<br>then learn by doing.</h2>
+</div>
+<p>Lectures build an intuitive understanding of social computing, while practical tutorials introduce commonly used methods. No prior mastery of all the techniques is required. Speaker-topic assignments will be announced later.</p>
+</div>
+<div class="topic-grid">
+<div class="topic-box"><h3>Lectures</h3><ul>
+<li><strong>What is social computing?</strong><small>Discover this interdisciplinary field through networks, groups and platform phenomena in everyday life.</small></li>
+<li><strong>Social theories</strong><small>Learn how researchers explain human behaviour, social relationships and collective phenomena.</small></li>
+</ul></div>
+<div class="topic-box"><h3>Hands-on Tutorials</h3><ul>
+<li><strong>Web scraping</strong><small>Learn how public online information becomes research data, together with essential ethical principles.</small></li>
+<li><strong>Social network analysis</strong><small>Represent social relationships as networks and examine key nodes, communities and connection patterns.</small></li>
+<li><strong>LLM-simulated social surveys</strong><small>Explore how large language models can simulate diverse respondents, including the method’s uses and limitations.</small></li>
+</ul></div>
+</div>
+<div class="guest-line"><strong>Selected guests</strong>Prof. Luo Jiade, Southwestern University of Finance and Economics · Prof. Chen Yang, Fudan University · Prof. Jiang Zhuoren, Zhejiang University</div>
+<div class="schedule-tabs" role="tablist" aria-label="Workshop dates">
+<button class="tab" id="tab0" role="tab" aria-selected="true" aria-controls="day0" tabindex="0">
+<strong>Fri 27 Nov</strong>Connect · Find collaborators</button>
+<button class="tab" id="tab1" role="tab" aria-selected="false" aria-controls="day1" tabindex="-1">
+<strong>Sat 28 Nov</strong>Learn · Build prototypes</button>
+<button class="tab" id="tab2" role="tab" aria-selected="false" aria-controls="day2" tabindex="-1">
+<strong>Sun 29 Nov</strong>Refine · Present</button>
+</div>
+<div id="schedule-panels">
+<div id="day0" class="schedule" role="tabpanel" aria-labelledby="tab0">
+<div class="slot">
+<time>13:30–14:00</time>
+<b>Registration and check-in</b>
+<p>Check in, mount Posters and meet other participants.</p>
+</div>
+<div class="slot">
+<time>14:00–14:20</time>
+<b>Opening and orientation</b>
+<p>Overview of the program, participation and project goals.</p>
+</div>
+<div class="slot">
+<time>14:20–15:10</time>
+<b>Opening lecture</b>
+<p>Research questions and methods in social computing.</p>
+</div>
+<div class="slot">
+<time>15:10–15:25</time>
+<b>Break</b>
+<p>Networking and Poster preparation.</p>
+</div>
+<div class="slot">
+<time>15:25–17:00</time>
+<b>Poster Session</b>
+<p>Share findings, ideas, systems and datasets, and receive feedback.</p>
+</div>
+<div class="slot">
+<time>17:00–18:30</time>
+<b>Team formation and project ideation</b>
+<p>Meet collaborators based on interests and skills, and define an initial direction.</p>
+</div>
+<div class="slot">
+<time>18:30–19:30</time>
+<b>Dinner</b>
+<p>Continue the conversation over dinner.</p>
+</div>
+</div>
+<div id="day1" class="schedule" role="tabpanel" aria-labelledby="tab1" hidden="">
+<div class="slot">
+<time>09:00–10:00</time>
+<b>Lecture 1</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>10:00–11:00</time>
+<b>Lecture 2</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>11:00–11:30</time>
+<b>Break</b>
+<p>Informal networking.</p>
+</div>
+<div class="slot">
+<time>11:30–12:30</time>
+<b>Lecture 3</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>12:30–14:00</time>
+<b>Lunch and break</b>
+<p>Working lunch and informal networking.</p>
+</div>
+<div class="slot">
+<time>14:00–15:30</time>
+<b>Hands-on Tutorial 1</b>
+<p>Practical work with tools, methods and development workflows.</p>
+</div>
+<div class="slot">
+<time>15:30–15:45</time>
+<b>Break</b>
+<p>Short break.</p>
+</div>
+<div class="slot">
+<time>15:45–18:30</time>
+<b>Team prototype development</b>
+<p>Develop prototypes with guidance from mentors.</p>
+</div>
+</div>
+<div id="day2" class="schedule" role="tabpanel" aria-labelledby="tab2" hidden="">
+<div class="slot">
+<time>09:00–10:00</time>
+<b>Lecture 4</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>10:00–11:00</time>
+<b>Lecture 5</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>11:00–11:30</time>
+<b>Break</b>
+<p>Informal networking.</p>
+</div>
+<div class="slot">
+<time>11:30–12:30</time>
+<b>Lecture 6</b>
+<p>Talk followed by discussion and Q&A.</p>
+</div>
+<div class="slot">
+<time>12:30–14:00</time>
+<b>Lunch and break</b>
+<p>Working lunch and informal networking.</p>
+</div>
+<div class="slot">
+<time>14:00–15:30</time>
+<b>Hands-on Tutorial 2</b>
+<p>A complementary practical session building on the previous day.</p>
+</div>
+<div class="slot">
+<time>15:30–15:45</time>
+<b>Break</b>
+<p>Short break.</p>
+</div>
+<div class="slot">
+<time>15:45–17:00</time>
+<b>Team development and rehearsal</b>
+<p>Refine prototypes, prepare presentations and consult mentors.</p>
+</div>
+<div class="slot">
+<time>17:00–18:00</time>
+<b>Prototype presentations</b>
+<p>Team demonstrations, expert questions and feedback.</p>
+</div>
+<div class="slot">
+<time>18:00–18:30</time>
+<b>Closing and next steps</b>
+<p>Review outcomes and plan future research collaboration.</p>
+</div>
+</div>
+</div>
+<p class="schedule-note">Workshop dates are confirmed. The detailed timetable and speaker schedule are subject to later announcements.</p>
+</div>
+</section>
+<section class="section" id="registration">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">Registration &amp; Support</div>
+<h2>Choose how you take part<br>in three days of exploration.</h2>
+</div>
+<p>This is a small, highly participatory in-person workshop. Bring a Poster to share your work, or start by discovering social computing through lectures, practical sessions and teamwork.</p>
+</div>
+<div class="guest-line"><strong>How places are confirmed</strong>Accepted Poster presenters receive first priority, followed by applicants whose Poster submissions meet the basic requirements but are not selected for presentation. Remaining places will be offered to registrants who did not submit a Poster. A place is confirmed only after receiving an offer and paying by the stated deadline.</div>
+<div class="fees">
+<div class="fee-box">
+<h3>Students</h3>
+<div class="price">¥600 <small>/ person</small>
+</div>
+<p>For undergraduate, master’s and doctoral students.</p>
+</div>
+<div class="fee-box">
+<h3>Faculty and researchers</h3>
+<div class="price">¥1,000 <small>/ person</small>
+</div>
+<p>For faculty members, researchers and relevant professionals.</p>
+</div>
+</div>
+<p style="margin:12px 0 0;color:var(--muted);font-size:13px">HKUST(GZ) students and staff: ¥100 per person</p>
+<div class="fund">
+<div>
+<div class="kicker">Student Travel Fund</div>
+<h3>Student Travel Fund</h3>
+<strong>10 awards · Up to ¥1,500 per person</strong>
+</div>
+<div>
+<p>The fund is intended to support travel to Guangzhou and accommodation during the workshop for students from outside the city. Priority will be given to students who submit a Poster, research plan or prototype idea and can participate in all three days and the team project.</p>
+<p style="margin-top:14px">Funding is application-based and subject to review. Application procedures, receipt requirements and reimbursement rules will be announced later.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="faq">
+<div class="wrap">
+<div class="section-head">
+<div>
+<div class="kicker">Good to know</div>
+<h2>New to the field?<br>Curiosity is enough to begin.</h2>
+</div>
+<p>Discover a new field, try a new method, or bring your research to find feedback and collaborators.</p>
+</div>
+<div class="faq">
+<details>
+<summary>Can I submit without a complete paper?</summary>
+<p>Yes. We welcome published or unpublished completed studies, work in progress, preliminary findings, research ideas and prototype concepts. Your abstract may describe the question, methods, current results and what you hope to discuss or develop during the workshop.</p>
+</details>
+<details>
+<summary>Can I join without a computing background or coding skills?</summary>
+<p>Yes. Social computing is inherently interdisciplinary: social analysis, theory, user research, design and communication all matter. You may join individually and find teammates based on shared interests and complementary skills. Practical sessions begin with concepts and basic operations.</p>
+</details>
+<details>
+<summary>What will happen over the three days?</summary>
+<p>You will begin with concepts and cases, try methods involving data collection, network analysis or LLMs, and work with a team to turn a social question into an initial proposal, visualisation or simple prototype. The emphasis is on learning and exploration; you do not need a complete project at the outset.</p>
+</details>
+<details>
+<summary>What follow-up opportunities are available for promising projects?</summary>
+<p>Projects with research potential may receive further mentor feedback on research design, implementation, evaluation and user studies. Mature work may later be submitted through the normal editorial and peer-review process to relevant venues such as the Journal of Social Computing or ACM Transactions on Social Computing.</p>
+</details>
+<details>
+<summary>Can I attend only the classes?</summary>
+<p>Audit places may be available if capacity permits; please state your preferred mode of participation in advance. Auditing is not the same as full workshop participation, and access to team projects, awards and follow-up support is not guaranteed. Please confirm reimbursement eligibility with your institution.</p>
+</details>
+<details>
+<summary>How do I register, and what are the Poster requirements?</summary>
+<p>Use the “Register / Submit a Poster” button to complete the form and indicate whether you are submitting a Poster. The Poster submission is limited to one A4 page excluding references, single-spaced, in 10-point font with 1-inch margins on all sides, and may contain at most one figure OR one table. Chinese and English submissions are accepted, with optional anonymity.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="final">
+<div class="wrap">
+<div>
+<div class="eyebrow">See you in Guangzhou</div>
+<h2 style="margin-top:20px">Begin with a curious question.<br>Discover social computing.</h2>
+<p>Social Computing Workshop<br>From Posters to Collaborative Prototypes</p>
+</div>
+<div class="callout">
+<strong>25 October · Registration &amp; Poster deadline</strong>
+<p>1 November · Notification<br>27-29 November · HKUST(GZ)</p>
+<p><a class="btn primary" href="https://v.wjx.cn/vm/m70Mfmi.aspx#" target="_blank" rel="noopener noreferrer">Register / Submit a Poster</a></p>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap">
+<div>Social Computing Workshop 2026</div>
+<span>HKUST(GZ) · 2026.11.27–29</span>
+</div>
+</footer>
+<script>
+const tabs=[...document.querySelectorAll('.tab')];function select(i,focus=false){tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1;document.getElementById('day'+j).hidden=i!==j});if(focus)tabs[i].focus()}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%3;if(e.key==='ArrowLeft')n=(i+2)%3;if(e.key==='Home')n=0;if(e.key==='End')n=2;if(n!==undefined){e.preventDefault();select(n,true)}})});
+</script>
+</body>
+</html>
