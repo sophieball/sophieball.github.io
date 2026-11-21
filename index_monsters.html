@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中华精怪出没图鉴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f0e2; --paper-2:#f0e6d1; --paper-3:#e7d9bd;
+    --card:#fffcf4;
+    --ink:#2b231b; --ink-2:#6b5a45; --ink-3:#9a886e;
+    --line:#d8c8a8; --line-soft:#e8dcc2;
+    --seal:#a5322a; --gold:#a8874e;
+    --c-shou:#8a5a2b; --c-qin:#3f6e5a; --c-lin:#2f5f7a; --c-cao:#5d7a2f; --c-qi:#7a5a7a; --c-gui:#4a4a5a;
+    --lv1:#5d7a2f; --lv2:#9a8a2a; --lv3:#c27a1e; --lv4:#b2342a; --lv5:#6e1c16;
+    --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    --brush:"Ma Shan Zheng","STKaiti","Kaiti SC","KaiTi","楷体",var(--serif);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.75;-webkit-font-smoothing:antialiased}
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse at 10% 4%, rgba(165,50,42,.05), transparent 34%),
+      radial-gradient(ellipse at 92% 88%, rgba(63,112,96,.055), transparent 40%),
+      radial-gradient(rgba(120,95,60,.055) 1px, transparent 1px);
+    background-size:auto,auto,6px 6px;
+  }
+  .frame{position:fixed;inset:14px;border:1px solid rgba(168,135,78,.26);pointer-events:none;z-index:1}
+  .frame::after{content:"";position:absolute;inset:5px;border:1px solid rgba(168,135,78,.13)}
+  .corner{position:absolute;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);opacity:.7}
+  .corner.tl{top:-4px;left:-4px}.corner.tr{top:-4px;right:-4px}
+  .corner.bl{bottom:-4px;left:-4px}.corner.br{bottom:-4px;right:-4px}
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 30px}
+  @media (max-width:600px){.wrap{padding:0 20px}.frame{inset:8px}}
+
+  .cat-shou{--cat:#8b5a2c;--cat-soft:#f2e6d4}
+  .cat-qin {--cat:#3f7060;--cat-soft:#e1ece6}
+  .cat-lin {--cat:#35657d;--cat-soft:#dfeaf0}
+  .cat-cao {--cat:#5f7a35;--cat-soft:#e8eeda}
+  .cat-qi  {--cat:#7a5674;--cat-soft:#efe2ee}
+  .cat-gui {--cat:#4b4a5e;--cat-soft:#e5e4eb}
+
+  /* 卷首 */
+  .masthead{display:flex;gap:26px;align-items:center;padding:54px 0 26px;flex-wrap:wrap}
+  .seal-group{display:flex;gap:10px;align-items:flex-start;flex:none}
+  .seal{
+    width:76px;height:76px;flex:none;display:grid;place-items:center;
+    background:var(--seal);color:#fff8ea;font-family:var(--brush);font-size:48px;line-height:1;
+    border-radius:5px;transform:rotate(-5deg);position:relative;
+    box-shadow:0 2px 0 rgba(120,35,28,.25),inset 0 0 0 3px rgba(255,255,255,.16);
+    text-shadow:0 1px 1px rgba(90,20,15,.35);
+  }
+  .seal::after{content:"";position:absolute;inset:5px;border:1px solid rgba(255,248,234,.42);border-radius:2px}
+  .seal-cap{
+    writing-mode:vertical-rl;font-family:var(--brush);font-size:15px;letter-spacing:.35em;
+    color:var(--seal);border:1px solid rgba(165,50,42,.45);padding:8px 4px;border-radius:3px;
+    background:rgba(165,50,42,.04);line-height:1.2;
+  }
+  .mast-text{flex:1;min-width:270px}
+  .eyebrow{font-size:12px;letter-spacing:.34em;color:var(--gold);margin-bottom:10px}
+  .eyebrow i{display:inline-block;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);margin:0 10px;vertical-align:middle}
+  h1{font-family:var(--brush);font-weight:400;font-size:clamp(38px,6.4vw,62px);letter-spacing:.09em;line-height:1.12;margin:0;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+  .sub{margin:12px 0 0;color:var(--ink-2);font-size:15px}
+  .sub em{font-style:normal;color:var(--seal);border-bottom:1px solid rgba(165,50,42,.35);padding-bottom:1px}
+  .mast-side{display:flex;gap:16px;align-items:center;flex:none}
+  .colophon{writing-mode:vertical-rl;font-size:12px;line-height:1.9;letter-spacing:.12em;color:var(--ink-3);border-right:1px solid var(--line);padding-right:14px;height:88px}
+  .round-seal{width:56px;height:56px;border:2px solid var(--seal);border-radius:50%;color:var(--seal);display:grid;place-items:center;font-family:var(--brush);font-size:19px;line-height:1.15;text-align:center;transform:rotate(8deg);box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px rgba(165,50,42,.45)}
+  @media (max-width:760px){.mast-side{display:none}.masthead{padding:38px 0 20px;gap:18px}}
+  .rule{display:flex;align-items:center;gap:14px;margin:0 0 22px;color:var(--gold)}
+  .rule span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),var(--line))}
+  .rule span:last-child{background:linear-gradient(90deg,var(--line),var(--line),transparent)}
+  .rule i{width:9px;height:9px;border:1px solid var(--gold);transform:rotate(45deg);flex:none}
+
+  /* 检索 */
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .tabs{display:flex;gap:7px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:rgba(255,252,244,.7);color:var(--ink-2);padding:6px 14px;border-radius:3px;cursor:pointer;font:inherit;font-size:14px;position:relative;transition:all .18s ease}
+  .tab:hover{border-color:var(--gold);color:var(--ink)}
+  .tab .n{font-size:11px;margin-left:6px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .tab[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);padding-left:17px}
+  .tab[aria-pressed="true"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--seal)}
+  .tab[aria-pressed="true"] .n{color:rgba(246,240,226,.6)}
+  .grow{flex:1}
+  .select,.search-wrap{border:1px solid var(--line);background:rgba(255,252,244,.8);border-radius:3px;color:var(--ink)}
+  .select{padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+  .select:focus{outline:none;border-color:var(--seal)}
+  .search-wrap{display:flex;align-items:center;gap:8px;padding:0 12px;transition:border-color .18s}
+  .search-wrap:focus-within{border-color:var(--seal)}
+  .search-wrap svg{flex:none;color:var(--ink-3)}
+  .search{border:0;background:transparent;outline:none;padding:8px 0;font:inherit;font-size:14px;min-width:180px;color:var(--ink)}
+  .search::placeholder{color:var(--ink-3)}
+  .legend-btn{border:1px solid var(--seal);background:transparent;color:var(--seal);padding:8px 15px;border-radius:3px;cursor:pointer;font:inherit;font-size:14px;transition:all .18s}
+  .legend-btn:hover{background:rgba(165,50,42,.07)}
+  .rand{border:1px solid var(--seal);background:var(--seal);color:#fff8ea;padding:8px 17px;border-radius:3px;cursor:pointer;font:inherit;font-size:14px;letter-spacing:.06em;box-shadow:inset 0 0 0 2px rgba(255,255,255,.14);transition:transform .18s,filter .18s}
+  .rand:hover{filter:brightness(1.09);transform:translateY(-1px)}
+  @media (max-width:520px){.search-wrap{flex:1 1 100%}.search{min-width:0;width:100%}.select,.rand,.legend-btn{flex:1}}
+
+  /* 目录 */
+  main{padding-bottom:36px}
+  .count{color:var(--ink-3);font-size:12px;letter-spacing:.18em;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+  .count::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(242px,1fr));gap:15px}
+  .card{position:relative;background:linear-gradient(155deg,var(--card),#f8f1e2);border:1px solid var(--line);border-radius:4px;padding:15px 16px 12px;cursor:pointer;text-align:left;font:inherit;color:inherit;overflow:hidden;display:block;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;animation:fadeUp .42s both;animation-delay:calc(var(--i,0)*18ms)}
+  .card::before,.card::after{content:"";position:absolute;width:12px;height:12px;pointer-events:none;opacity:.55}
+  .card::before{top:5px;left:5px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+  .card::after{bottom:5px;right:5px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+  .card:hover,.card:focus-visible{transform:translateY(-4px);box-shadow:0 12px 26px rgba(80,55,20,.13);border-color:var(--seal);outline:none}
+  .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
+  .card-no{font-size:11px;letter-spacing:.2em;color:var(--ink-3)}
+  .tag{font-size:11px;letter-spacing:.12em;padding:1px 8px;border-radius:2px;border:1px solid var(--cat);background:var(--cat-soft);color:var(--cat)}
+  .card-main{display:flex;gap:13px;align-items:center}
+  .glyph{width:60px;height:60px;flex:none;display:grid;place-items:center;position:relative;background:var(--cat-soft);color:var(--cat);border:1px solid var(--cat);border-radius:4px;font-family:var(--brush);font-size:35px;line-height:1}
+  .glyph::after{content:"";position:absolute;inset:4px;border:1px solid currentColor;opacity:.32;border-radius:2px}
+  .card h3{margin:0 0 3px;font-size:18px;font-weight:700;letter-spacing:.03em}
+  .card .place{margin:0;color:var(--ink-2);font-size:12px;line-height:1.6}
+  .card-level{display:flex;align-items:center;gap:8px;margin-top:13px;font-size:12px;font-weight:600}
+  .lv-text{letter-spacing:.06em}
+  .pips{display:inline-flex;gap:3px}
+  .pip{width:8px;height:8px;border-radius:2px;border:1px solid currentColor;opacity:.85}
+  .pip.on{background:currentColor}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:11px;padding-top:9px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--ink-3)}
+  .card-check.ok{color:var(--lv1)}
+  .card-foot .more{color:var(--seal);opacity:0;transform:translateX(-4px);transition:all .2s}
+  .card:hover .more,.card:focus-visible .more{opacity:1;transform:translateX(0)}
+  .empty{grid-column:1/-1;color:var(--ink-2);padding:56px 0;text-align:center;font-size:15px;letter-spacing:.08em}
+  .empty::before{content:"◇";display:block;font-size:26px;color:var(--gold);margin-bottom:10px}
+  footer{border-top:1px solid var(--line);padding:18px 0 52px;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;color:var(--ink-3);font-size:12px;letter-spacing:.04em}
+  footer span:first-child{max-width:820px}
+  .foot-seal{font-family:var(--brush);font-size:15px;color:var(--seal);border:1px solid rgba(165,50,42,.5);padding:3px 9px;border-radius:3px;transform:rotate(-3deg);flex:none}
+
+  /* 详情卷轴 */
+  .mask{position:fixed;inset:0;background:rgba(38,28,18,.5);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .mask.open{display:flex}
+  .sheet{background:var(--paper);max-width:680px;width:100%;max-height:calc(100vh - 40px);overflow:auto;border:1px solid var(--line);box-shadow:0 28px 70px rgba(20,12,4,.4);position:relative;animation:sheetIn .26s ease both}
+  .rod{height:15px;background:linear-gradient(#7a5730,#4b341f 45%,#7a5730);display:flex;align-items:center;padding:0 8px;gap:8px}
+  .rod i{width:16px;height:19px;border-radius:3px;background:linear-gradient(90deg,#3a2716,#6b4a29,#3a2716);flex:none}
+  .rod span{flex:1;height:1px;background:rgba(255,235,200,.18)}
+  .rod-bottom{background:linear-gradient(#7a5730,#4b341f 55%,#7a5730)}
+  .sheet-inner{background:linear-gradient(180deg,#fffdf6,#f7efdd);padding:0 30px 6px;position:relative}
+  .sheet-inner::before,.sheet-inner::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line-soft)}
+  .sheet-inner::before{left:12px}.sheet-inner::after{right:12px}
+  .close{position:absolute;top:12px;right:18px;border:1px solid var(--line);background:rgba(255,252,244,.9);width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer;color:var(--ink-2);z-index:2;transition:all .18s}
+  .close:hover{border-color:var(--seal);color:var(--seal);transform:rotate(90deg)}
+  .sheet-head{display:flex;gap:20px;align-items:center;padding:30px 40px 22px 8px;border-bottom:1px double var(--line);position:relative}
+  .sheet-head .glyph{width:78px;height:78px;font-size:46px}
+  .sheet-head h2{margin:0;font-family:var(--brush);font-weight:400;font-size:36px;letter-spacing:.06em;line-height:1.2}
+  .sheet-head .place{color:var(--ink-2);margin:6px 0 0;font-size:13px}
+  .head-cat{position:absolute;right:8px;top:30px;writing-mode:vertical-rl;font-family:var(--brush);font-size:15px;letter-spacing:.28em;color:var(--cat);border:1px solid var(--cat);padding:7px 4px;border-radius:2px;background:var(--cat-soft)}
+  .sheet-index{position:absolute;right:8px;bottom:20px;font-size:11px;letter-spacing:.14em;color:var(--ink-3)}
+  .sheet-body{padding:4px 8px 8px;margin:0}
+  .row{display:grid;grid-template-columns:5.4em 1fr;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line-soft)}
+  .row:last-child{border-bottom:none}
+  .row dt{color:var(--seal);font-weight:600;font-size:13px;letter-spacing:.16em;padding-left:12px;position:relative}
+  .row dt::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--seal);transform:rotate(45deg)}
+  .row dd{margin:0;font-size:15px;color:var(--ink);min-width:0}
+  .quote{background:linear-gradient(160deg,#fbf5e6,#f4e8d0);border:1px solid var(--line);border-left:3px double var(--seal);padding:12px 18px;margin-top:2px;position:relative}
+  .quote .src{display:block;color:var(--ink-3);font-size:12px;letter-spacing:.1em;margin-bottom:5px}
+  .quote p{margin:0;font-size:15px;line-height:1.95}
+  .quote::after{content:"「";position:absolute;right:10px;bottom:-14px;font-size:46px;color:rgba(165,50,42,.1);font-family:var(--brush)}
+  .src-inline{color:var(--ink-2)}
+  .tip{background:rgba(165,50,42,.05);border-left:2px solid var(--seal);padding:8px 14px;font-style:italic;color:#6d4234}
+  .note{color:var(--ink-2);font-size:14px}
+  .sheet-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 8px 22px;border-top:1px double var(--line)}
+  .btn{border:1px solid var(--line);background:rgba(255,252,244,.8);padding:7px 15px;border-radius:3px;cursor:pointer;font:inherit;font-size:13px;color:var(--ink-2);transition:all .18s}
+  .btn:hover{border-color:var(--seal);color:var(--seal)}
+  .hint{font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+
+  /* 危险等级 */
+  .danger{border:1px solid currentColor;border-left:4px solid currentColor;border-radius:3px;padding:12px 16px;background:rgba(255,255,255,.5)}
+  .danger .head{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+  .danger .desc{margin:8px 0 0;font-size:13px;color:var(--ink-2)}
+  .danger .why{margin:10px 0 0;font-size:14px;color:var(--ink)}
+  .danger blockquote{margin:10px 0 0;padding:8px 12px;border-left:3px solid currentColor;background:rgba(255,255,255,.6);font-size:14px;color:var(--ink)}
+  .danger .src{display:block;color:var(--ink-3);font-size:12px;margin-top:4px}
+  .check{margin-top:9px;font-size:12px;color:var(--ink-3)}
+  .check.ok::before{content:"✓ ";color:var(--lv1);font-weight:700}
+  .check.todo::before{content:"○ ";color:var(--lv3);font-weight:700}
+
+  /* 等级说明 */
+  .legend{padding:28px 26px 30px}
+  .legend h2{margin:0 0 8px;font-family:var(--brush);font-weight:400;font-size:28px}
+  .legend p{margin:0 0 16px;color:var(--ink-2);font-size:14px}
+  .legend table{width:100%;border-collapse:collapse;font-size:14px}
+  .legend td{padding:11px 8px;border-bottom:1px dashed var(--line-soft);vertical-align:top}
+  .legend td:first-child{white-space:nowrap;font-weight:700;width:9.5em}
+  .legend .lv-cell{display:block;margin-top:4px;font-size:13px;letter-spacing:.04em}
+  .legend .names{display:block;color:var(--ink-3);font-size:12.5px;margin-top:5px;line-height:1.7}
+
+  @media (max-width:560px){
+    .sheet-inner{padding:0 18px 4px}
+    .sheet-head{padding:26px 34px 20px 0;gap:14px}
+    .sheet-head .glyph{width:62px;height:62px;font-size:38px}
+    .sheet-head h2{font-size:28px}
+    .head-cat{top:26px;right:0}
+    .row{grid-template-columns:1fr;gap:4px}
+    .hint{display:none}
+    .legend{padding:24px 18px 26px}
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+  @keyframes sheetIn{from{opacity:0;transform:scale(.975) translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="frame" aria-hidden="true">
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+</div>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="seal-group" aria-hidden="true">
+      <div class="seal">怪</div>
+      <div class="seal-cap">山海拾遗</div>
+    </div>
+    <div class="mast-text">
+      <div class="eyebrow">中华博物<i></i>典籍拾遗<i></i>凡三十种</div>
+      <h1>中华精怪出没图鉴</h1>
+      <p class="sub">中国版<em>「神奇动物在哪里」</em>——长什么样，在哪里出没，有多危险，遇见了怎么办。</p>
+    </div>
+    <div class="mast-side" aria-hidden="true">
+      <div class="colophon">据山海经　搜神记<br>太平广记　聊斋志异等录</div>
+      <div class="round-seal">卷<br>一</div>
+    </div>
+  </header>
+
+  <div class="rule" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <div class="toolbar">
+    <div class="tabs" id="tabs" role="toolbar" aria-label="按种类筛选"></div>
+    <div class="grow"></div>
+    <select class="select" id="lvsel" aria-label="按危险等级筛选">
+      <option value="0">全部等级</option>
+      <option value="1">一级·无害</option>
+      <option value="2">二级·扰人</option>
+      <option value="3">三级·伤人</option>
+      <option value="4">四级·害命</option>
+      <option value="5">五级·大凶</option>
+    </select>
+    <label class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path></svg>
+      <input class="search" id="q" type="search" placeholder="搜名字、出没地或出处" aria-label="搜索">
+    </label>
+    <button class="legend-btn" id="legendBtn" type="button">等级说明</button>
+    <button class="rand" id="rand" type="button">随机遇见一只</button>
+  </div>
+
+  <main>
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer>
+    <span>危险等级为本书自拟，每一级皆以原文为据。「已核」表示引文已对照公开古籍文本，「待核」表示尚未逐字核对。引文据传世本录出，不同版本字句略有出入。「遇见指南」为编者戏言，请勿当真。</span>
+    <span class="foot-seal">姑妄言之</span>
+  </footer>
+</div>
+
+<div class="mask" id="mask" aria-hidden="true">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="d-name">
+    <div class="rod rod-top" aria-hidden="true"><i></i><span></span><i></i></div>
+    <div class="sheet-inner">
+      <button class="close" data-close type="button" aria-label="关闭">×</button>
+      <div class="sheet-head">
+        <div class="glyph" id="d-glyph"></div>
+        <div>
+          <h2 id="d-name"></h2>
+          <p class="place" id="d-sub"></p>
+        </div>
+        <span class="head-cat" id="d-cat"></span>
+        <span class="sheet-index" id="d-index"></span>
+      </div>
+      <dl class="sheet-body" id="d-body"></dl>
+      <div class="sheet-foot">
+        <button class="btn" id="prev" type="button">← 上一只</button>
+        <span class="hint">Esc 合卷　·　← → 翻页</span>
+        <button class="btn" id="next" type="button">下一只 →</button>
+      </div>
+    </div>
+    <div class="rod rod-bottom" aria-hidden="true"><i></i><span></span><i></i></div>
+  </div>
+</div>
+
+<div class="mask" id="legendMask" aria-hidden="true">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="lg-title">
+    <div class="rod rod-top" aria-hidden="true"><i></i><span></span><i></i></div>
+    <div class="sheet-inner">
+      <button class="close" data-close type="button" aria-label="关闭">×</button>
+      <div class="legend">
+        <h2 id="lg-title">危险等级说明</h2>
+        <p>本书按古籍中记载的后果定级：它做过什么、伤过谁、有没有人对付得了。每只精怪的定级都附有一句原文作为依据。</p>
+        <table id="lgTable"></table>
+      </div>
+    </div>
+    <div class="rod rod-bottom" aria-hidden="true"><i></i><span></span><i></i></div>
+  </div>
+</div>
+
+<script>
+const CATS = [
+  {id:"shou", name:"兽类", color:"var(--c-shou)"},
+  {id:"qin",  name:"禽鸟", color:"var(--c-qin)"},
+  {id:"lin",  name:"鳞介", color:"var(--c-lin)"},
+  {id:"cao",  name:"草木", color:"var(--c-cao)"},
+  {id:"qi",   name:"器物", color:"var(--c-qi)"},
+  {id:"gui",  name:"鬼魅", color:"var(--c-gui)"}
+];
+const LEVELS = [
+  null,
+  {name:"一级·无害", color:"var(--lv1)", desc:"不伤人，或反而护人、利人。可以放心靠近。"},
+  {name:"二级·扰人", color:"var(--lv2)", desc:"会作怪、捣乱或带来风雨，但古书中未见致死。"},
+  {name:"三级·伤人", color:"var(--lv3)", desc:"能致病、致灾、迷人心智或拐走孩子。"},
+  {name:"四级·害命", color:"var(--lv4)", desc:"会吃人或杀人，但古书里有人成功对付过它。"},
+  {name:"五级·大凶", color:"var(--lv5)", desc:"吃人害命，且难以防范或制服。"}
+];
+
+/* lv: 危险等级；lq: 定级依据原文；ls: 依据出处；why: 定级理由；ok: 依据原文是否已核 */
+const DATA = [
+  {n:"九尾狐", g:"狐", c:"shou", place:"青丘之山",
+   look:"形如狐，九条尾巴；叫声像婴儿。", habit:"能吃人。",
+   src:"《山海经·南山经》", q:"又东三百里，曰青丘之山……有兽焉，其状如狐而九尾，其音如婴儿，能食人，食者不蛊。",
+   lv:4, lq:"能食人，食者不蛊。", ls:"《山海经·南山经》", ok:false,
+   why:"原文明说它吃人；但它也能被人吃掉，并非无法对付。",
+   tip:"原书说吃了它的肉可以不中蛊毒。但它也吃人，谁先吃谁，很难说。",
+   note:"九尾狐最初是祥瑞。东晋郭璞为它作赞，说它“有道祥见，出则衔书”。唐以后它与“狐媚”合流，元代《武王伐纣平话》已把妲己写成九尾狐。"},
+  {n:"狐魅（天狐）", g:"魅", c:"shou", place:"乡里村落、宅院、古冢",
+   look:"平时是狐，修炼日久则化为美女、书生或老人。", habit:"年岁越大，法力越强。五十岁可变化，千岁与天相通，称为“天狐”。",
+   src:"《玄中记》", q:"狐五十岁，能变化为妇人，百岁为美女，为神巫，能知千里外事。",
+   lv:3, lq:"善蛊魅，使人迷惑失智。", ls:"《玄中记》", ok:true,
+   why:"主要危害是迷人心智，而不是吃人。",
+   tip:"唐宋故事里常靠狗和古镜识破狐魅。出门在外，留意行人身后有没有尾巴。",
+   note:"《太平广记》收有狐部九卷（卷四百四十七至四百五十五），以单一物种论，所占卷数最多。"},
+  {n:"貙人", g:"貙", c:"shou", place:"江汉之域",
+   look:"平常与人无异，可化为虎。传说貙所化之人足无后跟，或有五指。", habit:"世代相传的化虎之族。",
+   src:"《搜神记》卷十二", q:"江、汉之域，有貙人，其先，廪君之苗裔也，能化为虎。",
+   lv:2, lq:"寻视，乃化为虎，上山走。", ls:"《搜神记》卷十二", ok:true,
+   why:"原文中被关进捕虎槛的貙人，被放出后只是化虎逃上山，并未伤人。",
+   tip:"不必惊慌，只是邻居。尽量别在黄昏后跟他进山。",
+   note:"廪君是传说中巴人的先祖，巴人有白虎崇拜。到了唐代，“人化虎”的故事转向惩罚与心疾，张读《宣室志》中李征化虎一篇最为有名。"},
+  {n:"伥", g:"伥", c:"shou", place:"虎出没的山道旁",
+   look:"被虎吃掉的人的鬼魂。", habit:"为虎引路，把新的人引到虎口下。",
+   src:"《广异记·宣州儿》，收入《太平广记》卷四百二十八", q:"",
+   lv:4, lq:"为虎所食，其鬼为伥。", ls:"《广异记·宣州儿》，《太平广记》卷四百二十八", ok:true,
+   why:"它本身不吃人，却会把人引向老虎。但宣州那个孩子做了伥鬼后托梦报信，村人设阱捕到了虎。",
+   tip:"山路上有陌生人热情带路，要多留个心眼。",
+   note:"成语“为虎作伥”即由此来。"},
+  {n:"狌狌", g:"狌", c:"shou", place:"招摇之山",
+   look:"像猕猴，耳朵是白的。", habit:"时而趴着爬，时而像人一样直立行走。",
+   src:"《山海经·南山经》", q:"有兽焉，其状如禺而白耳，伏行人走，其名曰狌狌，食之善走。",
+   lv:1, lq:"食之善走。", ls:"《山海经·南山经》", ok:true,
+   why:"原文只记它能让人跑得快，没有任何害人的记载。",
+   tip:"原书说吃了它跑得快。想跑得快，建议改用训练。",
+   note:"后世“猩猩”一名与它有关。"},
+  {n:"鹿蜀", g:"蜀", c:"shou", place:"杻阳之山",
+   look:"形如马，白头，身上有虎纹，尾巴是红的。", habit:"叫声像人唱歌。",
+   src:"《山海经·南山经》", q:"其状如马而白首，其文如虎而赤尾，其音如谣，其名曰鹿蜀，佩之宜子孙。",
+   lv:1, lq:"佩之宜子孙。", ls:"《山海经·南山经》", ok:true,
+   why:"原文只记好处。",
+   tip:"穿戴它的皮毛可以多子多孙。喜不喜欢孩子，请先想清楚。",
+   note:"不少人认为它像今天的斑马或霍加狓，只是猜测。"},
+  {n:"白泽", g:"泽", c:"shou", place:"东海之滨",
+   look:"神兽，能说人话。", habit:"通晓天下鬼神精怪之事，曾向黄帝讲述。",
+   src:"《云笈七签·轩辕本纪》；葛洪《抱朴子·极言》", q:"",
+   lv:1, lq:"穷神奸则记白泽之辞。", ls:"葛洪《抱朴子·极言》", ok:false,
+   why:"它是辨识、驱除精怪的知识来源，后世多以其图像辟邪。",
+   tip:"如果遇见，请带上纸笔。本书编者很想知道它说了什么。",
+   note:"据说黄帝把它的话记录成《白泽图》。这部书早已亡佚，只有佚文散见于类书和志怪中，“彭侯”一条就引到了它。"},
+  {n:"穷奇", g:"奇", c:"shou", place:"邽山",
+   look:"形如牛，全身长刺猬般的毛。另一说形如虎而有翼。", habit:"叫声像狗嚎，吃人。",
+   src:"《山海经·西山经》", q:"其上有兽焉，其状如牛，猬毛，名曰穷奇，音如獆狗，是食人。",
+   lv:5, lq:"是食人。", ls:"《山海经·西山经》", ok:false,
+   why:"吃人，古书中未见任何对付它的办法；又是“四凶”之一。",
+   tip:"远离。没什么可商量的。",
+   note:"《左传》已把“穷奇”列为四凶之一，后世与混沌、梼杌、饕餮并称。"},
+  {n:"夔", g:"夔", c:"shou", place:"东海中的流波山",
+   look:"形如牛，青色身体，无角，只有一只脚。", habit:"出入水中必有风雨，身上的光像日月，叫声如雷。",
+   src:"《山海经·大荒东经》", q:"黄帝得之，以其皮为鼓，橛以雷兽之骨，声闻五百里，以威天下。",
+   lv:2, lq:"出入水则必风雨。", ls:"《山海经·大荒东经》", ok:false,
+   why:"它带来风雨雷声，但原文没说它伤人；反倒被黄帝做成了鼓。",
+   tip:"听到雷声却不见下雨，可以朝海上看看。",
+   note:"《尚书》中另有乐官名夔，古人曾争论“夔一足”是说它只有一只脚，还是说“有夔一个就够了”。"},
+  {n:"天狗", g:"狗", c:"shou", place:"阴山",
+   look:"形如狸，白头。", habit:"叫声“榴榴”，能抵御凶害。",
+   src:"《山海经·西山经》", q:"有兽焉，其状如狸而白首，名曰天狗，其音如榴榴，可以御凶。",
+   lv:1, lq:"可以御凶。", ls:"《山海经·西山经》", ok:false,
+   why:"它是护人的。",
+   tip:"它是来保护你的，可以放心。",
+   note:"后世“天狗吃月”的天狗另有来历，与这只御凶的天狗并非一物。"},
+
+  {n:"精卫", g:"卫", c:"qin", place:"发鸠之山，往来于西山与东海之间",
+   look:"形如乌鸦，头上有花纹，白嘴，红脚。", habit:"叫声就是自己的名字；终生衔木石填海。",
+   src:"《山海经·北山经》", q:"是炎帝之少女，名曰女娃。女娃游于东海，溺而不返，故为精卫，常衔西山之木石，以堙于东海。",
+   lv:1, lq:"常衔西山之木石，以堙于东海。", ls:"《山海经·北山经》", ok:false,
+   why:"它一心填海，与人无涉。",
+   tip:"不要劝它放弃。",
+   note:"精卫是书中少有的由人化成的精怪。陶渊明《读山海经》诗已把它写成不屈意志的象征。"},
+  {n:"毕方", g:"毕", c:"qin", place:"章莪之山",
+   look:"形如鹤，只有一只脚，青色身上有红纹，白嘴。", habit:"它出现的地方，就会突然起火。",
+   src:"《山海经·西山经》", q:"有鸟焉，其状如鹤，一足，赤文青质而白喙，名曰毕方，其鸣自叫也，见则其邑有讹火。",
+   lv:3, lq:"见则其邑有讹火。", ls:"《山海经·西山经》", ok:false,
+   why:"它不直接伤人，但一出现整个城邑就要起火。",
+   tip:"看到一只独脚鹤，先把水缸加满。",
+   note:"《韩非子》记黄帝会鬼神于西泰山，毕方是随从之一。"},
+  {n:"姑获鸟", g:"姑", c:"qin", place:"夜间的人家院落，荆州一带最多",
+   look:"披上羽毛是鸟，脱下羽毛是女人。", habit:"夜飞昼藏。自己没有孩子，用血点在小孩衣服上做记号，再把孩子取走。",
+   src:"《玄中记》（据鲁迅《古小说钩沉》辑本）", q:"姑获鸟夜飞昼藏，盖鬼神类。衣毛为飞鸟，脱毛为女人。",
+   lv:3, lq:"鸟无子，喜取人子养之，以为子。", ls:"《玄中记》", ok:true,
+   why:"它偷孩子，但原文说是拿去当自己的孩子养。",
+   tip:"原书说小孩的衣服不要夜里晾在外面，就是怕它来做记号。",
+   note:"同条还记豫章一男子藏起毛衣女的羽衣，娶她为妻。这是中国最早的“羽衣仙女”故事之一。"},
+  {n:"鬼车（九头鸟）", g:"车", c:"qin", place:"南方阴雨夜空",
+   look:"传说原有十个头，被狗咬去一个，剩下九个，断处常滴血。", habit:"夜里飞过人家，血滴到哪家，哪家就有灾祸。",
+   src:"周密《齐东野语》卷十九", q:"",
+   lv:3, lq:"世传此鸟昔有十首，为犬噬其一，至今血滴人家为灾咎。", ls:"周密《齐东野语》卷十九", ok:true,
+   why:"它带来灾祸，但不直接取人性命。",
+   tip:"原书说听到它的叫声，要喝止家里的狗、熄灭灯火，让它快些飞过去。",
+   note:"“天上九头鸟，地下湖北佬”的俗语，把这只不祥之鸟变成了夸人精明的话。"},
+  {n:"重明鸟", g:"明", c:"qin", place:"传说中的秪支之国",
+   look:"形如鸡，叫声似凤，每只眼里有两个瞳仁，又名“双睛”。", habit:"能搏击虎狼等猛兽，使妖灾群恶不能为害。",
+   src:"王嘉《拾遗记》卷一", q:"尧在位七十年，有秪支之国献重明之鸟，一名双睛，言双睛在目。状如鸡，鸣似凤。",
+   lv:1, lq:"能搏逐猛兽虎狼，使妖灾群恶不能为害。", ls:"王嘉《拾遗记》卷一", ok:true,
+   why:"它专门驱邪护人。",
+   tip:"它不是年年都来，来了请好好招待。",
+   note:"原书说重明鸟不来的年份，人们就刻木或铸金作它的模样，放在门户之间；又说当时人每年元日在窗上画鸡，就是它的遗像。"},
+
+  {n:"巴蛇", g:"巴", c:"lin", place:"南方巴地",
+   look:"巨蛇，能吞下整头大象。", habit:"吞象之后要三年才吐出骨头。",
+   src:"《山海经·海内南经》", q:"巴蛇食象，三岁而出其骨，君子服之，无心腹之疾。",
+   lv:4, lq:"巴蛇食象，三岁而出其骨。", ls:"《山海经·海内南经》", ok:false,
+   why:"连大象都吞得下；但《淮南子》记羿曾斩之。",
+   tip:"它三年才消化一顿，刚吃完时反而最安全。",
+   note:"《淮南子》记羿“断修蛇于洞庭”。俗语“人心不足蛇吞象”也常被追溯到巴蛇。"},
+  {n:"白蛇", g:"蛇", c:"lin", place:"长安东市一带",
+   look:"化为绝色的白衣妇人，有一位着青衣的老妇随从。", habit:"诱男子入宅同住，男子回家后身体渐渐化为水，只剩头颅。",
+   src:"郑还古《博异志·李黄》，收入《太平广记》卷四百五十八", q:"",
+   lv:5, lq:"但觉被底身渐消尽，揭被而视，空注水而已，唯有头存。", ls:"《博异志·李黄》", ok:false,
+   why:"受害者毫无察觉，回家后才发病，无从防范，必死。",
+   tip:"唐代的白蛇可不是白娘子。白衣美人邀你回家，请先闻一闻有没有腥味。",
+   note:"宋《夷坚志·孙知县妻》写浴盆中现出白蛇之形；到明代冯梦龙《警世通言·白娘子永镇雷峰塔》，她才渐渐成为可亲的主角。"},
+  {n:"庸岭大蛇", g:"岭", c:"lin", place:"东越闽中庸岭西北的湿地",
+   look:"长七八丈，粗十余围。", habit:"要求每年献祭童女，已吃了九个。",
+   src:"《搜神记》卷十九", q:"东越闽中有庸岭，高数十里，其西北隰中有大蛇，长七八丈，大十余围。",
+   lv:4, lq:"东越闽中有庸岭……其西北隰中有大蛇，长七八丈，大十余围。", ls:"《搜神记》卷十九", ok:false,
+   why:"已吃九名少女；最后被少女李寄用剑和狗斩杀。",
+   tip:"参考李寄：带一把剑、一条好狗，再备几石拌了蜜的米糕放在洞口引蛇出来。",
+   note:"李寄是将乐县李诞的第六个女儿，自愿应祭，最后斩蛇而归。她是志怪里少见的主动除怪的少女。"},
+  {n:"蛟", g:"蛟", c:"lin", place:"深潭与大江大河",
+   look:"形似龙而未成龙。", habit:"兴风作浪，危害百姓。",
+   src:"任昉《述异记》；《世说新语·自新》", q:"水虺五百年化为蛟，蛟千年化为龙。",
+   lv:4, lq:"义兴水中有蛟，山中有邅迹虎，并皆暴犯百姓。", ls:"《世说新语·自新》", ok:true,
+   why:"为害一方；但周处入水与它搏斗三日三夜，终于杀了它。",
+   tip:"大水之年渡江，不要坐太小的船。",
+   note:"周处除三害，一害是水中的蛟，一害是山中的虎，还有一害是周处自己。"},
+  {n:"鲛人", g:"鲛", c:"lin", place:"南海之外",
+   look:"像鱼一样住在水里。", habit:"会织绡，哭泣时眼泪会变成珍珠。",
+   src:"张华《博物志》", q:"南海外有鲛人，水居如鱼，不废织绩，其眼能泣珠。",
+   lv:1, lq:"不废织绩，其眼能泣珠。", ls:"张华《博物志》", ok:true,
+   why:"原文只记它织布、泣珠。",
+   tip:"不要为了珍珠惹它哭。",
+   note:"《搜神记》卷十二也有几乎相同的一条，作“其眼泣，则能出珠”。"},
+  {n:"陵鱼", g:"陵", c:"lin", place:"海中",
+   look:"人的面孔，有手脚，鱼的身子。", habit:"原书未说。",
+   src:"《山海经·海内北经》", q:"陵鱼人面，手足，鱼身，在海中。",
+   lv:1, lq:"陵鱼人面，手足，鱼身，在海中。", ls:"《山海经·海内北经》", ok:true,
+   why:"暂定：原文只记形貌，未记任何行为。",
+   tip:"资料太少，以观察为主。",
+   note:"《山海经》中人面鱼身的生物不止一种，陵鱼是最接近今天“人鱼”形象的一种。"},
+  {n:"蜃", g:"蜃", c:"lin", place:"海边",
+   look:"古人说是蛟一类的水族，身形难以看清。", habit:"吐气化作楼台宫阙。",
+   src:"《史记·天官书》", q:"海旁蜄气象楼台；广野气成宫阙然。",
+   lv:1, lq:"海旁蜄气象楼台。", ls:"《史记·天官书》", ok:false,
+   why:"只是幻景。",
+   tip:"可以拍照，但不必着急去楼里。",
+   note:"沈括《梦溪笔谈》记登州海上常现宫室台观，当地称为“海市”，并记下或言是蛟蜃之气所为的说法。今天的“海市蜃楼”即由此而来，实为光的折射现象。"},
+
+  {n:"彭侯", g:"彭", c:"cao", place:"建安郡的大樟树中",
+   look:"人面狗身；一说状如黑狗，没有尾巴。", habit:"千年树木之精，树被砍断时从中走出。",
+   src:"《搜神记》引《白泽图》", q:"木之精名彭侯，状如黑狗，无尾，可烹食之。",
+   lv:1, lq:"可烹食之。", ls:"《搜神记》引《白泽图》", ok:false,
+   why:"它反而被人煮来吃了。",
+   tip:"吴时陆敬叔把它煮来吃了，说味道像狗肉。本书不推荐效仿。",
+   note:"这条是《白泽图》佚文借志怪保存下来的一个例子。"},
+  {n:"血树", g:"树", c:"cao", place:"张叔高家田中的大树",
+   look:"树围十余抱，枝叶遍覆数亩地，树下不生五谷。", habit:"斧头砍下便流出赤汁；树空中藏有白头老人模样的怪物。",
+   src:"《风俗通》，收入《太平广记》卷四百一十五", q:"遣客伐之，有赤汁六七斗出。",
+   lv:2, lq:"叔高乃逆格之。如此凡数四头……而叔高恬如也。", ls:"《风俗通》，《太平广记》卷四百一十五", ok:true,
+   why:"吓得众人伏地，但被斩之后，张叔高官运亨通，“竟无他怪”。",
+   tip:"张叔高不信邪，持刀连斩数头怪物，反而平安无事。但本书建议还是先和树打个招呼。",
+   note:"树被砍而出血，是汉魏六朝志怪中反复出现的母题，彭侯一条也是如此。"},
+  {n:"菊精", g:"菊", c:"cao", place:"顺天马家的菊园",
+   look:"化为一对姓陶的姐弟，姐姐名叫黄英。", habit:"善种菊，卖花致富；弟弟嗜酒，大醉后倒地化为菊花。",
+   src:"蒲松龄《聊斋志异·黄英》", q:"",
+   lv:1, lq:"（待补原文）", ls:"蒲松龄《聊斋志异·黄英》", ok:false,
+   why:"它们是马家的亲友，帮马家致富。",
+   tip:"可以买它们的花，别劝它们喝酒。",
+   note:"清代的草木精已不再是六朝那种阴森的树怪，而是风雅的友人。《聊斋》里的牡丹精香玉、葛巾也是同类。"},
+
+  {n:"细腰", g:"腰", c:"qi", place:"魏郡一座凶宅",
+   look:"半夜有黄衣、青衣、白衣三人先后来问“细腰”，细腰一一作答。", habit:"黄衣是金，青衣是钱，白衣是银，细腰是灶下的杵。住进宅子的人纷纷生病。",
+   src:"《搜神记》卷十八", q:"",
+   lv:3, lq:"（待补原文：宅主一家患病）", ls:"《搜神记》卷十八", ok:false,
+   why:"它们让宅中人生病，但何文偷听到真相后，便轻易除去了它们。",
+   tip:"学何文。他半夜持刀坐在梁上偷听，天亮后照着对话一一去挖，得了金银和钱，把杵烧掉，宅子就安宁了。",
+   note:"这是一类“窃听精怪对话而得宝”的故事，后世民间故事中常见类似情节。"},
+  {n:"古镜", g:"镜", c:"qi", place:"随王度远行",
+   look:"一面带有灵力的古铜镜。", habit:"一照之下，精怪皆现原形。王度曾用它照出程雄家的婢女鹦鹉原是千岁老狸。",
+   src:"王度《古镜记》，收入《太平广记》卷二百三十，题《王度》", q:"",
+   lv:1, lq:"（待补原文）", ls:"王度《古镜记》", ok:false,
+   why:"它是照妖的宝物，只对精怪危险。",
+   tip:"如果你有一面古镜，就不太需要本书了。",
+   note:"鲁迅考证王度实已入唐，《古镜记》应算唐人作品。以镜照妖的观念，可上溯到葛洪《抱朴子》。"},
+
+  {n:"宋定伯所卖之鬼", g:"鬼", c:"gui", place:"夜往宛市的路上",
+   look:"与人无异；身体极轻。", habit:"只怕人的唾沫。",
+   src:"《列异传》，又见《搜神记》", q:"",
+   lv:2, lq:"唯不喜人唾。", ls:"《列异传》", ok:true,
+   why:"它自己说出了弱点，结果被宋定伯背到市上，化为一只羊卖掉了。",
+   tip:"学宋定伯。他自称新鬼，套出了鬼的弱点，到市上吐了口唾沫，卖得钱一千五百。",
+   note:"《列异传》是这个故事的原出处，《搜神记》是转录。"},
+  {n:"画皮", g:"皮", c:"gui", place:"太原王生的书房",
+   look:"披上人皮时是少女；脱下人皮是面色青绿、牙齿如锯的恶鬼。", habit:"把人皮铺在床上，用彩笔描画，再披到身上。",
+   src:"蒲松龄《聊斋志异·画皮》", q:"见一狞鬼，面翠色，齿巉巉如锯。铺人皮于榻上，执彩笔而绘之。",
+   lv:5, lq:"见一狞鬼，面翠色，齿巉巉如锯。", ls:"《聊斋志异·画皮》", ok:true,
+   why:"它伪装极好，王生事先已被道士警告，仍被它杀害、掏去了心。",
+   tip:"路上独行的美人自称无家可归，先别带回家。",
+   note:"王生最后是靠妻子陈氏忍辱求得乞丐相助，才得以复生。"},
+  {n:"山臊", g:"臊", c:"gui", place:"西方深山",
+   look:"赤身的小人。", habit:"捕食虾蟹，趁人夜宿，到火堆旁烤着吃，还偷人的盐。最怕竹子在火中爆裂的声响。",
+   src:"《神异经》；南朝宗懔《荆楚岁时记》", q:"",
+   lv:2, lq:"先于庭前爆竹，以辟山臊恶鬼。", ls:"宗懔《荆楚岁时记》", ok:false,
+   why:"《神异经》只记它偷盐、借火；后世才称为“恶鬼”，一串爆竹就能吓跑。",
+   tip:"过年放爆竹。",
+   note:"正月初一放爆竹的风俗，最早的解释之一就是为了吓跑山臊。"}
+];
+
+const catOf = id => CATS.find(c => c.id === id);
+const CN = ["零","一","二","三","四","五","六","七","八","九","十"];
+const cn = n => n <= 10 ? CN[n] : n < 20 ? "十" + CN[n-10] : CN[Math.floor(n/10)] + "十" + (n % 10 ? CN[n%10] : "");
+let current = "all", query = "", lvFilter = 0, visible = [], openIdx = -1;
+const pips = n => `<span class="pips">${[1,2,3,4,5].map(i => `<span class="pip${i <= n ? " on" : ""}"></span>`).join("")}</span>`;
+
+const tabsEl = document.getElementById("tabs");
+function renderTabs(){
+  const items = [{id:"all", name:"全部"}].concat(CATS);
+  tabsEl.innerHTML = "";
+  items.forEach(c => {
+    const n = c.id === "all" ? DATA.length : DATA.filter(d => d.c === c.id).length;
+    const b = document.createElement("button");
+    b.className = "tab"; b.type = "button";
+    b.setAttribute("aria-pressed", String(current === c.id));
+    b.innerHTML = `${c.name}<span class="n">${n}</span>`;
+    b.onclick = () => { current = c.id; renderTabs(); renderGrid(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function matches(d){
+  if (current !== "all" && d.c !== current) return false;
+  if (lvFilter && d.lv !== lvFilter) return false;
+  if (!query) return true;
+  return [d.n, d.place, d.src, d.look, d.habit, d.q, d.lq, d.ls].join(" ").includes(query);
+}
+
+const gridEl = document.getElementById("grid");
+function renderGrid(){
+  visible = DATA.filter(matches);
+  document.getElementById("count").textContent = `现录 ${cn(visible.length)} 种 · 全编共 ${cn(DATA.length)} 种`;
+  gridEl.innerHTML = "";
+  if (!visible.length){ gridEl.innerHTML = '<p class="empty">没有找到。也许它藏得太好了。</p>'; return; }
+  visible.forEach((d, i) => {
+    const cat = catOf(d.c), L = LEVELS[d.lv];
+    const b = document.createElement("button");
+    b.className = `card cat-${d.c}`; b.type = "button";
+    b.style.setProperty("--i", i);
+    b.setAttribute("aria-label", `${d.n}，${cat.name}，${L.name}`);
+    b.innerHTML = `
+      <div class="card-top"><span class="card-no">其${cn(i+1)}</span><span class="tag">${cat.name}</span></div>
+      <div class="card-main">
+        <div class="glyph">${d.g}</div>
+        <div><h3>${d.n}</h3><p class="place">出没 · ${d.place}</p></div>
+      </div>
+      <div class="card-level" style="color:${L.color}">${pips(d.lv)}<span class="lv-text">${L.name}</span></div>
+      <div class="card-foot"><span class="card-check ${d.ok ? "ok" : "todo"}">${d.ok ? "引文已核" : "引文待核"}</span><span class="more">展卷 →</span></div>`;
+    b.onclick = () => openDetail(i);
+    gridEl.appendChild(b);
+  });
+}
+
+const mask = document.getElementById("mask"), legendMask = document.getElementById("legendMask");
+let lastFocus = null;
+function show(m){
+  if (!m.classList.contains("open")) lastFocus = document.activeElement;
+  m.classList.add("open"); m.setAttribute("aria-hidden","false");
+  const sh = m.querySelector(".sheet"); if (sh) sh.scrollTop = 0;
+  m.querySelector("[data-close]").focus();
+}
+function hide(m){
+  m.classList.remove("open"); m.setAttribute("aria-hidden","true");
+  if (m === mask) openIdx = -1;
+  if (lastFocus) lastFocus.focus();
+}
+
+function openDetail(i){
+  if (!visible.length) return;
+  openIdx = (i + visible.length) % visible.length;
+  const d = visible[openIdx], cat = catOf(d.c), L = LEVELS[d.lv];
+  document.getElementById("sheet").className = `sheet cat-${d.c}`;
+  const g = document.getElementById("d-glyph");
+  g.textContent = d.g; g.className = "glyph";
+  document.getElementById("d-name").textContent = d.n;
+  document.getElementById("d-sub").textContent = `出没 · ${d.place}`;
+  document.getElementById("d-cat").textContent = cat.name;
+  document.getElementById("d-index").textContent = `其${cn(openIdx+1)} / 共${cn(visible.length)}种`;
+  const quote = d.q ? `<div class="quote"><span class="src">${d.src}</span><p>${d.q}</p></div>` : `<span class="src-inline">${d.src}</span>`;
+  document.getElementById("d-body").innerHTML = `
+    <div class="row"><dt>危险等级</dt><dd><div class="danger" style="color:${L.color}">
+      <div class="head">${pips(d.lv)}<span class="lv-text">${L.name}</span></div>
+      <p class="desc">${L.desc}</p>
+      <p class="why">${d.why}</p>
+      <blockquote>${d.lq}<span class="src">${d.ls}</span></blockquote>
+      <div class="check ${d.ok ? "ok" : "todo"}">${d.ok ? "定级引文已对照公开古籍文本" : "定级引文待核，请对照整理本"}</div>
+    </div></dd></div>
+    <div class="row"><dt>形貌</dt><dd>${d.look}</dd></div>
+    <div class="row"><dt>习性</dt><dd>${d.habit}</dd></div>
+    <div class="row"><dt>典出</dt><dd>${quote}</dd></div>
+    <div class="row"><dt>遇见指南</dt><dd class="tip">${d.tip}</dd></div>
+    <div class="row"><dt>小考</dt><dd class="note">${d.note}</dd></div>`;
+  show(mask);
+}
+
+document.getElementById("lgTable").innerHTML = LEVELS.slice(1).map((L, i) => {
+  const names = DATA.filter(d => d.lv === i + 1).map(d => d.n).join("、");
+  return `<tr><td style="color:${L.color}">${pips(i+1)}<span class="lv-cell">${L.name}</span></td><td>${L.desc}<span class="names">${names}</span></td></tr>`;
+}).join("");
+
+document.querySelectorAll("[data-close]").forEach(b => b.onclick = () => hide(b.closest(".mask")));
+document.getElementById("prev").onclick = () => openDetail(openIdx - 1);
+document.getElementById("next").onclick = () => openDetail(openIdx + 1);
+[mask, legendMask].forEach(m => m.addEventListener("click", e => { if (e.target === m) hide(m); }));
+document.addEventListener("keydown", e => {
+  const open = document.querySelector(".mask.open");
+  if (!open) return;
+  if (e.key === "Escape") hide(open);
+  if (open === mask && e.key === "ArrowLeft") openDetail(openIdx - 1);
+  if (open === mask && e.key === "ArrowRight") openDetail(openIdx + 1);
+});
+document.getElementById("legendBtn").onclick = () => show(legendMask);
+document.getElementById("lvsel").onchange = e => { lvFilter = Number(e.target.value); renderGrid(); };
+document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim(); renderGrid(); });
+document.getElementById("rand").onclick = () => {
+  current = "all"; query = ""; lvFilter = 0;
+  document.getElementById("q").value = ""; document.getElementById("lvsel").value = "0";
+  renderTabs(); renderGrid();
+  openDetail(Math.floor(Math.random() * visible.length));
+};
+
+renderTabs(); renderGrid();
+</script>
+</body>
+</html>
